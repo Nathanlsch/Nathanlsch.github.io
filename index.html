@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -5,26 +6,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>❤️</title>
+    <title>❤️ Mon mur</title>
 </head>
 
 <body>
 
-    <h1>Mon mur ❤️</h1>
+    <!-- ========================================= -->
+    <!-- CONNEXION -->
+    <!-- ========================================= -->
 
     <div id="login">
+
+        <h1>❤️ Mon mur</h1>
+
         <h2>Connexion</h2>
 
         <input
             type="email"
             id="email"
             placeholder="Email"
+            autocomplete="email"
         >
 
         <input
             type="password"
             id="password"
             placeholder="Mot de passe"
+            autocomplete="current-password"
         >
 
         <button id="loginButton">
@@ -32,115 +40,448 @@
         </button>
 
         <p id="error"></p>
+
     </div>
 
+
+    <!-- ========================================= -->
+    <!-- UTILISATEUR CONNECTÉ -->
+    <!-- ========================================= -->
+
     <div id="loggedIn" style="display: none;">
-        <h2>Bienvenue ❤️</h2>
+
+        <h1>Bienvenue ❤️</h1>
 
         <p id="userEmail"></p>
 
         <button id="logoutButton">
             Se déconnecter
         </button>
+
+
+        <!-- ===================================== -->
+        <!-- TEST DES POST-IT -->
+        <!-- ===================================== -->
+
+        <hr>
+
+        <h2>Test des post-it</h2>
+
+        <p>
+            Choisis un numéro entre 1 et 140.
+        </p>
+
+        <input
+            type="number"
+            id="postitId"
+            min="1"
+            max="140"
+            placeholder="ID du post-it"
+        >
+
+        <button id="openPostitButton">
+            Ouvrir
+        </button>
+
+        <p id="postitResult"></p>
+
     </div>
 
 
-    <!-- Supabase JS -->
+    <!-- ========================================= -->
+    <!-- SUPABASE -->
+    <!-- ========================================= -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Notre configuration -->
     <script src="supabase.js"></script>
 
-    <!-- Notre logique -->
+
+    <!-- ========================================= -->
+    <!-- APPLICATION -->
+    <!-- ========================================= -->
+
     <script>
 
-        const loginDiv = document.getElementById("login");
-        const loggedInDiv = document.getElementById("loggedIn");
+        // ========================================
+        // ELEMENTS HTML
+        // ========================================
 
-        const emailInput = document.getElementById("email");
-        const passwordInput = document.getElementById("password");
+        const loginDiv =
+            document.getElementById("login");
 
-        const loginButton = document.getElementById("loginButton");
-        const logoutButton = document.getElementById("logoutButton");
+        const loggedInDiv =
+            document.getElementById("loggedIn");
 
-        const errorText = document.getElementById("error");
-        const userEmail = document.getElementById("userEmail");
+        const emailInput =
+            document.getElementById("email");
 
+        const passwordInput =
+            document.getElementById("password");
 
-        // Vérifie si quelqu'un est déjà connecté
-        async function checkUser() {
+        const loginButton =
+            document.getElementById("loginButton");
 
-            const {
-                data: { user }
-            } = await supabaseClient.auth.getUser();
+        const logoutButton =
+            document.getElementById("logoutButton");
 
-            if (user) {
-                showLoggedIn(user);
-            } else {
-                showLogin();
-            }
-        }
+        const errorText =
+            document.getElementById("error");
 
+        const userEmail =
+            document.getElementById("userEmail");
 
-        // Connexion
-        async function login() {
+        const postitIdInput =
+            document.getElementById("postitId");
 
-            const email = emailInput.value.trim();
-            const password = passwordInput.value;
-        
-            errorText.textContent = "";
-        
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email: email,
-                    password: password
-                });
-        
-            if (error) {
-                console.error("Erreur Supabase :", error);
-                errorText.textContent = error.message;
-                return;
-            }
-        
-            showLoggedIn(data.user);
-    }
+        const openPostitButton =
+            document.getElementById("openPostitButton");
+
+        const postitResult =
+            document.getElementById("postitResult");
 
 
-        // Afficher la page connectée
+        // ========================================
+        // AFFICHER LA PAGE CONNECTÉE
+        // ========================================
+
         function showLoggedIn(user) {
 
             loginDiv.style.display = "none";
+
             loggedInDiv.style.display = "block";
 
             userEmail.textContent =
                 "Connecté avec : " + user.email;
+
+            errorText.textContent = "";
         }
 
 
-        // Afficher le formulaire
+        // ========================================
+        // AFFICHER LA PAGE DE CONNEXION
+        // ========================================
+
         function showLogin() {
 
             loginDiv.style.display = "block";
+
             loggedInDiv.style.display = "none";
+
+            userEmail.textContent = "";
+
+            postitResult.textContent = "";
         }
 
 
-        // Déconnexion
+        // ========================================
+        // VERIFIER L'UTILISATEUR
+        // ========================================
+
+        async function checkUser() {
+
+            const {
+                data: { user },
+                error
+            } = await supabaseClient.auth.getUser();
+
+            if (error) {
+
+                console.error(
+                    "Erreur récupération utilisateur :",
+                    error
+                );
+
+                showLogin();
+
+                return;
+            }
+
+            if (user) {
+
+                showLoggedIn(user);
+
+            } else {
+
+                showLogin();
+
+            }
+        }
+
+
+        // ========================================
+        // CONNEXION
+        // ========================================
+
+        async function login() {
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+            errorText.textContent = "";
+
+            if (!email || !password) {
+
+                errorText.textContent =
+                    "Entre ton email et ton mot de passe.";
+
+                return;
+            }
+
+
+            const {
+                data,
+                error
+            } = await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+            if (error) {
+
+                console.error(
+                    "Erreur Supabase :",
+                    error
+                );
+
+                errorText.textContent =
+                    error.message;
+
+                return;
+            }
+
+
+            showLoggedIn(data.user);
+        }
+
+
+        // ========================================
+        // DECONNEXION
+        // ========================================
+
         async function logout() {
 
-            await supabaseClient.auth.signOut();
+            const {
+                error
+            } = await supabaseClient.auth.signOut();
+
+
+            if (error) {
+
+                console.error(
+                    "Erreur déconnexion :",
+                    error
+                );
+
+                return;
+            }
+
 
             showLogin();
         }
 
 
-        loginButton.addEventListener("click", login);
+        // ========================================
+        // OUVRIR UN POST-IT
+        // ========================================
 
-        logoutButton.addEventListener("click", logout);
+        async function openPostit() {
+
+            postitResult.textContent = "";
+
+
+            const postitId =
+                Number(postitIdInput.value);
+
+
+            // Vérification de l'ID
+
+            if (
+                !postitId ||
+                postitId < 1 ||
+                postitId > 140 ||
+                !Number.isInteger(postitId)
+            ) {
+
+                postitResult.textContent =
+                    "Entre un ID entier entre 1 et 140.";
+
+                return;
+            }
+
+
+            // Appel de la fonction PostgreSQL
+
+            const {
+                data,
+                error
+            } = await supabaseClient.rpc(
+                "open_postit",
+                {
+                    p_postit_id: postitId
+                }
+            );
+
+
+            // Gestion des erreurs
+
+            if (error) {
+
+                console.error(
+                    "Erreur ouverture post-it :",
+                    error
+                );
+
+
+                if (
+                    error.message.includes(
+                        "ALREADY_OPENED_TODAY"
+                    )
+                ) {
+
+                    postitResult.textContent =
+                        "Tu as déjà ouvert un post-it aujourd'hui ❤️";
+
+                }
+
+                else if (
+                    error.message.includes(
+                        "POSTIT_ALREADY_OPENED"
+                    )
+                ) {
+
+                    postitResult.textContent =
+                        "Tu as déjà ouvert ce post-it ❤️";
+
+                }
+
+                else if (
+                    error.message.includes(
+                        "POSTIT_NOT_FOUND"
+                    )
+                ) {
+
+                    postitResult.textContent =
+                        "Ce post-it n'existe pas.";
+
+                }
+
+                else if (
+                    error.message.includes(
+                        "NOT_AUTHENTICATED"
+                    )
+                ) {
+
+                    postitResult.textContent =
+                        "Tu dois être connecté.";
+
+                    showLogin();
+
+                }
+
+                else {
+
+                    postitResult.textContent =
+                        "Une erreur est survenue.";
+
+                }
+
+                return;
+            }
+
+
+            // Succès
+
+            console.log(
+                "Ouverture enregistrée :",
+                data
+            );
+
+
+            postitResult.textContent =
+                "Post-it #" +
+                postitId +
+                " ouvert ❤️";
+
+
+            // On vide le champ
+
+            postitIdInput.value = "";
+        }
+
+
+        // ========================================
+        // EVENEMENTS
+        // ========================================
+
+        loginButton.addEventListener(
+            "click",
+            login
+        );
+
+
+        logoutButton.addEventListener(
+            "click",
+            logout
+        );
+
+
+        openPostitButton.addEventListener(
+            "click",
+            openPostit
+        );
+
+
+        // Permettre d'appuyer sur ENTER
+        // dans le champ mot de passe
+
+        passwordInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    login();
+
+                }
+
+            }
+        );
+
+
+        // Permettre d'appuyer sur ENTER
+        // dans le champ du post-it
+
+        postitIdInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    openPostit();
+
+                }
+
+            }
+        );
+
+
+        // ========================================
+        // INITIALISATION
+        // ========================================
 
         checkUser();
 
     </script>
 
 </body>
+
 </html>
+```
