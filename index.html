@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,138 @@
 </head>
 
 <body>
+
     <h1>Mon mur ❤️</h1>
-    <p>Le projet commence...</p>
+
+    <div id="login">
+        <h2>Connexion</h2>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Mot de passe"
+        >
+
+        <button id="loginButton">
+            Entrer ❤️
+        </button>
+
+        <p id="error"></p>
+    </div>
+
+    <div id="loggedIn" style="display: none;">
+        <h2>Bienvenue ❤️</h2>
+
+        <p id="userEmail"></p>
+
+        <button id="logoutButton">
+            Se déconnecter
+        </button>
+    </div>
+
+
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Notre configuration -->
+    <script src="supabase.js"></script>
+
+    <!-- Notre logique -->
+    <script>
+
+        const loginDiv = document.getElementById("login");
+        const loggedInDiv = document.getElementById("loggedIn");
+
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+
+        const loginButton = document.getElementById("loginButton");
+        const logoutButton = document.getElementById("logoutButton");
+
+        const errorText = document.getElementById("error");
+        const userEmail = document.getElementById("userEmail");
+
+
+        // Vérifie si quelqu'un est déjà connecté
+        async function checkUser() {
+
+            const {
+                data: { user }
+            } = await supabaseClient.auth.getUser();
+
+            if (user) {
+                showLoggedIn(user);
+            } else {
+                showLogin();
+            }
+        }
+
+
+        // Connexion
+        async function login() {
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            errorText.textContent = "";
+
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+            if (error) {
+                errorText.textContent =
+                    "Email ou mot de passe incorrect.";
+                return;
+            }
+
+            showLoggedIn(data.user);
+        }
+
+
+        // Afficher la page connectée
+        function showLoggedIn(user) {
+
+            loginDiv.style.display = "none";
+            loggedInDiv.style.display = "block";
+
+            userEmail.textContent =
+                "Connecté avec : " + user.email;
+        }
+
+
+        // Afficher le formulaire
+        function showLogin() {
+
+            loginDiv.style.display = "block";
+            loggedInDiv.style.display = "none";
+        }
+
+
+        // Déconnexion
+        async function logout() {
+
+            await supabaseClient.auth.signOut();
+
+            showLogin();
+        }
+
+
+        loginButton.addEventListener("click", login);
+
+        logoutButton.addEventListener("click", logout);
+
+        checkUser();
+
+    </script>
+
 </body>
 </html>
