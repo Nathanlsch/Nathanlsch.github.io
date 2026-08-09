@@ -85,25 +85,25 @@
         // Connexion
         async function login() {
 
-            const email = emailInput.value;
+            const email = emailInput.value.trim();
             const password = passwordInput.value;
-
+        
             errorText.textContent = "";
-
+        
             const { data, error } =
                 await supabaseClient.auth.signInWithPassword({
                     email: email,
                     password: password
                 });
-
+        
             if (error) {
-                errorText.textContent =
-                    "Email ou mot de passe incorrect.";
+                console.error("Erreur Supabase :", error);
+                errorText.textContent = error.message;
                 return;
             }
-
+        
             showLoggedIn(data.user);
-        }
+    }
 
 
         // Afficher la page connectée
