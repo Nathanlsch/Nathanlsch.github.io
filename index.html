@@ -24,7 +24,7 @@
 
 
 <!-- =====================================================
-     PAGE DE CONNEXION
+     CONNEXION
 ===================================================== -->
 
 <section id="login">
@@ -45,9 +45,7 @@
         </p>
 
 
-        <!-- =============================================
-             CONNEXION NORMALE
-        ============================================== -->
+        <!-- CONNEXION NORMALE -->
 
         <div
             id="normalLogin"
@@ -55,8 +53,8 @@
         >
 
             <input
-                type="password"
                 id="password"
+                type="password"
                 placeholder="Mot de passe"
                 autocomplete="current-password"
             >
@@ -71,26 +69,24 @@
         </div>
 
 
-        <!-- =============================================
-             CONNEXION ADMIN
-        ============================================== -->
+        <!-- CONNEXION ADMIN -->
 
         <div
             id="adminLogin"
             class="login-form"
-            style="display: none;"
+            style="display:none;"
         >
 
             <input
-                type="email"
                 id="adminEmail"
+                type="email"
                 placeholder="Email"
                 autocomplete="username"
             >
 
             <input
-                type="password"
                 id="adminPassword"
+                type="password"
                 placeholder="Mot de passe"
                 autocomplete="current-password"
             >
@@ -105,19 +101,11 @@
         </div>
 
 
-        <!-- =============================================
-             ERREUR
-        ============================================== -->
-
         <p
             id="error"
             class="login-error"
         ></p>
 
-
-        <!-- =============================================
-             ADMIN
-        ============================================== -->
 
         <button
             id="adminToggle"
@@ -139,26 +127,17 @@
 
 <main
     id="app"
-    style="display: none;"
+    style="display:none;"
 >
 
-
-    <!-- =================================================
-         HEADER
-    ================================================== -->
 
     <header class="app-header">
 
         <div class="header-title">
-
-            <span>
-                ❤️
-            </span>
-
+            ❤️
             <span id="pageTitle">
                 Le mur
             </span>
-
         </div>
 
 
@@ -240,7 +219,7 @@
 
 
     <!-- =================================================
-         MES CADEAUX
+         CADEAUX
     ================================================== -->
 
     <section
@@ -260,10 +239,6 @@
 
         </div>
 
-
-        <!-- =============================================
-             STATISTIQUES
-        ============================================== -->
 
         <div class="gift-stats">
 
@@ -307,10 +282,6 @@
 
         </div>
 
-
-        <!-- =============================================
-             LISTE
-        ============================================== -->
 
         <div
             id="giftsList"
@@ -414,493 +385,42 @@
 
 <script>
 
-/* =====================================================
-   CONFIGURATION SUPABASE
-===================================================== */
-
-const SUPABASE_URL =
-    "https://ffrsqutaqqxnfmkjnzhg.supabase.co";
-
-
-const SUPABASE_KEY =
-    "TON_PUBLISHABLE_KEY";
-
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =====================================================
-   UTILISATEUR NORMAL
-===================================================== */
-
-const DEFAULT_USER_EMAIL =
-    "user.user@gmail.com";
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let currentUser = null;
-
-let postits = [];
-
-let openedPostits = new Set();
-
-let openedData = [];
-
-let currentPostit = null;
-
-
-/* =====================================================
-   COULEURS
-===================================================== */
-
-const heartColors = [
-
-    "light-pink",
-    "pink",
-    "soft-rose",
-    "rose",
-    "dark-pink",
-    "coral",
-    "red",
-    "dark-red",
-    "burgundy"
-
-];
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-/* Connexion */
-
-const loginPage =
-    document.getElementById("login");
-
-const app =
-    document.getElementById("app");
-
-const normalLogin =
-    document.getElementById("normalLogin");
-
-const adminLogin =
-    document.getElementById("adminLogin");
-
-const passwordInput =
-    document.getElementById("password");
-
-const adminEmailInput =
-    document.getElementById("adminEmail");
-
-const adminPasswordInput =
-    document.getElementById("adminPassword");
-
-const loginButton =
-    document.getElementById("loginButton");
-
-const adminLoginButton =
-    document.getElementById("adminLoginButton");
-
-const adminToggle =
-    document.getElementById("adminToggle");
-
-const errorElement =
-    document.getElementById("error");
-
-
-/* Application */
-
-const wall =
-    document.getElementById("wall");
-
-const wallView =
-    document.getElementById("wallView");
-
-const giftsView =
-    document.getElementById("giftsView");
-
-const wallButton =
-    document.getElementById("wallButton");
-
-const giftsButton =
-    document.getElementById("giftsButton");
-
-const pageTitle =
-    document.getElementById("pageTitle");
-
-const progressText =
-    document.getElementById("progressText");
-
-const wallMessage =
-    document.getElementById("wallMessage");
-
-const logoutButton =
-    document.getElementById("logoutButton");
-
-
-/* Cadeaux */
-
-const giftsList =
-    document.getElementById("giftsList");
-
-const emptyGifts =
-    document.getElementById("emptyGifts");
-
-const openedCount =
-    document.getElementById("openedCount");
-
-const doneCount =
-    document.getElementById("doneCount");
-
-const todoCount =
-    document.getElementById("todoCount");
-
-
-/* Modal */
-
-const modal =
-    document.getElementById("modal");
-
-const modalBackground =
-    document.getElementById("modalBackground");
-
-const closeModal =
-    document.getElementById("closeModal");
-
-const modalHeart =
-    document.getElementById("modalHeart");
-
-const modalNumber =
-    document.getElementById("modalNumber");
-
-const modalMessage =
-    document.getElementById("modalMessage");
-
-const modalDoneButton =
-    document.getElementById("modalDoneButton");
-
-
-/* =====================================================
-   VERIFICATION INITIALISATION
-===================================================== */
-
-console.log(
-    "❤️ Index chargé"
-);
-
-console.log(
-    "Supabase :",
-    typeof supabaseClient
-);
-
-console.log(
-    "Bouton connexion :",
-    loginButton
-);
-
-
-/* =====================================================
-   AFFICHAGE ERREUR
-===================================================== */
-
-function showError(message) {
-
-    errorElement.textContent =
-        message;
-
-}
-
-
-/* =====================================================
-   AFFICHER CONNEXION
-===================================================== */
-
-function showLogin() {
-
-    loginPage.style.display =
-        "flex";
-
-    app.style.display =
-        "none";
-
-}
-
-
-/* =====================================================
-   AFFICHER APPLICATION
-===================================================== */
-
-function showApp() {
-
-    loginPage.style.display =
-        "none";
-
-    app.style.display =
-        "block";
-
-}
-
-
-/* =====================================================
-   MODE ADMIN
-===================================================== */
-
-function toggleAdminMode() {
-
-    const adminVisible =
-        adminLogin.style.display !== "none";
-
-
-    errorElement.textContent =
-        "";
-
-
-    if (adminVisible) {
-
-        adminLogin.style.display =
-            "none";
-
-        normalLogin.style.display =
-            "flex";
-
-        adminToggle.textContent =
-            "Accès administrateur";
-
-        passwordInput.focus();
-
-    }
-
-    else {
-
-        normalLogin.style.display =
-            "none";
-
-        adminLogin.style.display =
-            "flex";
-
-        adminToggle.textContent =
-            "← Retour";
-
-        adminEmailInput.focus();
-
-    }
-
-}
-
-
-/* =====================================================
-   CONNEXION UTILISATEUR
-===================================================== */
-
-async function login() {
-
-    console.log(
-        "❤️ Bouton Entrer cliqué"
-    );
-
-
-    const password =
-        passwordInput.value;
-
-
-    if (!password) {
-
-        showError(
-            "Entre ton mot de passe."
-        );
-
-        return;
-
-    }
-
-
-    loginButton.disabled =
-        true;
-
-    loginButton.textContent =
-        "Connexion...";
-
-
-    try {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
         console.log(
-            "🔐 Connexion avec :",
-            DEFAULT_USER_EMAIL
+            "❤️ DOM chargé"
         );
 
 
-        const result =
-            await supabaseClient.auth.signInWithPassword({
+        /* =================================================
+           CONFIGURATION
+        ================================================= */
 
-                email:
-                    DEFAULT_USER_EMAIL,
-
-                password:
-                    password
-
-            });
+        const SUPABASE_URL =
+            "https://ffrsqutaqqxnfmkjnzhg.supabase.co";
 
 
-        console.log(
-            "📡 Résultat Supabase :",
-            result
-        );
-
-
-        if (result.error) {
-
-            console.error(
-                "❌ Erreur Supabase :",
-                result.error
-            );
-
-
-            showError(
-                "Mot de passe incorrect."
-            );
-
-            return;
-
-        }
-
-
-        if (
-            !result.data ||
-            !result.data.user
-        ) {
-
-            showError(
-                "Connexion impossible."
-            );
-
-            return;
-
-        }
-
-
-        currentUser =
-            result.data.user;
-
-
-        console.log(
-            "✅ Connexion réussie :",
-            currentUser.email
-        );
+        const SUPABASE_KEY =
+            "sb_publishable_anU48SsDFt5QZthETgtHhg_FrGEb3Zs";
 
 
         /*
-         * Très important :
-         * on affiche l'application uniquement
-         * après une connexion réussie.
+         * Vérification très importante.
          */
 
-        showApp();
-
-
-        await initializeApplication();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "💥 Erreur inattendue :",
-            error
-        );
-
-
-        showError(
-            "Une erreur est survenue."
-        );
-
-    }
-
-    finally {
-
-        loginButton.disabled =
-            false;
-
-        loginButton.textContent =
-            "Entrer ❤️";
-
-    }
-
-}
-
-
-/* =====================================================
-   CONNEXION ADMIN
-===================================================== */
-
-async function adminLogin() {
-
-    console.log(
-        "🔐 Connexion administrateur"
-    );
-
-
-    const email =
-        adminEmailInput.value.trim();
-
-    const password =
-        adminPasswordInput.value;
-
-
-    if (!email || !password) {
-
-        showError(
-            "Entre ton email et ton mot de passe."
-        );
-
-        return;
-
-    }
-
-
-    adminLoginButton.disabled =
-        true;
-
-    adminLoginButton.textContent =
-        "Connexion...";
-
-
-    try {
-
-        const result =
-            await supabaseClient.auth.signInWithPassword({
-
-                email:
-                    email,
-
-                password:
-                    password
-
-            });
-
-
-        console.log(
-            "📡 Résultat Supabase admin :",
-            result
-        );
-
-
-        if (result.error) {
+        if (
+            typeof window.supabase ===
+            "undefined"
+        ) {
 
             console.error(
-                "❌ Erreur admin :",
-                result.error
+                "❌ Supabase JS n'a pas été chargé."
             );
 
-
             showError(
-                "Email ou mot de passe incorrect."
+                "Impossible de charger Supabase."
             );
 
             return;
@@ -908,294 +428,750 @@ async function adminLogin() {
         }
 
 
-        currentUser =
-            result.data.user;
+        console.log(
+            "✅ Supabase JS chargé"
+        );
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
 
 
         console.log(
-            "✅ Admin connecté :",
-            currentUser.email
+            "✅ Client Supabase créé"
         );
 
 
-        showApp();
+        /* =================================================
+           CONFIG
+        ================================================= */
+
+        const DEFAULT_USER_EMAIL =
+            "user.user@gmail.com";
 
 
-        await initializeApplication();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "💥 Erreur admin :",
-            error
-        );
+        let currentUser =
+            null;
 
 
-        showError(
-            "Une erreur est survenue."
-        );
-
-    }
-
-    finally {
-
-        adminLoginButton.disabled =
-            false;
-
-        adminLoginButton.textContent =
-            "Se connecter";
-
-    }
-
-}
+        let postits =
+            [];
 
 
-/* =====================================================
-   INITIALISATION APPLICATION
-===================================================== */
-
-async function initializeApplication() {
-
-    console.log(
-        "🚀 Initialisation..."
-    );
+        let openedData =
+            [];
 
 
-    showWall();
+        let openedPostits =
+            new Set();
 
 
-    const postsLoaded =
-        await loadPostits();
+        let currentPostit =
+            null;
 
 
-    if (!postsLoaded) {
+        /* =================================================
+           ELEMENTS
+        ================================================= */
 
-        showWallMessage(
-            "Impossible de charger les post-it."
-        );
-
-        return;
-
-    }
-
-
-    const openedLoaded =
-        await loadOpenedPostits();
-
-
-    if (!openedLoaded) {
-
-        showWallMessage(
-            "Impossible de charger les cadeaux."
-        );
-
-        return;
-
-    }
-
-
-    renderWall();
-
-    renderGifts();
-
-
-    console.log(
-        "✅ Application prête"
-    );
-
-}
-
-
-/* =====================================================
-   CHARGER POST-IT
-===================================================== */
-
-async function loadPostits() {
-
-    console.log(
-        "📦 Chargement des post-it..."
-    );
-
-
-    const result =
-        await supabaseClient
-            .from("postits")
-            .select("id, message")
-            .order(
-                "id",
-                {
-                    ascending:
-                        true
-                }
+        const login =
+            document.getElementById(
+                "login"
             );
 
 
-    if (result.error) {
-
-        console.error(
-            "❌ Erreur postits :",
-            result.error
-        );
-
-
-        return false;
-
-    }
-
-
-    postits =
-        result.data || [];
-
-
-    console.log(
-        "✅ Post-it chargés :",
-        postits.length
-    );
-
-
-    return true;
-
-}
-
-
-/* =====================================================
-   CHARGER OUVERTURES
-===================================================== */
-
-async function loadOpenedPostits() {
-
-    console.log(
-        "📦 Chargement ouvertures..."
-    );
-
-
-    const result =
-        await supabaseClient
-            .from("opened_postits")
-            .select(
-                "postit_id, done"
-            )
-            .eq(
-                "user_id",
-                currentUser.id
+        const app =
+            document.getElementById(
+                "app"
             );
 
 
-    if (result.error) {
+        const normalLogin =
+            document.getElementById(
+                "normalLogin"
+            );
 
-        console.error(
-            "❌ Erreur ouvertures :",
-            result.error
+
+        const adminLogin =
+            document.getElementById(
+                "adminLogin"
+            );
+
+
+        const password =
+            document.getElementById(
+                "password"
+            );
+
+
+        const adminEmail =
+            document.getElementById(
+                "adminEmail"
+            );
+
+
+        const adminPassword =
+            document.getElementById(
+                "adminPassword"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        const adminLoginButton =
+            document.getElementById(
+                "adminLoginButton"
+            );
+
+
+        const adminToggle =
+            document.getElementById(
+                "adminToggle"
+            );
+
+
+        const error =
+            document.getElementById(
+                "error"
+            );
+
+
+        const wall =
+            document.getElementById(
+                "wall"
+            );
+
+
+        const wallView =
+            document.getElementById(
+                "wallView"
+            );
+
+
+        const giftsView =
+            document.getElementById(
+                "giftsView"
+            );
+
+
+        const wallButton =
+            document.getElementById(
+                "wallButton"
+            );
+
+
+        const giftsButton =
+            document.getElementById(
+                "giftsButton"
+            );
+
+
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
+
+
+        const progressText =
+            document.getElementById(
+                "progressText"
+            );
+
+
+        const giftsList =
+            document.getElementById(
+                "giftsList"
+            );
+
+
+        const emptyGifts =
+            document.getElementById(
+                "emptyGifts"
+            );
+
+
+        const openedCount =
+            document.getElementById(
+                "openedCount"
+            );
+
+
+        const doneCount =
+            document.getElementById(
+                "doneCount"
+            );
+
+
+        const todoCount =
+            document.getElementById(
+                "todoCount"
+            );
+
+
+        const modal =
+            document.getElementById(
+                "modal"
+            );
+
+
+        const modalBackground =
+            document.getElementById(
+                "modalBackground"
+            );
+
+
+        const closeModal =
+            document.getElementById(
+                "closeModal"
+            );
+
+
+        const modalNumber =
+            document.getElementById(
+                "modalNumber"
+            );
+
+
+        const modalMessage =
+            document.getElementById(
+                "modalMessage"
+            );
+
+
+        const modalDoneButton =
+            document.getElementById(
+                "modalDoneButton"
+            );
+
+
+        /* =================================================
+           VERIFICATION DES BOUTONS
+        ================================================= */
+
+        console.log(
+            "loginButton =",
+            loginButton
         );
 
 
-        return false;
-
-    }
-
-
-    openedData =
-        result.data || [];
-
-
-    openedPostits =
-        new Set(
-            openedData.map(
-                item =>
-                    item.postit_id
-            )
+        console.log(
+            "adminToggle =",
+            adminToggle
         );
 
 
-    return true;
-
-}
-
-
-/* =====================================================
-   RENDRE LE MUR
-===================================================== */
-
-function renderWall() {
-
-    wall.innerHTML =
-        "";
+        console.log(
+            "adminLoginButton =",
+            adminLoginButton
+        );
 
 
-    postits.forEach(
-        (
-            postit,
-            index
-        ) => {
+        if (
+            !loginButton ||
+            !adminToggle ||
+            !adminLoginButton
+        ) {
 
-            const button =
-                document.createElement(
-                    "button"
+            console.error(
+                "❌ Un ou plusieurs boutons sont introuvables."
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "✅ Tous les boutons sont trouvés"
+        );
+
+
+        /* =================================================
+           ERREUR
+        ================================================= */
+
+        function showError(
+            message
+        ) {
+
+            if (error) {
+
+                error.textContent =
+                    message;
+
+            }
+
+        }
+
+
+        /* =================================================
+           LOGIN NORMAL
+        ================================================= */
+
+        async function doLogin() {
+
+            console.log(
+                "❤️ CLICK Entrer"
+            );
+
+
+            const value =
+                password.value;
+
+
+            if (!value) {
+
+                showError(
+                    "Entre ton mot de passe ❤️"
                 );
 
-
-            button.type =
-                "button";
-
-
-            button.className =
-                "postit";
-
-
-            button.classList.add(
-                heartColors[
-                    index %
-                    heartColors.length
-                ]
-            );
-
-
-            if (
-                openedPostits.has(
-                    postit.id
-                )
-            ) {
-
-                button.classList.add(
-                    "opened"
-                );
+                return;
 
             }
 
 
-            const rotation =
-                Math.random() * 8 - 4;
+            loginButton.disabled =
+                true;
 
 
-            button.style.setProperty(
-                "--rotation",
-                `${rotation}deg`
+            loginButton.textContent =
+                "Connexion...";
+
+
+            showError(
+                ""
             );
 
 
-            const number =
-                document.createElement(
-                    "span"
+            try {
+
+                console.log(
+                    "🔐 Connexion :",
+                    DEFAULT_USER_EMAIL
                 );
 
 
-            number.textContent =
-                postit.id;
+                const result =
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
+
+                            email:
+                                DEFAULT_USER_EMAIL,
+
+                            password:
+                                value
+
+                        });
 
 
-            button.appendChild(
-                number
+                console.log(
+                    "📡 Réponse Supabase :",
+                    result
+                );
+
+
+                if (
+                    result.error
+                ) {
+
+                    console.error(
+                        result.error
+                    );
+
+
+                    showError(
+                        "Mot de passe incorrect."
+                    );
+
+                    return;
+
+                }
+
+
+                currentUser =
+                    result.data.user;
+
+
+                console.log(
+                    "✅ Connecté :",
+                    currentUser.email
+                );
+
+
+                login.style.display =
+                    "none";
+
+
+                app.style.display =
+                    "block";
+
+
+                await initialize();
+
+            }
+
+            catch (
+                exception
+            ) {
+
+                console.error(
+                    "💥 Exception login :",
+                    exception
+                );
+
+
+                showError(
+                    "Erreur de connexion."
+                );
+
+            }
+
+            finally {
+
+                loginButton.disabled =
+                    false;
+
+                loginButton.textContent =
+                    "Entrer ❤️";
+
+            }
+
+        }
+
+
+        /* =================================================
+           LOGIN ADMIN
+        ================================================= */
+
+        async function doAdminLogin() {
+
+            console.log(
+                "🔐 CLICK ADMIN"
             );
 
 
-            button.addEventListener(
-                "click",
-                () => {
+            const emailValue =
+                adminEmail.value.trim();
 
-                    openPostit(
-                        postit,
+
+            const passwordValue =
+                adminPassword.value;
+
+
+            if (
+                !emailValue ||
+                !passwordValue
+            ) {
+
+                showError(
+                    "Remplis les deux champs."
+                );
+
+                return;
+
+            }
+
+
+            adminLoginButton.disabled =
+                true;
+
+
+            adminLoginButton.textContent =
+                "Connexion...";
+
+
+            showError(
+                ""
+            );
+
+
+            try {
+
+                const result =
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
+
+                            email:
+                                emailValue,
+
+                            password:
+                                passwordValue
+
+                        });
+
+
+                console.log(
+                    "📡 Réponse admin :",
+                    result
+                );
+
+
+                if (
+                    result.error
+                ) {
+
+                    showError(
+                        "Email ou mot de passe incorrect."
+                    );
+
+                    return;
+
+                }
+
+
+                currentUser =
+                    result.data.user;
+
+
+                login.style.display =
+                    "none";
+
+
+                app.style.display =
+                    "block";
+
+
+                await initialize();
+
+            }
+
+            catch (
+                exception
+            ) {
+
+                console.error(
+                    exception
+                );
+
+
+                showError(
+                    "Erreur de connexion."
+                );
+
+            }
+
+            finally {
+
+                adminLoginButton.disabled =
+                    false;
+
+                adminLoginButton.textContent =
+                    "Se connecter";
+
+            }
+
+        }
+
+
+        /* =================================================
+           INITIALISATION
+        ================================================= */
+
+        async function initialize() {
+
+            console.log(
+                "🚀 Initialisation application"
+            );
+
+
+            await loadPostits();
+
+            await loadOpenedPostits();
+
+            renderWall();
+
+            renderGifts();
+
+        }
+
+
+        /* =================================================
+           POST-ITS
+        ================================================= */
+
+        async function loadPostits() {
+
+            const result =
+                await supabaseClient
+                    .from("postits")
+                    .select(
+                        "id, message"
+                    )
+                    .order(
+                        "id",
+                        {
+                            ascending:
+                                true
+                        }
+                    );
+
+
+            if (
+                result.error
+            ) {
+
+                console.error(
+                    "Erreur postits :",
+                    result.error
+                );
+
+                return;
+
+            }
+
+
+            postits =
+                result.data || [];
+
+        }
+
+
+        /* =================================================
+           OUVERTURES
+        ================================================= */
+
+        async function loadOpenedPostits() {
+
+            const result =
+                await supabaseClient
+                    .from("opened_postits")
+                    .select(
+                        "postit_id, done"
+                    )
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    );
+
+
+            if (
+                result.error
+            ) {
+
+                console.error(
+                    "Erreur ouvertures :",
+                    result.error
+                );
+
+                return;
+
+            }
+
+
+            openedData =
+                result.data || [];
+
+
+            openedPostits =
+                new Set(
+                    openedData.map(
+                        item =>
+                            item.postit_id
+                    )
+                );
+
+        }
+
+
+        /* =================================================
+           MUR
+        ================================================= */
+
+        function renderWall() {
+
+            wall.innerHTML =
+                "";
+
+
+            const colors = [
+
+                "light-pink",
+                "pink",
+                "soft-rose",
+                "rose",
+                "dark-pink",
+                "coral",
+                "red",
+                "dark-red",
+                "burgundy"
+
+            ];
+
+
+            postits.forEach(
+                (
+                    postit,
+                    index
+                ) => {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.type =
+                        "button";
+
+
+                    button.className =
+                        "postit " +
+                        colors[
+                            index %
+                            colors.length
+                        ];
+
+
+                    if (
+                        openedPostits.has(
+                            postit.id
+                        )
+                    ) {
+
+                        button.classList.add(
+                            "opened"
+                        );
+
+                    }
+
+
+                    const number =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    number.textContent =
+                        postit.id;
+
+
+                    button.appendChild(
+                        number
+                    );
+
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            openPostit(
+                                postit
+                            );
+
+                        }
+                    );
+
+
+                    wall.appendChild(
                         button
                     );
 
@@ -1203,93 +1179,25 @@ function renderWall() {
             );
 
 
-            wall.appendChild(
-                button
-            );
+            progressText.textContent =
+                `${openedPostits.size} / 140 découvert${openedPostits.size > 1 ? "s" : ""}`;
 
         }
-    );
 
 
-    updateProgress();
+        /* =================================================
+           OUVRIR
+        ================================================= */
 
-}
-
-
-/* =====================================================
-   OUVRIR POST-IT
-===================================================== */
-
-async function openPostit(
-    postit,
-    element
-) {
-
-    /*
-     * S'il est déjà ouvert,
-     * on affiche simplement son contenu.
-     */
-
-    if (
-        openedPostits.has(
-            postit.id
-        )
-    ) {
-
-        showPostit(
+        async function openPostit(
             postit
-        );
-
-        return;
-
-    }
-
-
-    element.disabled =
-        true;
-
-
-    try {
-
-        console.log(
-            "💌 Ouverture :",
-            postit.id
-        );
-
-
-        const result =
-            await supabaseClient.rpc(
-                "open_postit",
-                {
-                    p_postit_id:
-                        postit.id
-                }
-            );
-
-
-        if (result.error) {
-
-            console.error(
-                "❌ Erreur ouverture :",
-                result.error
-            );
-
-
-            const message =
-                result.error.message || "";
-
+        ) {
 
             if (
-                message.includes(
-                    "POSTIT_ALREADY_OPENED"
+                openedPostits.has(
+                    postit.id
                 )
             ) {
-
-                await loadOpenedPostits();
-
-                renderWall();
-
-                renderGifts();
 
                 showPostit(
                     postit
@@ -1300,858 +1208,696 @@ async function openPostit(
             }
 
 
-            if (
-                message.includes(
-                    "ALREADY_OPENED_TODAY"
-                )
+            try {
+
+                const result =
+                    await supabaseClient
+                        .rpc(
+                            "open_postit",
+                            {
+                                p_postit_id:
+                                    postit.id
+                            }
+                        );
+
+
+                if (
+                    result.error
+                ) {
+
+                    console.error(
+                        result.error
+                    );
+
+
+                    if (
+                        result.error.message
+                            .includes(
+                                "POSTIT_ALREADY_OPENED"
+                            )
+                    ) {
+
+                        await loadOpenedPostits();
+
+                        renderWall();
+
+                        renderGifts();
+
+                        showPostit(
+                            postit
+                        );
+
+                    }
+
+                    return;
+
+                }
+
+
+                openedPostits.add(
+                    postit.id
+                );
+
+
+                openedData.push({
+
+                    postit_id:
+                        postit.id,
+
+                    done:
+                        false
+
+                });
+
+
+                renderWall();
+
+                renderGifts();
+
+                showPostit(
+                    postit
+                );
+
+            }
+
+            catch (
+                exception
             ) {
 
-                showWallMessage(
-                    "Tu as déjà ouvert un post-it aujourd'hui ❤️"
+                console.error(
+                    exception
                 );
 
-                return;
-
             }
-
-
-            showWallMessage(
-                message
-            );
-
-
-            return;
 
         }
 
 
-        /*
-         * Succès.
-         */
+        /* =================================================
+           MODAL
+        ================================================= */
 
-        openedPostits.add(
-            postit.id
-        );
-
-
-        openedData.push({
-
-            postit_id:
-                postit.id,
-
-            done:
-                false
-
-        });
-
-
-        element.classList.add(
-            "opened"
-        );
-
-
-        updateProgress();
-
-        renderGifts();
-
-        showPostit(
+        function showPostit(
             postit
-        );
+        ) {
 
-    }
+            currentPostit =
+                postit;
 
-    catch (error) {
 
-        console.error(
-            "💥 Erreur :",
-            error
-        );
-
-
-        showWallMessage(
-            "Une erreur est survenue."
-        );
-
-    }
-
-    finally {
-
-        element.disabled =
-            false;
-
-    }
-
-}
-
-
-/* =====================================================
-   MODAL POST-IT
-===================================================== */
-
-function showPostit(
-    postit
-) {
-
-    currentPostit =
-        postit;
-
-
-    modalNumber.textContent =
-        "#" +
-        postit.id;
-
-
-    modalMessage.textContent =
-        postit.message;
-
-
-    modal.classList.remove(
-        "hidden"
-    );
-
-
-    updateDoneButton();
-
-}
-
-
-/* =====================================================
-   FERMER MODAL
-===================================================== */
-
-function closePostitModal() {
-
-    modal.classList.add(
-        "hidden"
-    );
-
-
-    currentPostit =
-        null;
-
-}
-
-
-/* =====================================================
-   BOUTON FAIT
-===================================================== */
-
-function updateDoneButton() {
-
-    if (!currentPostit) {
-
-        return;
-
-    }
-
-
-    const entry =
-        openedData.find(
-            item =>
-                item.postit_id ===
-                currentPostit.id
-        );
-
-
-    if (
-        entry &&
-        entry.done
-    ) {
-
-        modalDoneButton.textContent =
-            "✓ Cadeau réalisé";
-
-        modalDoneButton.classList.add(
-            "done"
-        );
-
-    }
-
-    else {
-
-        modalDoneButton.textContent =
-            "✓ Marquer comme fait";
-
-        modalDoneButton.classList.remove(
-            "done"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   TOGGLE FAIT
-===================================================== */
-
-async function toggleDone() {
-
-    if (!currentPostit) {
-
-        return;
-
-    }
-
-
-    const entry =
-        openedData.find(
-            item =>
-                item.postit_id ===
-                currentPostit.id
-        );
-
-
-    if (!entry) {
-
-        return;
-
-    }
-
-
-    const newValue =
-        !entry.done;
-
-
-    modalDoneButton.disabled =
-        true;
-
-
-    try {
-
-        const result =
-            await supabaseClient
-                .from("opened_postits")
-                .update({
-                    done:
-                        newValue
-                })
-                .eq(
-                    "user_id",
-                    currentUser.id
-                )
-                .eq(
-                    "postit_id",
-                    currentPostit.id
-                );
-
-
-        if (result.error) {
-
-            console.error(
-                "❌ Erreur statut :",
-                result.error
-            );
-
-
-            return;
-
-        }
-
-
-        entry.done =
-            newValue;
-
-
-        updateDoneButton();
-
-        renderGifts();
-
-    }
-
-    finally {
-
-        modalDoneButton.disabled =
-            false;
-
-    }
-
-}
-
-
-/* =====================================================
-   RENDRE LISTE CADEAUX
-===================================================== */
-
-function renderGifts() {
-
-    giftsList.innerHTML =
-        "";
-
-
-    const sorted =
-        [...openedData].sort(
-            (
-                a,
-                b
-            ) =>
-                a.postit_id -
-                b.postit_id
-        );
-
-
-    const total =
-        sorted.length;
-
-
-    const done =
-        sorted.filter(
-            item =>
-                item.done
-        ).length;
-
-
-    const todo =
-        total -
-        done;
-
-
-    openedCount.textContent =
-        total;
-
-
-    doneCount.textContent =
-        done;
-
-
-    todoCount.textContent =
-        todo;
-
-
-    if (
-        total === 0
-    ) {
-
-        emptyGifts.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    emptyGifts.style.display =
-        "none";
-
-
-    sorted.forEach(
-        entry => {
-
-            const postit =
-                postits.find(
-                    item =>
-                        item.id ===
-                        entry.postit_id
-                );
-
-
-            if (!postit) {
-
-                return;
-
-            }
-
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-
-            card.className =
-                "gift-card";
-
-
-            if (entry.done) {
-
-                card.classList.add(
-                    "is-done"
-                );
-
-            }
-
-
-            const number =
-                document.createElement(
-                    "div"
-                );
-
-
-            number.className =
-                "gift-number";
-
-
-            number.textContent =
+            modalNumber.textContent =
                 "#" +
                 postit.id;
 
 
-            const message =
-                document.createElement(
-                    "div"
-                );
-
-
-            message.className =
-                "gift-message";
-
-
-            message.textContent =
+            modalMessage.textContent =
                 postit.message;
 
 
-            const status =
-                document.createElement(
-                    "div"
+            modal.classList.remove(
+                "hidden"
+            );
+
+
+            updateDoneButton();
+
+        }
+
+
+        function closePostit() {
+
+            modal.classList.add(
+                "hidden"
+            );
+
+        }
+
+
+        /* =================================================
+           FAIT / PAS FAIT
+        ================================================= */
+
+        async function toggleDone() {
+
+            if (
+                !currentPostit
+            ) {
+
+                return;
+
+            }
+
+
+            const entry =
+                openedData.find(
+                    item =>
+                        item.postit_id ===
+                        currentPostit.id
                 );
 
 
-            status.className =
-                "gift-status";
+            if (!entry) {
+
+                return;
+
+            }
 
 
-            status.textContent =
+            const newValue =
+                !entry.done;
+
+
+            const result =
+                await supabaseClient
+                    .from("opened_postits")
+                    .update({
+                        done:
+                            newValue
+                    })
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    )
+                    .eq(
+                        "postit_id",
+                        currentPostit.id
+                    );
+
+
+            if (
+                result.error
+            ) {
+
+                console.error(
+                    result.error
+                );
+
+                return;
+
+            }
+
+
+            entry.done =
+                newValue;
+
+
+            updateDoneButton();
+
+            renderGifts();
+
+        }
+
+
+        function updateDoneButton() {
+
+            if (
+                !currentPostit
+            ) {
+
+                return;
+
+            }
+
+
+            const entry =
+                openedData.find(
+                    item =>
+                        item.postit_id ===
+                        currentPostit.id
+                );
+
+
+            if (
+                entry &&
                 entry.done
-                    ? "✓ FAIT"
-                    : "○ À FAIRE";
+            ) {
 
+                modalDoneButton.textContent =
+                    "✓ Cadeau réalisé";
 
-            if (entry.done) {
-
-                status.classList.add(
+                modalDoneButton.classList.add(
                     "done"
                 );
 
             }
 
+            else {
 
-            const button =
-                document.createElement(
-                    "button"
+                modalDoneButton.textContent =
+                    "✓ Marquer comme fait";
+
+                modalDoneButton.classList.remove(
+                    "done"
+                );
+
+            }
+
+        }
+
+
+        /* =================================================
+           CADEAUX
+        ================================================= */
+
+        function renderGifts() {
+
+            giftsList.innerHTML =
+                "";
+
+
+            openedCount.textContent =
+                openedData.length;
+
+
+            const done =
+                openedData.filter(
+                    item =>
+                        item.done
+                ).length;
+
+
+            doneCount.textContent =
+                done;
+
+
+            todoCount.textContent =
+                openedData.length -
+                done;
+
+
+            if (
+                openedData.length ===
+                0
+            ) {
+
+                emptyGifts.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            emptyGifts.style.display =
+                "none";
+
+
+            const sorted =
+                [...openedData].sort(
+                    (
+                        a,
+                        b
+                    ) =>
+                        a.postit_id -
+                        b.postit_id
                 );
 
 
-            button.type =
-                "button";
+            sorted.forEach(
+                entry => {
+
+                    const postit =
+                        postits.find(
+                            item =>
+                                item.id ===
+                                entry.postit_id
+                        );
 
 
-            button.className =
-                "gift-done-button";
+                    if (!postit) {
+
+                        return;
+
+                    }
 
 
-            button.textContent =
-                entry.done
-                    ? "À refaire"
-                    : "Marquer comme fait";
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
 
 
-            button.addEventListener(
-                "click",
-                () => {
+                    card.className =
+                        "gift-card";
 
-                    currentPostit =
-                        postit;
 
-                    toggleDone();
+                    if (
+                        entry.done
+                    ) {
+
+                        card.classList.add(
+                            "is-done"
+                        );
+
+                    }
+
+
+                    const number =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    number.className =
+                        "gift-number";
+
+
+                    number.textContent =
+                        "#" +
+                        postit.id;
+
+
+                    const message =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    message.className =
+                        "gift-message";
+
+
+                    message.textContent =
+                        postit.message;
+
+
+                    const status =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    status.className =
+                        "gift-status";
+
+
+                    status.textContent =
+                        entry.done
+                            ? "✓ FAIT"
+                            : "○ À FAIRE";
+
+
+                    card.appendChild(
+                        number
+                    );
+
+                    card.appendChild(
+                        message
+                    );
+
+                    card.appendChild(
+                        status
+                    );
+
+
+                    giftsList.appendChild(
+                        card
+                    );
 
                 }
             );
 
-
-            card.appendChild(
-                number
-            );
-
-            card.appendChild(
-                message
-            );
-
-            card.appendChild(
-                status
-            );
-
-            card.appendChild(
-                button
-            );
-
-
-            giftsList.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   NAVIGATION MUR
-===================================================== */
-
-function showWall() {
-
-    wallView.classList.remove(
-        "hidden"
-    );
-
-
-    giftsView.classList.add(
-        "hidden"
-    );
-
-
-    wallButton.classList.add(
-        "active"
-    );
-
-
-    giftsButton.classList.remove(
-        "active"
-    );
-
-
-    pageTitle.textContent =
-        "Le mur";
-
-}
-
-
-/* =====================================================
-   NAVIGATION CADEAUX
-===================================================== */
-
-function showGifts() {
-
-    wallView.classList.add(
-        "hidden"
-    );
-
-
-    giftsView.classList.remove(
-        "hidden"
-    );
-
-
-    wallButton.classList.remove(
-        "active"
-    );
-
-
-    giftsButton.classList.add(
-        "active"
-    );
-
-
-    pageTitle.textContent =
-        "Mes cadeaux";
-
-
-    renderGifts();
-
-}
-
-
-/* =====================================================
-   PROGRESSION
-===================================================== */
-
-function updateProgress() {
-
-    const count =
-        openedPostits.size;
-
-
-    progressText.textContent =
-        `${count} / 140 découvert${count > 1 ? "s" : ""}`;
-
-}
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function showWallMessage(
-    message
-) {
-
-    wallMessage.textContent =
-        message;
-
-
-    wallMessage.classList.add(
-        "visible"
-    );
-
-
-    setTimeout(
-        () => {
-
-            wallMessage.classList.remove(
-                "visible"
-            );
-
-        },
-        4000
-    );
-
-}
-
-
-/* =====================================================
-   DECONNEXION
-===================================================== */
-
-async function logout() {
-
-    await supabaseClient
-        .auth
-        .signOut();
-
-
-    currentUser =
-        null;
-
-
-    postits =
-        [];
-
-
-    openedPostits =
-        new Set();
-
-
-    openedData =
-        [];
-
-
-    passwordInput.value =
-        "";
-
-
-    adminEmailInput.value =
-        "";
-
-
-    adminPasswordInput.value =
-        "";
-
-
-    closePostitModal();
-
-
-    showLogin();
-
-}
-
-
-/* =====================================================
-   EVENEMENTS
-===================================================== */
-
-loginButton.addEventListener(
-    "click",
-    login
-);
-
-
-adminLoginButton.addEventListener(
-    "click",
-    adminLogin
-);
-
-
-adminToggle.addEventListener(
-    "click",
-    toggleAdminMode
-);
-
-
-logoutButton.addEventListener(
-    "click",
-    logout
-);
-
-
-wallButton.addEventListener(
-    "click",
-    showWall
-);
-
-
-giftsButton.addEventListener(
-    "click",
-    showGifts
-);
-
-
-closeModal.addEventListener(
-    "click",
-    closePostitModal
-);
-
-
-modalBackground.addEventListener(
-    "click",
-    closePostitModal
-);
-
-
-modalDoneButton.addEventListener(
-    "click",
-    toggleDone
-);
-
-
-/* =====================================================
-   ENTREE CLAVIER
-===================================================== */
-
-passwordInput.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            login();
-
         }
 
-    }
-);
 
+        /* =================================================
+           NAVIGATION
+        ================================================= */
 
-adminEmailInput.addEventListener(
-    "keydown",
-    event => {
+        wallButton.addEventListener(
+            "click",
+            function () {
 
-        if (
-            event.key === "Enter"
-        ) {
+                wallView.classList.remove(
+                    "hidden"
+                );
 
-            adminPasswordInput.focus();
+                giftsView.classList.add(
+                    "hidden"
+                );
 
-        }
+                wallButton.classList.add(
+                    "active"
+                );
 
-    }
-);
+                giftsButton.classList.remove(
+                    "active"
+                );
 
-
-adminPasswordInput.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            adminLogin();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   ESCAPE
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            closePostitModal();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   SESSION EXISTANTE
-===================================================== */
-
-async function checkSession() {
-
-    console.log(
-        "🔎 Vérification session..."
-    );
-
-
-    try {
-
-        const result =
-            await supabaseClient
-                .auth
-                .getSession();
-
-
-        if (
-            result.data &&
-            result.data.session
-        ) {
-
-            currentUser =
-                result.data.session.user;
-
-
-            console.log(
-                "✅ Session trouvée :",
-                currentUser.email
-            );
-
-
-            showApp();
-
-
-            await initializeApplication();
-
-        }
-
-        else {
-
-            console.log(
-                "ℹ️ Pas de session"
-            );
-
-
-            showLogin();
-
-        }
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "❌ Erreur session :",
-            error
+            }
         );
 
 
-        showLogin();
+        giftsButton.addEventListener(
+            "click",
+            function () {
+
+                wallView.classList.add(
+                    "hidden"
+                );
+
+                giftsView.classList.remove(
+                    "hidden"
+                );
+
+                wallButton.classList.remove(
+                    "active"
+                );
+
+                giftsButton.classList.add(
+                    "active"
+                );
+
+                renderGifts();
+
+            }
+        );
+
+
+        /* =================================================
+           BOUTON ADMIN
+        ================================================= */
+
+        adminToggle.addEventListener(
+            "click",
+            function () {
+
+                console.log(
+                    "⚙️ CLICK Accès administrateur"
+                );
+
+
+                showError(
+                    ""
+                );
+
+
+                const visible =
+                    adminLogin.style.display !==
+                    "none";
+
+
+                if (visible) {
+
+                    adminLogin.style.display =
+                        "none";
+
+                    normalLogin.style.display =
+                        "flex";
+
+                    adminToggle.textContent =
+                        "Accès administrateur";
+
+                }
+
+                else {
+
+                    normalLogin.style.display =
+                        "none";
+
+                    adminLogin.style.display =
+                        "flex";
+
+                    adminToggle.textContent =
+                        "← Retour";
+
+                    adminEmail.focus();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           BOUTONS CONNEXION
+        ================================================= */
+
+        loginButton.addEventListener(
+            "click",
+            doLogin
+        );
+
+
+        adminLoginButton.addEventListener(
+            "click",
+            doAdminLogin
+        );
+
+
+        /* =================================================
+           ENTER
+        ================================================= */
+
+        password.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    doLogin();
+
+                }
+
+            }
+        );
+
+
+        adminPassword.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    doAdminLogin();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           MODAL
+        ================================================= */
+
+        closeModal.addEventListener(
+            "click",
+            closePostit
+        );
+
+
+        modalBackground.addEventListener(
+            "click",
+            closePostit
+        );
+
+
+        modalDoneButton.addEventListener(
+            "click",
+            toggleDone
+        );
+
+
+        /* =================================================
+           LOGOUT
+        ================================================= */
+
+        logoutButton.addEventListener(
+            "click",
+            async function () {
+
+                await supabaseClient
+                    .auth
+                    .signOut();
+
+
+                currentUser =
+                    null;
+
+
+                app.style.display =
+                    "none";
+
+
+                login.style.display =
+                    "flex";
+
+
+                password.value =
+                    "";
+
+            }
+        );
+
+
+        /* =================================================
+           SESSION EXISTANTE
+        ================================================= */
+
+        async function checkSession() {
+
+            console.log(
+                "🔎 Vérification session..."
+            );
+
+
+            const result =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (
+                result.data &&
+                result.data.session
+            ) {
+
+                currentUser =
+                    result.data.session.user;
+
+
+                console.log(
+                    "✅ Session existante :",
+                    currentUser.email
+                );
+
+
+                login.style.display =
+                    "none";
+
+
+                app.style.display =
+                    "block";
+
+
+                await initialize();
+
+            }
+
+        }
+
+
+        /* =================================================
+           FIN INITIALISATION
+        ================================================= */
+
+        console.log(
+            "🎉 Tous les événements sont installés"
+        );
+
+
+        checkSession();
 
     }
 
-}
-
-
-/* =====================================================
-   DEMARRAGE
-===================================================== */
-
-showLogin();
-
-checkSession();
+);
 
 </script>
 
