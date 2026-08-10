@@ -1,0 +1,1037 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    background:
+        linear-gradient(
+            rgba(255, 248, 239, 0.92),
+            rgba(255, 248, 239, 0.92)
+        ),
+        #f4e8d7;
+
+    color: #3f3030;
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+#login {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+}
+
+
+.login-card {
+
+    width: min(
+        400px,
+        100%
+    );
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    background: #fffaf2;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(70, 40, 30, 0.15);
+}
+
+
+.login-heart {
+
+    font-size: 70px;
+
+    line-height: 1;
+
+    color: #df6075;
+
+    margin-bottom: 20px;
+
+    animation:
+        heartbeat 2s
+        infinite;
+}
+
+
+.login-card h1 {
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+
+.login-subtitle {
+
+    font-size: 16px;
+
+    color: #8a7070;
+
+    margin-bottom: 30px;
+}
+
+
+.login-card input {
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #ead6d1;
+
+    border-radius: 10px;
+
+    background: white;
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    outline: none;
+}
+
+
+.login-card input:focus {
+
+    border-color: #df6075;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(223, 96, 117, 0.12);
+}
+
+
+#loginButton {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #df6075;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        background 0.2s;
+}
+
+
+#loginButton:hover {
+
+    background: #cc4e64;
+
+    transform: translateY(-2px);
+}
+
+
+#error {
+
+    margin-top: 15px;
+
+    color: #c54242;
+
+    min-height: 20px;
+
+}
+
+
+/* =========================================
+   PAGE DU MUR
+========================================= */
+
+#wallPage {
+
+    min-height: 100vh;
+
+    padding:
+        25px
+        25px
+        60px;
+}
+
+
+.wall-header {
+
+    max-width: 1200px;
+
+    margin:
+        0 auto
+        25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.wall-header h1 {
+
+    font-size: 34px;
+
+    color: #df6075;
+}
+
+
+#progressText {
+
+    color: #987f7f;
+
+    font-size: 14px;
+
+    margin-top: 3px;
+}
+
+
+.logout-button {
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eadbd2;
+
+    color: #765d5d;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   LE MUR
+========================================= */
+
+.wall {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(75px, 1fr)
+        );
+
+    gap: 22px 15px;
+
+    align-items: center;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,0.5),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255,255,255,0.35),
+            transparent 30%
+        );
+
+    border-radius: 25px;
+}
+
+
+/* =========================================
+   POST-IT COEUR
+========================================= */
+
+.postit {
+
+    position: relative;
+
+    width: 75px;
+
+    height: 70px;
+
+    justify-self: center;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    color: rgba(90, 50, 50, 0.75);
+
+    background: transparent;
+
+    transform:
+        translate(
+            var(--translate-x),
+            var(--translate-y)
+        )
+        rotate(
+            var(--rotation)
+        );
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+/*
+   Création du coeur avec le pseudo-element
+*/
+
+.postit::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    background: currentColor;
+
+    clip-path: polygon(
+        50% 100%,
+        0% 38%,
+        0% 22%,
+        8% 8%,
+        22% 0%,
+        35% 1%,
+        50% 18%,
+        65% 1%,
+        78% 0%,
+        92% 8%,
+        100% 22%,
+        100% 38%
+    );
+
+    filter:
+        drop-shadow(
+            2px 4px 3px
+            rgba(70, 40, 40, 0.18)
+        );
+
+    transition:
+        filter 0.25s ease;
+}
+
+
+/* Le numéro passe devant */
+
+.postit span {
+
+    position: absolute;
+
+    z-index: 2;
+
+    left: 0;
+
+    right: 0;
+
+    top: 31px;
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   COULEURS
+========================================= */
+
+.postit.pink {
+
+    color: #f3a6b6;
+}
+
+
+.postit.rose {
+
+    color: #ed8098;
+}
+
+
+.postit.red {
+
+    color: #e87982;
+}
+
+
+.postit.purple {
+
+    color: #c6a5d9;
+}
+
+
+.postit.blue {
+
+    color: #9dc6dc;
+}
+
+
+.postit.yellow {
+
+    color: #f2d98b;
+}
+
+
+.postit.orange {
+
+    color: #efb17f;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.postit:hover {
+
+    transform:
+        translate(
+            var(--translate-x),
+            calc(
+                var(--translate-y) - 5px
+            )
+        )
+        rotate(
+            var(--rotation)
+        )
+        scale(1.12);
+
+    z-index: 5;
+}
+
+
+.postit:hover::before {
+
+    filter:
+        drop-shadow(
+            3px 8px 5px
+            rgba(70, 40, 40, 0.25)
+        );
+}
+
+
+/* =========================================
+   POST-IT OUVERT
+========================================= */
+
+.postit.opened {
+
+    filter:
+        saturate(0.55)
+        brightness(0.96);
+}
+
+
+.postit.opened::after {
+
+    content: "✓";
+
+    position: absolute;
+
+    z-index: 4;
+
+    right: 7px;
+
+    top: 9px;
+
+    width: 17px;
+
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.75
+    );
+
+    color: #7b9b77;
+
+    font-size: 11px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+/* =========================================
+   CHARGEMENT
+========================================= */
+
+.postit.loading {
+
+    animation:
+        pulse 0.8s
+        infinite;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   MESSAGE DU MUR
+========================================= */
+
+.wall-message {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 25px;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    background:
+        rgba(55, 35, 35, 0.92);
+
+    color: white;
+
+    padding:
+        13px
+        20px;
+
+    border-radius: 50px;
+
+    font-size: 15px;
+
+    transition:
+        opacity 0.3s,
+        transform 0.3s;
+
+    z-index: 100;
+}
+
+
+.wall-message.visible {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+}
+
+
+.modal.hidden {
+
+    display: none;
+}
+
+
+.modal-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(50, 30, 35, 0.55);
+
+    backdrop-filter:
+        blur(5px);
+}
+
+
+.modal-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(
+        500px,
+        100%
+    );
+
+    min-height: 350px;
+
+    padding:
+        55px
+        35px
+        45px;
+
+    background:
+        #fffaf2;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(30, 15, 20, 0.3);
+
+    text-align: center;
+
+    animation:
+        modalAppear
+        0.35s ease;
+}
+
+
+.close-modal {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 30px;
+
+    color: #987f7f;
+
+    cursor: pointer;
+}
+
+
+.modal-heart {
+
+    width: 120px;
+
+    height: 110px;
+
+    margin: 0 auto 20px;
+
+    position: relative;
+}
+
+
+.modal-heart::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: currentColor;
+
+    clip-path: polygon(
+        50% 100%,
+        0% 38%,
+        0% 22%,
+        8% 8%,
+        22% 0%,
+        35% 1%,
+        50% 18%,
+        65% 1%,
+        78% 0%,
+        92% 8%,
+        100% 22%,
+        100% 38%
+    );
+
+    filter:
+        drop-shadow(
+            3px 7px 5px
+            rgba(70, 40, 40, 0.18)
+        );
+}
+
+
+.modal-number {
+
+    font-size: 14px;
+
+    color: #a58d8d;
+
+    margin-bottom: 20px;
+}
+
+
+.modal-message {
+
+    font-size: 23px;
+
+    line-height: 1.6;
+
+    color: #4d3939;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================
+   COULEURS MODAL
+========================================= */
+
+.modal-heart.pink {
+
+    color: #f3a6b6;
+}
+
+
+.modal-heart.rose {
+
+    color: #ed8098;
+}
+
+
+.modal-heart.red {
+
+    color: #e87982;
+}
+
+
+.modal-heart.purple {
+
+    color: #c6a5d9;
+}
+
+
+.modal-heart.blue {
+
+    color: #9dc6dc;
+}
+
+
+.modal-heart.yellow {
+
+    color: #f2d98b;
+}
+
+
+.modal-heart.orange {
+
+    color: #efb17f;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.08);
+    }
+
+    20% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.08);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform:
+            translate(
+                var(--translate-x),
+                var(--translate-y)
+            )
+            rotate(
+                var(--rotation)
+            )
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(
+                var(--translate-x),
+                var(--translate-y)
+            )
+            rotate(
+                var(--rotation)
+            )
+            scale(0.9);
+    }
+}
+
+
+@keyframes modalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.85)
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (
+    max-width: 600px
+) {
+
+    #wallPage {
+
+        padding:
+            15px
+            10px
+            50px;
+
+    }
+
+
+    .wall-header {
+
+        margin-bottom: 10px;
+
+        padding:
+            0
+            8px;
+
+    }
+
+
+    .wall-header h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .wall {
+
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(62px, 1fr)
+            );
+
+        gap:
+            17px
+            5px;
+
+        padding: 12px 5px;
+
+    }
+
+
+    .postit {
+
+        width: 65px;
+
+        height: 62px;
+
+        font-size: 13px;
+
+    }
+
+
+    .postit span {
+
+        top: 28px;
+
+    }
+
+
+    .modal-content {
+
+        min-height: 320px;
+
+        padding:
+            50px
+            25px
+            35px;
+
+    }
+
+
+    .modal-heart {
+
+        width: 100px;
+
+        height: 92px;
+
+    }
+
+
+    .modal-message {
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* =========================================
+   TRES PETIT TELEPHONE
+========================================= */
+
+@media (
+    max-width: 370px
+) {
+
+    .wall {
+
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(55px, 1fr)
+            );
+
+        gap:
+            14px
+            2px;
+
+    }
+
+
+    .postit {
+
+        width: 58px;
+
+        height: 56px;
+
+    }
+
+
+    .postit span {
+
+        top: 25px;
+
+        font-size: 12px;
+
+    }
+
+}
