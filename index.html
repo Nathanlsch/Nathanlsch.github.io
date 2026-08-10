@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>❤️ Mon petit mur</title>
+    <title>❤️ 140 petits cœurs</title>
 
     <link
         rel="stylesheet"
@@ -35,11 +35,9 @@
             ♥
         </div>
 
-
         <h1>
             Un petit quelque chose...
         </h1>
-
 
         <p class="login-subtitle">
             Entre le mot de passe pour découvrir
@@ -51,7 +49,10 @@
              CONNEXION NORMALE
         ============================================== -->
 
-        <div id="normalLogin">
+        <div
+            id="normalLogin"
+            class="login-form"
+        >
 
             <input
                 type="password"
@@ -59,7 +60,6 @@
                 placeholder="Mot de passe"
                 autocomplete="current-password"
             >
-
 
             <button
                 id="loginButton"
@@ -77,16 +77,16 @@
 
         <div
             id="adminLogin"
+            class="login-form"
             style="display: none;"
         >
 
             <input
                 type="email"
                 id="adminEmail"
-                placeholder="Email administrateur"
+                placeholder="Email"
                 autocomplete="username"
             >
-
 
             <input
                 type="password"
@@ -95,26 +95,28 @@
                 autocomplete="current-password"
             >
 
-
             <button
                 id="adminLoginButton"
                 type="button"
             >
-                Connexion administrateur
+                Se connecter
             </button>
 
         </div>
 
 
         <!-- =============================================
-             MESSAGE ERREUR
+             ERREUR
         ============================================== -->
 
-        <p id="error"></p>
+        <p
+            id="error"
+            class="login-error"
+        ></p>
 
 
         <!-- =============================================
-             ACCES ADMIN
+             ADMIN
         ============================================== -->
 
         <button
@@ -132,30 +134,30 @@
 
 
 <!-- =====================================================
-     APPLICATION PRINCIPALE
+     APPLICATION
 ===================================================== -->
 
-<main id="wallPage">
+<main
+    id="app"
+    style="display: none;"
+>
 
 
     <!-- =================================================
          HEADER
     ================================================== -->
 
-    <header class="wall-header">
+    <header class="app-header">
 
-        <div class="header-left">
+        <div class="header-title">
 
-            <div class="site-title">
+            <span>
                 ❤️
-            </div>
+            </span>
 
-            <div
-                id="pageTitle"
-                class="page-title"
-            >
+            <span id="pageTitle">
                 Le mur
-            </div>
+            </span>
 
         </div>
 
@@ -169,7 +171,6 @@
             >
                 ❤️ Mur
             </button>
-
 
             <button
                 id="giftsButton"
@@ -186,9 +187,8 @@
             id="logoutButton"
             class="logout-button"
             type="button"
-            aria-label="Déconnexion"
         >
-            ×
+            Déconnexion
         </button>
 
     </header>
@@ -196,54 +196,56 @@
 
 
     <!-- =================================================
-         PAGE DU MUR
+         MUR
     ================================================== -->
 
     <section
         id="wallView"
-        class="page-view"
+        class="view"
     >
 
         <div class="wall-introduction">
 
             <h2>
-                Un petit cœur à découvrir...
+                140 petits cœurs ❤️
             </h2>
 
-
             <p>
-                <span id="progressText">
-                    0 / 140
-                </span>
-
-                cadeaux découverts
+                Choisis celui que tu veux découvrir.
             </p>
+
+            <div
+                id="progressText"
+                class="progress"
+            >
+                0 / 140 découvert
+            </div>
 
         </div>
 
 
-        <section
+        <div
             id="wall"
             class="wall"
-        ></section>
+        ></div>
 
 
-        <p
+        <div
             id="wallMessage"
             class="wall-message"
-        ></p>
+        ></div>
 
     </section>
 
 
 
     <!-- =================================================
-         PAGE MES CADEAUX
+         MES CADEAUX
     ================================================== -->
 
     <section
         id="giftsView"
-        class="page-view hidden-page"
+        class="view hidden"
     >
 
         <div class="gifts-header">
@@ -252,9 +254,8 @@
                 Mes cadeaux ❤️
             </h2>
 
-
             <p>
-                Retrouve ici tous les cadeaux que tu as découverts.
+                Tous les petits mots que tu as découverts.
             </p>
 
         </div>
@@ -268,48 +269,39 @@
 
             <div class="stat-card">
 
-                <div
-                    id="openedCount"
-                    class="stat-number"
-                >
+                <strong id="openedCount">
                     0
-                </div>
+                </strong>
 
-                <div class="stat-label">
+                <span>
                     Découverts
-                </div>
+                </span>
 
             </div>
 
 
             <div class="stat-card">
 
-                <div
-                    id="doneCount"
-                    class="stat-number"
-                >
+                <strong id="doneCount">
                     0
-                </div>
+                </strong>
 
-                <div class="stat-label">
+                <span>
                     Faits
-                </div>
+                </span>
 
             </div>
 
 
             <div class="stat-card">
 
-                <div
-                    id="todoCount"
-                    class="stat-number"
-                >
+                <strong id="todoCount">
                     0
-                </div>
+                </strong>
 
-                <div class="stat-label">
+                <span>
                     À faire
-                </div>
+                </span>
 
             </div>
 
@@ -317,7 +309,7 @@
 
 
         <!-- =============================================
-             LISTE DES CADEAUX
+             LISTE
         ============================================== -->
 
         <div
@@ -326,24 +318,18 @@
         ></div>
 
 
-        <!-- =============================================
-             AUCUN CADEAU
-        ============================================== -->
-
         <div
             id="emptyGifts"
             class="empty-gifts"
         >
 
-            <div class="empty-heart">
+            <div>
                 ♡
             </div>
-
 
             <h3>
                 Aucun cadeau découvert
             </h3>
-
 
             <p>
                 Retourne sur le mur pour découvrir ton premier cœur.
@@ -358,11 +344,11 @@
 
 
 <!-- =====================================================
-     MODAL POST-IT
+     MODAL
 ===================================================== -->
 
 <div
-    id="postitModal"
+    id="modal"
     class="modal hidden"
 >
 
@@ -372,13 +358,12 @@
     ></div>
 
 
-    <div class="modal-content">
+    <div class="modal-card">
 
         <button
             id="closeModal"
             class="close-modal"
             type="button"
-            aria-label="Fermer"
         >
             ×
         </button>
@@ -386,8 +371,10 @@
 
         <div
             id="modalHeart"
-            class="modal-heart light-pink"
-        ></div>
+            class="modal-heart"
+        >
+            ♥
+        </div>
 
 
         <div
@@ -398,10 +385,10 @@
         </div>
 
 
-        <div
+        <p
             id="modalMessage"
             class="modal-message"
-        ></div>
+        ></p>
 
 
         <button
@@ -424,44 +411,87 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="supabase.js"></script>
-
-
 
 <script>
 
 /* =====================================================
-   CONFIGURATION
+   CONFIGURATION SUPABASE
 ===================================================== */
 
-/*
- * Adresse du compte utilisé pour la connexion normale.
- *
- * L'utilisateur n'a donc jamais besoin de connaître
- * cette adresse.
- */
+const SUPABASE_URL =
+    "https://ffrsqutaqqxnfmkjnzhg.supabase.co";
+
+
+const SUPABASE_KEY =
+    "TON_PUBLISHABLE_KEY";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================================
+   UTILISATEUR NORMAL
+===================================================== */
 
 const DEFAULT_USER_EMAIL =
     "user.user@gmail.com";
 
 
 /* =====================================================
-   ELEMENTS - CONNEXION
+   VARIABLES
 ===================================================== */
+
+let currentUser = null;
+
+let postits = [];
+
+let openedPostits = new Set();
+
+let openedData = [];
+
+let currentPostit = null;
+
+
+/* =====================================================
+   COULEURS
+===================================================== */
+
+const heartColors = [
+
+    "light-pink",
+    "pink",
+    "soft-rose",
+    "rose",
+    "dark-pink",
+    "coral",
+    "red",
+    "dark-red",
+    "burgundy"
+
+];
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+/* Connexion */
 
 const loginPage =
     document.getElementById("login");
 
-const wallPage =
-    document.getElementById("wallPage");
-
+const app =
+    document.getElementById("app");
 
 const normalLogin =
     document.getElementById("normalLogin");
 
 const adminLogin =
     document.getElementById("adminLogin");
-
 
 const passwordInput =
     document.getElementById("password");
@@ -472,7 +502,6 @@ const adminEmailInput =
 const adminPasswordInput =
     document.getElementById("adminPassword");
 
-
 const loginButton =
     document.getElementById("loginButton");
 
@@ -482,17 +511,11 @@ const adminLoginButton =
 const adminToggle =
     document.getElementById("adminToggle");
 
-
-const errorText =
+const errorElement =
     document.getElementById("error");
 
-const logoutButton =
-    document.getElementById("logoutButton");
 
-
-/* =====================================================
-   ELEMENTS - APPLICATION
-===================================================== */
+/* Application */
 
 const wall =
     document.getElementById("wall");
@@ -503,17 +526,14 @@ const wallView =
 const giftsView =
     document.getElementById("giftsView");
 
-
 const wallButton =
     document.getElementById("wallButton");
 
 const giftsButton =
     document.getElementById("giftsButton");
 
-
 const pageTitle =
     document.getElementById("pageTitle");
-
 
 const progressText =
     document.getElementById("progressText");
@@ -521,17 +541,17 @@ const progressText =
 const wallMessage =
     document.getElementById("wallMessage");
 
+const logoutButton =
+    document.getElementById("logoutButton");
 
-/* =====================================================
-   ELEMENTS - CADEAUX
-===================================================== */
+
+/* Cadeaux */
 
 const giftsList =
     document.getElementById("giftsList");
 
 const emptyGifts =
     document.getElementById("emptyGifts");
-
 
 const openedCount =
     document.getElementById("openedCount");
@@ -543,19 +563,16 @@ const todoCount =
     document.getElementById("todoCount");
 
 
-/* =====================================================
-   ELEMENTS - MODAL
-===================================================== */
+/* Modal */
 
 const modal =
-    document.getElementById("postitModal");
+    document.getElementById("modal");
 
 const modalBackground =
     document.getElementById("modalBackground");
 
-const closeModalButton =
+const closeModal =
     document.getElementById("closeModal");
-
 
 const modalHeart =
     document.getElementById("modalHeart");
@@ -571,89 +588,61 @@ const modalDoneButton =
 
 
 /* =====================================================
-   VARIABLES
+   VERIFICATION INITIALISATION
 ===================================================== */
 
-let user = null;
+console.log(
+    "❤️ Index chargé"
+);
 
-let postits = [];
+console.log(
+    "Supabase :",
+    typeof supabaseClient
+);
 
-let openedPostits =
-    new Set();
-
-let openedData = [];
-
-let currentPostit = null;
-
-let currentPostitElement = null;
-
-let adminMode = false;
+console.log(
+    "Bouton connexion :",
+    loginButton
+);
 
 
 /* =====================================================
-   COULEURS DES COEURS
+   AFFICHAGE ERREUR
 ===================================================== */
 
-const heartColors = [
+function showError(message) {
 
-    "light-pink",
+    errorElement.textContent =
+        message;
 
-    "pink",
-
-    "soft-rose",
-
-    "rose",
-
-    "dark-pink",
-
-    "red",
-
-    "coral",
-
-    "dark-red",
-
-    "burgundy"
-
-];
+}
 
 
 /* =====================================================
-   AFFICHAGE CONNEXION
+   AFFICHER CONNEXION
 ===================================================== */
 
 function showLogin() {
 
-    console.log(
-        "➡️ Affichage connexion"
-    );
-
-
     loginPage.style.display =
         "flex";
 
-
-    wallPage.style.display =
+    app.style.display =
         "none";
 
 }
 
 
 /* =====================================================
-   AFFICHAGE APPLICATION
+   AFFICHER APPLICATION
 ===================================================== */
 
-function showApplication() {
-
-    console.log(
-        "➡️ Affichage application"
-    );
-
+function showApp() {
 
     loginPage.style.display =
         "none";
 
-
-    wallPage.style.display =
+    app.style.display =
         "block";
 
 }
@@ -665,55 +654,41 @@ function showApplication() {
 
 function toggleAdminMode() {
 
-    adminMode =
-        !adminMode;
+    const adminVisible =
+        adminLogin.style.display !== "none";
 
 
-    errorText.textContent =
+    errorElement.textContent =
         "";
 
 
-    if (adminMode) {
-
-        /*
-         * Mode admin
-         */
-
-        normalLogin.style.display =
-            "none";
-
+    if (adminVisible) {
 
         adminLogin.style.display =
+            "none";
+
+        normalLogin.style.display =
             "flex";
 
-
         adminToggle.textContent =
-            "← Retour";
+            "Accès administrateur";
 
-
-        adminEmailInput.focus();
+        passwordInput.focus();
 
     }
 
     else {
 
-        /*
-         * Mode utilisateur normal
-         */
-
         normalLogin.style.display =
-            "flex";
-
-
-        adminLogin.style.display =
             "none";
 
+        adminLogin.style.display =
+            "flex";
 
         adminToggle.textContent =
-            "Accès administrateur";
+            "← Retour";
 
-
-        passwordInput.focus();
+        adminEmailInput.focus();
 
     }
 
@@ -721,23 +696,13 @@ function toggleAdminMode() {
 
 
 /* =====================================================
-   CONNEXION UTILISATEUR NORMAL
+   CONNEXION UTILISATEUR
 ===================================================== */
 
 async function login() {
 
     console.log(
-        "================================="
-    );
-
-
-    console.log(
-        "🔐 TENTATIVE DE CONNEXION"
-    );
-
-
-    console.log(
-        "================================="
+        "❤️ Bouton Entrer cliqué"
     );
 
 
@@ -745,14 +710,11 @@ async function login() {
         passwordInput.value;
 
 
-    errorText.textContent =
-        "";
-
-
     if (!password) {
 
-        errorText.textContent =
-            "Entre ton mot de passe.";
+        showError(
+            "Entre ton mot de passe."
+        );
 
         return;
 
@@ -762,7 +724,6 @@ async function login() {
     loginButton.disabled =
         true;
 
-
     loginButton.textContent =
         "Connexion...";
 
@@ -770,45 +731,40 @@ async function login() {
     try {
 
         console.log(
-            "📡 Connexion avec :",
+            "🔐 Connexion avec :",
             DEFAULT_USER_EMAIL
         );
 
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-                .signInWithPassword({
+        const result =
+            await supabaseClient.auth.signInWithPassword({
 
-                    email:
-                        DEFAULT_USER_EMAIL,
+                email:
+                    DEFAULT_USER_EMAIL,
 
-                    password:
-                        password
+                password:
+                    password
 
-                });
+            });
 
 
         console.log(
-            "📡 Réponse Supabase :",
-            data,
-            error
+            "📡 Résultat Supabase :",
+            result
         );
 
 
-        if (error) {
+        if (result.error) {
 
             console.error(
                 "❌ Erreur Supabase :",
-                error
+                result.error
             );
 
 
-            errorText.textContent =
-                "Mot de passe incorrect.";
+            showError(
+                "Mot de passe incorrect."
+            );
 
             return;
 
@@ -816,53 +772,53 @@ async function login() {
 
 
         if (
-            !data ||
-            !data.user
+            !result.data ||
+            !result.data.user
         ) {
 
-            errorText.textContent =
-                "Impossible de récupérer le compte.";
+            showError(
+                "Connexion impossible."
+            );
 
             return;
 
         }
 
 
-        user =
-            data.user;
+        currentUser =
+            result.data.user;
 
 
         console.log(
-            "✅ Utilisateur connecté :",
-            user.email
+            "✅ Connexion réussie :",
+            currentUser.email
         );
 
 
         /*
-         * Affichage immédiat de l'application.
+         * Très important :
+         * on affiche l'application uniquement
+         * après une connexion réussie.
          */
 
-        showApplication();
+        showApp();
 
 
-        /*
-         * Puis chargement du contenu.
-         */
-
-        await startApplication();
+        await initializeApplication();
 
     }
 
     catch (error) {
 
         console.error(
-            "💥 Erreur connexion :",
+            "💥 Erreur inattendue :",
             error
         );
 
 
-        errorText.textContent =
-            "Une erreur est survenue.";
+        showError(
+            "Une erreur est survenue."
+        );
 
     }
 
@@ -870,7 +826,6 @@ async function login() {
 
         loginButton.disabled =
             false;
-
 
         loginButton.textContent =
             "Entrer ❤️";
@@ -886,25 +841,23 @@ async function login() {
 
 async function adminLogin() {
 
+    console.log(
+        "🔐 Connexion administrateur"
+    );
+
+
     const email =
         adminEmailInput.value.trim();
-
 
     const password =
         adminPasswordInput.value;
 
 
-    errorText.textContent =
-        "";
+    if (!email || !password) {
 
-
-    if (
-        !email ||
-        !password
-    ) {
-
-        errorText.textContent =
-            "Entre ton email et ton mot de passe.";
+        showError(
+            "Entre ton email et ton mot de passe."
+        );
 
         return;
 
@@ -914,98 +867,75 @@ async function adminLogin() {
     adminLoginButton.disabled =
         true;
 
-
     adminLoginButton.textContent =
         "Connexion...";
 
 
     try {
 
-        console.log(
-            "🔐 Connexion administrateur..."
-        );
+        const result =
+            await supabaseClient.auth.signInWithPassword({
 
+                email:
+                    email,
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-                .signInWithPassword({
+                password:
+                    password
 
-                    email:
-                        email,
-
-                    password:
-                        password
-
-                });
+            });
 
 
         console.log(
-            "📡 Réponse Supabase admin :",
-            data,
-            error
+            "📡 Résultat Supabase admin :",
+            result
         );
 
 
-        if (error) {
+        if (result.error) {
 
             console.error(
-                "❌ Erreur Supabase :",
-                error
+                "❌ Erreur admin :",
+                result.error
             );
 
 
-            errorText.textContent =
-                "Email ou mot de passe incorrect.";
+            showError(
+                "Email ou mot de passe incorrect."
+            );
 
             return;
 
         }
 
 
-        if (
-            !data ||
-            !data.user
-        ) {
-
-            errorText.textContent =
-                "Impossible de récupérer le compte.";
-
-            return;
-
-        }
-
-
-        user =
-            data.user;
+        currentUser =
+            result.data.user;
 
 
         console.log(
-            "✅ Administrateur connecté :",
-            user.email
+            "✅ Admin connecté :",
+            currentUser.email
         );
 
 
-        showApplication();
+        showApp();
 
 
-        await startApplication();
+        await initializeApplication();
 
     }
 
     catch (error) {
 
         console.error(
-            "💥 Erreur connexion admin :",
+            "💥 Erreur admin :",
             error
         );
 
 
-        errorText.textContent =
-            "Une erreur est survenue.";
+        showError(
+            "Une erreur est survenue."
+        );
 
     }
 
@@ -1014,9 +944,8 @@ async function adminLogin() {
         adminLoginButton.disabled =
             false;
 
-
         adminLoginButton.textContent =
-            "Connexion administrateur";
+            "Se connecter";
 
     }
 
@@ -1024,134 +953,33 @@ async function adminLogin() {
 
 
 /* =====================================================
-   VERIFICATION SESSION
+   INITIALISATION APPLICATION
 ===================================================== */
 
-async function checkSession() {
+async function initializeApplication() {
 
     console.log(
-        "🔎 Vérification de la session..."
+        "🚀 Initialisation..."
     );
 
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
-
-
-        if (error) {
-
-            console.error(
-                "❌ Erreur session :",
-                error
-            );
-
-
-            showLogin();
-
-            return;
-
-        }
-
-
-        if (
-            data &&
-            data.session &&
-            data.session.user
-        ) {
-
-            user =
-                data.session.user;
-
-
-            console.log(
-                "✅ Session existante :",
-                user.email
-            );
-
-
-            showApplication();
-
-
-            await startApplication();
-
-        }
-
-        else {
-
-            console.log(
-                "ℹ️ Aucune session"
-            );
-
-
-            showLogin();
-
-        }
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "💥 Erreur vérification session :",
-            error
-        );
-
-
-        showLogin();
-
-    }
-
-}
-
-
-/* =====================================================
-   DEMARRAGE APPLICATION
-===================================================== */
-
-async function startApplication() {
-
-    console.log(
-        "🚀 Démarrage application..."
-    );
-
-
-    /*
-     * On arrive toujours sur le mur.
-     */
 
     showWall();
 
 
-    /*
-     * Chargement des 140 post-it.
-     */
-
-    const postitsLoaded =
+    const postsLoaded =
         await loadPostits();
 
 
-    if (!postitsLoaded) {
+    if (!postsLoaded) {
 
         showWallMessage(
             "Impossible de charger les post-it."
         );
 
-
         return;
 
     }
 
-
-    /*
-     * Chargement des ouvertures.
-     */
 
     const openedLoaded =
         await loadOpenedPostits();
@@ -1160,18 +988,13 @@ async function startApplication() {
     if (!openedLoaded) {
 
         showWallMessage(
-            "Impossible de récupérer les cadeaux."
+            "Impossible de charger les cadeaux."
         );
-
 
         return;
 
     }
 
-
-    /*
-     * Affichage.
-     */
 
     renderWall();
 
@@ -1179,70 +1002,41 @@ async function startApplication() {
 
 
     console.log(
-        "✅ Application chargée"
+        "✅ Application prête"
     );
 
 }
 
 
 /* =====================================================
-   CHARGEMENT POST-IT
+   CHARGER POST-IT
 ===================================================== */
 
 async function loadPostits() {
 
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from("postits")
-                .select(
-                    "id, message"
-                )
-                .order(
-                    "id",
-                    {
-                        ascending:
-                            true
-                    }
-                );
+    console.log(
+        "📦 Chargement des post-it..."
+    );
 
 
-        if (error) {
-
-            console.error(
-                "❌ Erreur postits :",
-                error
+    const result =
+        await supabaseClient
+            .from("postits")
+            .select("id, message")
+            .order(
+                "id",
+                {
+                    ascending:
+                        true
+                }
             );
 
 
-            return false;
-
-        }
-
-
-        postits =
-            data || [];
-
-
-        console.log(
-            "📦 Post-it chargés :",
-            postits.length
-        );
-
-
-        return true;
-
-    }
-
-    catch (error) {
+    if (result.error) {
 
         console.error(
-            "💥 Exception postits :",
-            error
+            "❌ Erreur postits :",
+            result.error
         );
 
 
@@ -1250,73 +1044,50 @@ async function loadPostits() {
 
     }
 
+
+    postits =
+        result.data || [];
+
+
+    console.log(
+        "✅ Post-it chargés :",
+        postits.length
+    );
+
+
+    return true;
+
 }
 
 
 /* =====================================================
-   CHARGEMENT POST-IT OUVERTS
+   CHARGER OUVERTURES
 ===================================================== */
 
 async function loadOpenedPostits() {
 
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from("opened_postits")
-                .select(
-                    "postit_id, done"
-                )
-                .eq(
-                    "user_id",
-                    user.id
-                );
+    console.log(
+        "📦 Chargement ouvertures..."
+    );
 
 
-        if (error) {
-
-            console.error(
-                "❌ Erreur opened_postits :",
-                error
+    const result =
+        await supabaseClient
+            .from("opened_postits")
+            .select(
+                "postit_id, done"
+            )
+            .eq(
+                "user_id",
+                currentUser.id
             );
 
 
-            return false;
-
-        }
-
-
-        openedData =
-            data || [];
-
-
-        openedPostits =
-            new Set(
-                openedData.map(
-                    item =>
-                        item.postit_id
-                )
-            );
-
-
-        console.log(
-            "📦 Cadeaux ouverts :",
-            openedData.length
-        );
-
-
-        return true;
-
-    }
-
-    catch (error) {
+    if (result.error) {
 
         console.error(
-            "💥 Exception opened_postits :",
-            error
+            "❌ Erreur ouvertures :",
+            result.error
         );
 
 
@@ -1324,11 +1095,27 @@ async function loadOpenedPostits() {
 
     }
 
+
+    openedData =
+        result.data || [];
+
+
+    openedPostits =
+        new Set(
+            openedData.map(
+                item =>
+                    item.postit_id
+            )
+        );
+
+
+    return true;
+
 }
 
 
 /* =====================================================
-   AFFICHAGE DU MUR
+   RENDRE LE MUR
 ===================================================== */
 
 function renderWall() {
@@ -1343,56 +1130,27 @@ function renderWall() {
             index
         ) => {
 
-            const heart =
+            const button =
                 document.createElement(
                     "button"
                 );
 
 
-            heart.type =
+            button.type =
                 "button";
 
 
-            heart.classList.add(
-                "postit"
-            );
+            button.className =
+                "postit";
 
 
-            /*
-             * Couleur.
-             */
-
-            const color =
+            button.classList.add(
                 heartColors[
                     index %
                     heartColors.length
-                ];
-
-
-            heart.classList.add(
-                color
+                ]
             );
 
-
-            /*
-             * Rotation.
-             */
-
-            const rotation =
-                Math.random() *
-                10 -
-                5;
-
-
-            heart.style.setProperty(
-                "--rotation",
-                rotation + "deg"
-            );
-
-
-            /*
-             * Déjà ouvert.
-             */
 
             if (
                 openedPostits.has(
@@ -1400,16 +1158,22 @@ function renderWall() {
                 )
             ) {
 
-                heart.classList.add(
+                button.classList.add(
                     "opened"
                 );
 
             }
 
 
-            /*
-             * Numéro.
-             */
+            const rotation =
+                Math.random() * 8 - 4;
+
+
+            button.style.setProperty(
+                "--rotation",
+                `${rotation}deg`
+            );
+
 
             const number =
                 document.createElement(
@@ -1421,22 +1185,18 @@ function renderWall() {
                 postit.id;
 
 
-            heart.appendChild(
+            button.appendChild(
                 number
             );
 
 
-            /*
-             * Clic.
-             */
-
-            heart.addEventListener(
+            button.addEventListener(
                 "click",
                 () => {
 
-                    handlePostitClick(
+                    openPostit(
                         postit,
-                        heart
+                        button
                     );
 
                 }
@@ -1444,7 +1204,7 @@ function renderWall() {
 
 
             wall.appendChild(
-                heart
+                button
             );
 
         }
@@ -1457,17 +1217,17 @@ function renderWall() {
 
 
 /* =====================================================
-   OUVERTURE POST-IT
+   OUVRIR POST-IT
 ===================================================== */
 
-async function handlePostitClick(
+async function openPostit(
     postit,
     element
 ) {
 
     /*
-     * Déjà ouvert :
-     * on peut le consulter.
+     * S'il est déjà ouvert,
+     * on affiche simplement son contenu.
      */
 
     if (
@@ -1477,10 +1237,8 @@ async function handlePostitClick(
     ) {
 
         showPostit(
-            postit,
-            element
+            postit
         );
-
 
         return;
 
@@ -1491,108 +1249,66 @@ async function handlePostitClick(
         true;
 
 
-    element.classList.add(
-        "loading"
-    );
-
-
     try {
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .rpc(
-                    "open_postit",
-                    {
-                        p_postit_id:
-                            postit.id
-                    }
-                );
-
-
-        element.classList.remove(
-            "loading"
+        console.log(
+            "💌 Ouverture :",
+            postit.id
         );
 
 
-        element.disabled =
-            false;
-
-
-        if (error) {
-
-            console.error(
-                "❌ Erreur ouverture :",
-                error
+        const result =
+            await supabaseClient.rpc(
+                "open_postit",
+                {
+                    p_postit_id:
+                        postit.id
+                }
             );
 
 
-            /*
-             * Un post-it déjà ouvert.
-             */
+        if (result.error) {
+
+            console.error(
+                "❌ Erreur ouverture :",
+                result.error
+            );
+
+
+            const message =
+                result.error.message || "";
+
 
             if (
-                error.message.includes(
+                message.includes(
                     "POSTIT_ALREADY_OPENED"
                 )
             ) {
 
                 await loadOpenedPostits();
 
-
-                element.classList.add(
-                    "opened"
-                );
-
+                renderWall();
 
                 renderGifts();
 
-
                 showPostit(
-                    postit,
-                    element
+                    postit
                 );
-
 
                 return;
 
             }
 
 
-            /*
-             * Un seul post-it par jour.
-             */
-
             if (
-                error.message.includes(
+                message.includes(
                     "ALREADY_OPENED_TODAY"
                 )
             ) {
 
                 showWallMessage(
-                    "Tu as déjà ouvert ton petit mot aujourd'hui ❤️"
+                    "Tu as déjà ouvert un post-it aujourd'hui ❤️"
                 );
-
-
-                return;
-
-            }
-
-
-            /*
-             * Utilisateur non connecté.
-             */
-
-            if (
-                error.message.includes(
-                    "NOT_AUTHENTICATED"
-                )
-            ) {
-
-                showLogin();
-
 
                 return;
 
@@ -1600,7 +1316,7 @@ async function handlePostitClick(
 
 
             showWallMessage(
-                error.message
+                message
             );
 
 
@@ -1638,10 +1354,8 @@ async function handlePostitClick(
 
         renderGifts();
 
-
         showPostit(
-            postit,
-            element
+            postit
         );
 
     }
@@ -1649,23 +1363,21 @@ async function handlePostitClick(
     catch (error) {
 
         console.error(
-            "💥 Erreur ouverture :",
+            "💥 Erreur :",
             error
         );
 
 
-        element.classList.remove(
-            "loading"
+        showWallMessage(
+            "Une erreur est survenue."
         );
 
+    }
+
+    finally {
 
         element.disabled =
             false;
-
-
-        showWallMessage(
-            error.message
-        );
 
     }
 
@@ -1673,20 +1385,15 @@ async function handlePostitClick(
 
 
 /* =====================================================
-   AFFICHER POST-IT
+   MODAL POST-IT
 ===================================================== */
 
 function showPostit(
-    postit,
-    element
+    postit
 ) {
 
     currentPostit =
         postit;
-
-
-    currentPostitElement =
-        element;
 
 
     modalNumber.textContent =
@@ -1698,54 +1405,12 @@ function showPostit(
         postit.message;
 
 
-    /*
-     * Récupération couleur.
-     */
-
-    let color =
-        "pink";
-
-
-    for (
-        const heartColor
-        of heartColors
-    ) {
-
-        if (
-            element.classList.contains(
-                heartColor
-            )
-        ) {
-
-            color =
-                heartColor;
-
-
-            break;
-
-        }
-
-    }
-
-
-    modalHeart.className =
-        "modal-heart " +
-        color;
-
-
-    updateModalDoneButton(
-        postit.id
-    );
-
-
     modal.classList.remove(
         "hidden"
     );
 
 
-    document.body.classList.add(
-        "modal-open"
-    );
+    updateDoneButton();
 
 }
 
@@ -1754,23 +1419,14 @@ function showPostit(
    FERMER MODAL
 ===================================================== */
 
-function closeModal() {
+function closePostitModal() {
 
     modal.classList.add(
         "hidden"
     );
 
 
-    document.body.classList.remove(
-        "modal-open"
-    );
-
-
     currentPostit =
-        null;
-
-
-    currentPostitElement =
         null;
 
 }
@@ -1780,15 +1436,20 @@ function closeModal() {
    BOUTON FAIT
 ===================================================== */
 
-function updateModalDoneButton(
-    postitId
-) {
+function updateDoneButton() {
+
+    if (!currentPostit) {
+
+        return;
+
+    }
+
 
     const entry =
         openedData.find(
             item =>
                 item.postit_id ===
-                postitId
+                currentPostit.id
         );
 
 
@@ -1799,7 +1460,6 @@ function updateModalDoneButton(
 
         modalDoneButton.textContent =
             "✓ Cadeau réalisé";
-
 
         modalDoneButton.classList.add(
             "done"
@@ -1812,7 +1472,6 @@ function updateModalDoneButton(
         modalDoneButton.textContent =
             "✓ Marquer comme fait";
 
-
         modalDoneButton.classList.remove(
             "done"
         );
@@ -1823,18 +1482,23 @@ function updateModalDoneButton(
 
 
 /* =====================================================
-   MODIFIER ETAT FAIT
+   TOGGLE FAIT
 ===================================================== */
 
-async function toggleDone(
-    postitId
-) {
+async function toggleDone() {
+
+    if (!currentPostit) {
+
+        return;
+
+    }
+
 
     const entry =
         openedData.find(
             item =>
                 item.postit_id ===
-                postitId
+                currentPostit.id
         );
 
 
@@ -1845,7 +1509,7 @@ async function toggleDone(
     }
 
 
-    const newDone =
+    const newValue =
         !entry.done;
 
 
@@ -1855,37 +1519,28 @@ async function toggleDone(
 
     try {
 
-        const {
-            error
-        } =
+        const result =
             await supabaseClient
                 .from("opened_postits")
                 .update({
-
                     done:
-                        newDone
-
+                        newValue
                 })
                 .eq(
                     "user_id",
-                    user.id
+                    currentUser.id
                 )
                 .eq(
                     "postit_id",
-                    postitId
+                    currentPostit.id
                 );
 
 
-        if (error) {
+        if (result.error) {
 
             console.error(
-                "❌ Erreur modification :",
-                error
-            );
-
-
-            showWallMessage(
-                error.message
+                "❌ Erreur statut :",
+                result.error
             );
 
 
@@ -1895,24 +1550,12 @@ async function toggleDone(
 
 
         entry.done =
-            newDone;
+            newValue;
 
 
-        updateModalDoneButton(
-            postitId
-        );
-
+        updateDoneButton();
 
         renderGifts();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "💥 Erreur modification :",
-            error
-        );
 
     }
 
@@ -1927,7 +1570,7 @@ async function toggleDone(
 
 
 /* =====================================================
-   AFFICHAGE CADEAUX
+   RENDRE LISTE CADEAUX
 ===================================================== */
 
 function renderGifts() {
@@ -1936,33 +1579,23 @@ function renderGifts() {
         "";
 
 
-    /*
-     * Tri par numéro.
-     */
+    const sorted =
+        [...openedData].sort(
+            (
+                a,
+                b
+            ) =>
+                a.postit_id -
+                b.postit_id
+        );
 
-    const opened =
-        openedData
-            .slice()
-            .sort(
-                (
-                    a,
-                    b
-                ) =>
-                    a.postit_id -
-                    b.postit_id
-            );
-
-
-    /*
-     * Statistiques.
-     */
 
     const total =
-        opened.length;
+        sorted.length;
 
 
     const done =
-        opened.filter(
+        sorted.filter(
             item =>
                 item.done
         ).length;
@@ -1985,17 +1618,12 @@ function renderGifts() {
         todo;
 
 
-    /*
-     * Aucun cadeau.
-     */
-
     if (
         total === 0
     ) {
 
         emptyGifts.style.display =
             "block";
-
 
         return;
 
@@ -2006,11 +1634,7 @@ function renderGifts() {
         "none";
 
 
-    /*
-     * Création des cartes.
-     */
-
-    opened.forEach(
+    sorted.forEach(
         entry => {
 
             const postit =
@@ -2047,32 +1671,6 @@ function renderGifts() {
             }
 
 
-            /*
-             * Coeur.
-             */
-
-            const heart =
-                document.createElement(
-                    "div"
-                );
-
-
-            heart.className =
-                "gift-heart";
-
-
-            heart.classList.add(
-                heartColors[
-                    (postit.id - 1) %
-                    heartColors.length
-                ]
-            );
-
-
-            /*
-             * Numéro.
-             */
-
             const number =
                 document.createElement(
                     "div"
@@ -2088,10 +1686,6 @@ function renderGifts() {
                 postit.id;
 
 
-            /*
-             * Message.
-             */
-
             const message =
                 document.createElement(
                     "div"
@@ -2106,10 +1700,6 @@ function renderGifts() {
                 postit.message;
 
 
-            /*
-             * Etat.
-             */
-
             const status =
                 document.createElement(
                     "div"
@@ -2120,29 +1710,20 @@ function renderGifts() {
                 "gift-status";
 
 
+            status.textContent =
+                entry.done
+                    ? "✓ FAIT"
+                    : "○ À FAIRE";
+
+
             if (entry.done) {
 
                 status.classList.add(
                     "done"
                 );
 
-
-                status.textContent =
-                    "✓ FAIT";
-
             }
 
-            else {
-
-                status.textContent =
-                    "○ À FAIRE";
-
-            }
-
-
-            /*
-             * Bouton.
-             */
 
             const button =
                 document.createElement(
@@ -2160,108 +1741,37 @@ function renderGifts() {
 
             button.textContent =
                 entry.done
-                    ? "Marquer comme à faire"
+                    ? "À refaire"
                     : "Marquer comme fait";
 
 
             button.addEventListener(
                 "click",
-                event => {
+                () => {
 
-                    event.stopPropagation();
+                    currentPostit =
+                        postit;
 
-
-                    toggleDone(
-                        entry.postit_id
-                    );
+                    toggleDone();
 
                 }
             );
 
 
-            /*
-             * Partie gauche.
-             */
-
-            const left =
-                document.createElement(
-                    "div"
-                );
-
-
-            left.className =
-                "gift-left";
-
-
-            left.appendChild(
-                heart
-            );
-
-
-            left.appendChild(
+            card.appendChild(
                 number
             );
 
-
-            /*
-             * Partie centrale.
-             */
-
-            const middle =
-                document.createElement(
-                    "div"
-                );
-
-
-            middle.className =
-                "gift-middle";
-
-
-            middle.appendChild(
+            card.appendChild(
                 message
             );
 
-
-            /*
-             * Partie droite.
-             */
-
-            const right =
-                document.createElement(
-                    "div"
-                );
-
-
-            right.className =
-                "gift-right";
-
-
-            right.appendChild(
+            card.appendChild(
                 status
             );
 
-
-            right.appendChild(
+            card.appendChild(
                 button
-            );
-
-
-            /*
-             * Carte.
-             */
-
-            card.appendChild(
-                left
-            );
-
-
-            card.appendChild(
-                middle
-            );
-
-
-            card.appendChild(
-                right
             );
 
 
@@ -2276,18 +1786,18 @@ function renderGifts() {
 
 
 /* =====================================================
-   AFFICHER LE MUR
+   NAVIGATION MUR
 ===================================================== */
 
 function showWall() {
 
     wallView.classList.remove(
-        "hidden-page"
+        "hidden"
     );
 
 
     giftsView.classList.add(
-        "hidden-page"
+        "hidden"
     );
 
 
@@ -2308,18 +1818,18 @@ function showWall() {
 
 
 /* =====================================================
-   AFFICHER MES CADEAUX
+   NAVIGATION CADEAUX
 ===================================================== */
 
 function showGifts() {
 
     wallView.classList.add(
-        "hidden-page"
+        "hidden"
     );
 
 
     giftsView.classList.remove(
-        "hidden-page"
+        "hidden"
     );
 
 
@@ -2348,15 +1858,18 @@ function showGifts() {
 
 function updateProgress() {
 
+    const count =
+        openedPostits.size;
+
+
     progressText.textContent =
-        openedPostits.size +
-        " / 140";
+        `${count} / 140 découvert${count > 1 ? "s" : ""}`;
 
 }
 
 
 /* =====================================================
-   MESSAGE TEMPORAIRE
+   MESSAGE
 ===================================================== */
 
 function showWallMessage(
@@ -2392,25 +1905,12 @@ function showWallMessage(
 
 async function logout() {
 
-    try {
-
-        await supabaseClient
-            .auth
-            .signOut();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Erreur déconnexion :",
-            error
-        );
-
-    }
+    await supabaseClient
+        .auth
+        .signOut();
 
 
-    user =
+    currentUser =
         null;
 
 
@@ -2418,19 +1918,12 @@ async function logout() {
         [];
 
 
-    openedPostits.clear();
+    openedPostits =
+        new Set();
 
 
     openedData =
         [];
-
-
-    wall.innerHTML =
-        "";
-
-
-    giftsList.innerHTML =
-        "";
 
 
     passwordInput.value =
@@ -2445,15 +1938,7 @@ async function logout() {
         "";
 
 
-    /*
-     * Retour en mode utilisateur normal.
-     */
-
-    if (adminMode) {
-
-        toggleAdminMode();
-
-    }
+    closePostitModal();
 
 
     showLogin();
@@ -2462,7 +1947,7 @@ async function logout() {
 
 
 /* =====================================================
-   EVENEMENTS CONNEXION
+   EVENEMENTS
 ===================================================== */
 
 loginButton.addEventListener(
@@ -2483,10 +1968,6 @@ adminToggle.addEventListener(
 );
 
 
-/* =====================================================
-   EVENEMENTS APPLICATION
-===================================================== */
-
 logoutButton.addEventListener(
     "click",
     logout
@@ -2505,42 +1986,26 @@ giftsButton.addEventListener(
 );
 
 
-/* =====================================================
-   EVENEMENTS MODAL
-===================================================== */
-
-closeModalButton.addEventListener(
+closeModal.addEventListener(
     "click",
-    closeModal
+    closePostitModal
 );
 
 
 modalBackground.addEventListener(
     "click",
-    closeModal
+    closePostitModal
 );
 
 
 modalDoneButton.addEventListener(
     "click",
-    () => {
-
-        if (
-            currentPostit
-        ) {
-
-            toggleDone(
-                currentPostit.id
-            );
-
-        }
-
-    }
+    toggleDone
 );
 
 
 /* =====================================================
-   TOUCHE ENTREE
+   ENTREE CLAVIER
 ===================================================== */
 
 passwordInput.addEventListener(
@@ -2592,7 +2057,7 @@ adminPasswordInput.addEventListener(
 
 
 /* =====================================================
-   TOUCHE ESCAPE
+   ESCAPE
 ===================================================== */
 
 document.addEventListener(
@@ -2603,7 +2068,7 @@ document.addEventListener(
             event.key === "Escape"
         ) {
 
-            closeModal();
+            closePostitModal();
 
         }
 
@@ -2612,32 +2077,79 @@ document.addEventListener(
 
 
 /* =====================================================
-   INITIALISATION
+   SESSION EXISTANTE
 ===================================================== */
 
-console.log(
-    "❤️ Application chargée"
-);
+async function checkSession() {
+
+    console.log(
+        "🔎 Vérification session..."
+    );
 
 
-console.log(
-    "Supabase disponible :",
-    typeof supabaseClient !== "undefined"
-);
+    try {
+
+        const result =
+            await supabaseClient
+                .auth
+                .getSession();
 
 
-/*
- * Par défaut :
- * afficher la connexion.
- */
+        if (
+            result.data &&
+            result.data.session
+        ) {
+
+            currentUser =
+                result.data.session.user;
+
+
+            console.log(
+                "✅ Session trouvée :",
+                currentUser.email
+            );
+
+
+            showApp();
+
+
+            await initializeApplication();
+
+        }
+
+        else {
+
+            console.log(
+                "ℹ️ Pas de session"
+            );
+
+
+            showLogin();
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "❌ Erreur session :",
+            error
+        );
+
+
+        showLogin();
+
+    }
+
+}
+
+
+/* =====================================================
+   DEMARRAGE
+===================================================== */
 
 showLogin();
-
-
-/*
- * Vérifier ensuite s'il existe
- * déjà une session.
- */
 
 checkSession();
 
