@@ -1,3 +1,4 @@
+```css
 /* =========================================
    RESET
 ========================================= */
@@ -22,22 +23,35 @@ body {
         "Times New Roman",
         serif;
 
-    background:
-        linear-gradient(
-            rgba(255, 248, 239, 0.92),
-            rgba(255, 248, 239, 0.92)
-        ),
-        #f4e8d7;
+    color: #4b3838;
 
-    color: #3f3030;
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.7),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 255, 255, 0.5),
+            transparent 30%
+        ),
+        #f3e7d8;
+}
+
+
+button,
+input {
+    font-family: inherit;
 }
 
 
 /* =========================================
-   LOGIN
+   CONNEXION
 ========================================= */
 
 #login {
+
     min-height: 100vh;
 
     display: flex;
@@ -47,6 +61,7 @@ body {
     align-items: center;
 
     padding: 25px;
+
 }
 
 
@@ -57,17 +72,31 @@ body {
         100%
     );
 
-    padding: 45px 30px;
+    padding:
+        45px
+        30px;
 
     text-align: center;
 
-    background: #fffaf2;
+    background:
+        rgba(
+            255,
+            250,
+            243,
+            0.95
+        );
 
-    border-radius: 20px;
+    border-radius: 24px;
 
     box-shadow:
-        0 20px 50px
-        rgba(70, 40, 30, 0.15);
+        0 20px 60px
+        rgba(
+            80,
+            45,
+            35,
+            0.15
+        );
+
 }
 
 
@@ -82,8 +111,10 @@ body {
     margin-bottom: 20px;
 
     animation:
-        heartbeat 2s
+        heartbeat
+        2s
         infinite;
+
 }
 
 
@@ -92,48 +123,64 @@ body {
     font-size: 32px;
 
     margin-bottom: 10px;
+
 }
 
 
 .login-subtitle {
 
+    color: #987f7f;
+
     font-size: 16px;
 
-    color: #8a7070;
+    line-height: 1.5;
 
     margin-bottom: 30px;
+
 }
 
 
 .login-card input {
 
+    display: block;
+
     width: 100%;
 
-    padding: 14px 16px;
+    padding:
+        14px
+        16px;
 
     margin-bottom: 12px;
 
-    border: 1px solid #ead6d1;
+    border:
+        1px solid
+        #ead8d0;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
     background: white;
 
     font-size: 16px;
 
-    font-family: inherit;
-
     outline: none;
+
 }
 
 
 .login-card input:focus {
 
-    border-color: #df6075;
+    border-color:
+        #df6075;
 
     box-shadow:
         0 0 0 3px
-        rgba(223, 96, 117, 0.12);
+        rgba(
+            223,
+            96,
+            117,
+            0.12
+        );
+
 }
 
 
@@ -147,48 +194,61 @@ body {
 
     border: none;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
-    background: #df6075;
+    background:
+        #df6075;
 
     color: white;
 
     font-size: 17px;
 
-    font-family: inherit;
-
     cursor: pointer;
 
     transition:
-        transform 0.2s,
-        background 0.2s;
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
 }
 
 
 #loginButton:hover {
 
-    background: #cc4e64;
+    transform:
+        translateY(-2px);
 
-    transform: translateY(-2px);
+}
+
+
+#loginButton:disabled {
+
+    opacity: 0.65;
+
+    cursor: wait;
+
 }
 
 
 #error {
 
+    min-height: 20px;
+
     margin-top: 15px;
 
-    color: #c54242;
+    color: #c34b58;
 
-    min-height: 20px;
+    font-size: 14px;
 
 }
 
 
 /* =========================================
-   PAGE DU MUR
+   PAGE PRINCIPALE
 ========================================= */
 
 #wallPage {
+
+    display: none;
 
     min-height: 100vh;
 
@@ -196,40 +256,62 @@ body {
         25px
         25px
         60px;
+
 }
 
 
+/* =========================================
+   HEADER
+========================================= */
+
 .wall-header {
 
-    max-width: 1200px;
+    max-width: 1400px;
 
     margin:
         0 auto
-        25px;
+        20px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+}
+
+
+.header-left {
 
     display: flex;
 
     align-items: center;
 
-    justify-content: space-between;
+    gap: 12px;
+
 }
 
 
 .wall-header h1 {
 
-    font-size: 34px;
+    color:
+        #df6075;
 
-    color: #df6075;
+    font-size: 32px;
+
+    line-height: 1;
+
 }
 
 
 #progressText {
 
-    color: #987f7f;
+    color:
+        #987f7f;
 
     font-size: 14px;
 
-    margin-top: 3px;
 }
 
 
@@ -243,98 +325,111 @@ body {
 
     border-radius: 50%;
 
-    background: #eadbd2;
+    background:
+        rgba(
+            120,
+            90,
+            80,
+            0.12
+        );
 
-    color: #765d5d;
+    color:
+        #765d5d;
 
     font-size: 25px;
 
     line-height: 1;
 
     cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+
+}
+
+
+.logout-button:hover {
+
+    background:
+        rgba(
+            120,
+            90,
+            80,
+            0.22
+        );
+
 }
 
 
 /* =========================================
-   LE MUR
+   MUR
 ========================================= */
 
 .wall {
 
     width: 100%;
 
-    max-width: 1200px;
+    max-width: 1400px;
 
     margin: 0 auto;
 
-    padding: 20px;
+    padding:
+        25px;
 
     display: grid;
 
+    /*
+       ORDINATEUR
+
+       14 colonnes
+       10 lignes
+       = 140
+    */
+
     grid-template-columns:
         repeat(
-            auto-fill,
-            minmax(75px, 1fr)
+            14,
+            1fr
         );
 
-    gap: 22px 15px;
+    grid-template-rows:
+        repeat(
+            10,
+            1fr
+        );
+
+    gap:
+        18px;
 
     align-items: center;
 
-    background:
+    justify-items: center;
 
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(255,255,255,0.5),
-            transparent 25%
-        ),
-
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(255,255,255,0.35),
-            transparent 30%
-        );
-
-    border-radius: 25px;
 }
 
 
 /* =========================================
-   POST-IT COEUR
+   COEUR
 ========================================= */
 
 .postit {
 
     position: relative;
 
-    width: 75px;
+    width: 72px;
 
-    height: 70px;
-
-    justify-self: center;
+    height: 68px;
 
     border: none;
 
-    cursor: pointer;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    color: rgba(90, 50, 50, 0.75);
-
     background: transparent;
 
+    cursor: pointer;
+
+    color:
+        #f3a6b6;
+
     transform:
-        translate(
-            var(--translate-x),
-            var(--translate-y)
-        )
         rotate(
             var(--rotation)
         );
@@ -342,12 +437,9 @@ body {
     transition:
         transform 0.25s ease,
         filter 0.25s ease;
+
 }
 
-
-/*
-   Création du coeur avec le pseudo-element
-*/
 
 .postit::before {
 
@@ -355,37 +447,47 @@ body {
 
     position: absolute;
 
-    inset: 7px;
+    inset: 3px;
 
-    background: currentColor;
+    background:
+        currentColor;
 
-    clip-path: polygon(
-        50% 100%,
-        0% 38%,
-        0% 22%,
-        8% 8%,
-        22% 0%,
-        35% 1%,
-        50% 18%,
-        65% 1%,
-        78% 0%,
-        92% 8%,
-        100% 22%,
-        100% 38%
-    );
+    clip-path:
+        polygon(
+            50% 100%,
+            0% 38%,
+            0% 22%,
+            8% 8%,
+            22% 0%,
+            35% 1%,
+            50% 18%,
+            65% 1%,
+            78% 0%,
+            92% 8%,
+            100% 22%,
+            100% 38%
+        );
 
     filter:
         drop-shadow(
-            2px 4px 3px
-            rgba(70, 40, 40, 0.18)
+            2px 5px 3px
+            rgba(
+                70,
+                40,
+                40,
+                0.20
+            )
         );
 
     transition:
         filter 0.25s ease;
+
 }
 
 
-/* Le numéro passe devant */
+/* =========================================
+   NUMERO
+========================================= */
 
 .postit span {
 
@@ -393,15 +495,28 @@ body {
 
     z-index: 2;
 
+    top: 29px;
+
     left: 0;
 
     right: 0;
 
-    top: 31px;
-
     text-align: center;
 
+    color:
+        rgba(
+            90,
+            50,
+            50,
+            0.72
+        );
+
+    font-size: 13px;
+
+    font-weight: bold;
+
     pointer-events: none;
+
 }
 
 
@@ -411,43 +526,57 @@ body {
 
 .postit.pink {
 
-    color: #f3a6b6;
+    color:
+        #f3a6b6;
+
 }
 
 
 .postit.rose {
 
-    color: #ed8098;
+    color:
+        #ed8098;
+
 }
 
 
 .postit.red {
 
-    color: #e87982;
+    color:
+        #e87982;
+
 }
 
 
 .postit.purple {
 
-    color: #c6a5d9;
+    color:
+        #c5a2d8;
+
 }
 
 
 .postit.blue {
 
-    color: #9dc6dc;
+    color:
+        #9dc5da;
+
 }
 
 
 .postit.yellow {
 
-    color: #f2d98b;
+    color:
+        #f1d98b;
+
 }
 
 
 .postit.orange {
 
-    color: #efb17f;
+    color:
+        #efb17f;
+
 }
 
 
@@ -458,18 +587,15 @@ body {
 .postit:hover {
 
     transform:
-        translate(
-            var(--translate-x),
-            calc(
-                var(--translate-y) - 5px
-            )
-        )
         rotate(
             var(--rotation)
         )
-        scale(1.12);
+        scale(
+            1.15
+        );
 
-    z-index: 5;
+    z-index: 10;
+
 }
 
 
@@ -477,9 +603,15 @@ body {
 
     filter:
         drop-shadow(
-            3px 8px 5px
-            rgba(70, 40, 40, 0.25)
+            4px 8px 5px
+            rgba(
+                70,
+                40,
+                40,
+                0.28
+            )
         );
+
 }
 
 
@@ -490,8 +622,13 @@ body {
 .postit.opened {
 
     filter:
-        saturate(0.55)
-        brightness(0.96);
+        saturate(
+            0.55
+        )
+        brightness(
+            0.97
+        );
+
 }
 
 
@@ -503,32 +640,37 @@ body {
 
     z-index: 4;
 
-    right: 7px;
+    top: 6px;
 
-    top: 9px;
+    right: 5px;
 
     width: 17px;
 
     height: 17px;
-
-    border-radius: 50%;
-
-    background: rgba(
-        255,
-        255,
-        255,
-        0.75
-    );
-
-    color: #7b9b77;
-
-    font-size: 11px;
 
     display: flex;
 
     justify-content: center;
 
     align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        );
+
+    color:
+        #71936d;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
 }
 
 
@@ -539,10 +681,10 @@ body {
 .postit.loading {
 
     animation:
-        pulse 0.8s
+        pulse
+        0.8s
         infinite;
 
-    pointer-events: none;
 }
 
 
@@ -558,32 +700,38 @@ body {
 
     bottom: 25px;
 
+    z-index: 100;
+
+    padding:
+        13px
+        22px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(
+            55,
+            35,
+            35,
+            0.94
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    opacity: 0;
+
     transform:
         translateX(-50%)
         translateY(20px);
 
-    opacity: 0;
-
     pointer-events: none;
 
-    background:
-        rgba(55, 35, 35, 0.92);
-
-    color: white;
-
-    padding:
-        13px
-        20px;
-
-    border-radius: 50px;
-
-    font-size: 15px;
-
     transition:
-        opacity 0.3s,
-        transform 0.3s;
+        opacity 0.3s ease,
+        transform 0.3s ease;
 
-    z-index: 100;
 }
 
 
@@ -594,6 +742,7 @@ body {
     transform:
         translateX(-50%)
         translateY(0);
+
 }
 
 
@@ -616,12 +765,14 @@ body {
     align-items: center;
 
     padding: 25px;
+
 }
 
 
 .modal.hidden {
 
     display: none;
+
 }
 
 
@@ -632,10 +783,16 @@ body {
     inset: 0;
 
     background:
-        rgba(50, 30, 35, 0.55);
+        rgba(
+            50,
+            30,
+            35,
+            0.55
+        );
 
     backdrop-filter:
         blur(5px);
+
 }
 
 
@@ -645,17 +802,28 @@ body {
 
     z-index: 2;
 
-    width: min(
-        500px,
-        100%
-    );
+    width:
+        min(
+            500px,
+            100%
+        );
 
     min-height: 350px;
 
     padding:
-        55px
+        50px
         35px
-        45px;
+        40px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
 
     background:
         #fffaf2;
@@ -664,13 +832,18 @@ body {
 
     box-shadow:
         0 25px 70px
-        rgba(30, 15, 20, 0.3);
-
-    text-align: center;
+        rgba(
+            30,
+            15,
+            20,
+            0.30
+        );
 
     animation:
         modalAppear
-        0.35s ease;
+        0.3s
+        ease;
+
 }
 
 
@@ -678,9 +851,9 @@ body {
 
     position: absolute;
 
-    right: 18px;
+    top: 13px;
 
-    top: 15px;
+    right: 17px;
 
     width: 35px;
 
@@ -690,23 +863,32 @@ body {
 
     background: transparent;
 
+    color:
+        #987f7f;
+
     font-size: 30px;
 
-    color: #987f7f;
+    line-height: 1;
 
     cursor: pointer;
+
 }
 
 
+/* =========================================
+   COEUR DU MODAL
+========================================= */
+
 .modal-heart {
 
-    width: 120px;
+    width: 115px;
 
-    height: 110px;
-
-    margin: 0 auto 20px;
+    height: 105px;
 
     position: relative;
+
+    margin-bottom: 15px;
+
 }
 
 
@@ -718,96 +900,117 @@ body {
 
     inset: 0;
 
-    background: currentColor;
+    background:
+        currentColor;
 
-    clip-path: polygon(
-        50% 100%,
-        0% 38%,
-        0% 22%,
-        8% 8%,
-        22% 0%,
-        35% 1%,
-        50% 18%,
-        65% 1%,
-        78% 0%,
-        92% 8%,
-        100% 22%,
-        100% 38%
-    );
+    clip-path:
+        polygon(
+            50% 100%,
+            0% 38%,
+            0% 22%,
+            8% 8%,
+            22% 0%,
+            35% 1%,
+            50% 18%,
+            65% 1%,
+            78% 0%,
+            92% 8%,
+            100% 22%,
+            100% 38%
+        );
 
     filter:
         drop-shadow(
             3px 7px 5px
-            rgba(70, 40, 40, 0.18)
+            rgba(
+                70,
+                40,
+                40,
+                0.18
+            )
         );
+
 }
 
-
-.modal-number {
-
-    font-size: 14px;
-
-    color: #a58d8d;
-
-    margin-bottom: 20px;
-}
-
-
-.modal-message {
-
-    font-size: 23px;
-
-    line-height: 1.6;
-
-    color: #4d3939;
-
-    white-space: pre-wrap;
-}
-
-
-/* =========================================
-   COULEURS MODAL
-========================================= */
 
 .modal-heart.pink {
 
     color: #f3a6b6;
+
 }
 
 
 .modal-heart.rose {
 
     color: #ed8098;
+
 }
 
 
 .modal-heart.red {
 
     color: #e87982;
+
 }
 
 
 .modal-heart.purple {
 
-    color: #c6a5d9;
+    color: #c5a2d8;
+
 }
 
 
 .modal-heart.blue {
 
-    color: #9dc6dc;
+    color: #9dc5da;
+
 }
 
 
 .modal-heart.yellow {
 
-    color: #f2d98b;
+    color: #f1d98b;
+
 }
 
 
 .modal-heart.orange {
 
     color: #efb17f;
+
+}
+
+
+/* =========================================
+   MODAL TEXTE
+========================================= */
+
+.modal-number {
+
+    color:
+        #a58d8d;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.modal-message {
+
+    max-width: 400px;
+
+    color:
+        #4d3939;
+
+    font-size: 23px;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
 }
 
 
@@ -819,24 +1022,40 @@ body {
 
     0%,
     100% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
+
     }
 
     10% {
-        transform: scale(1.08);
+
+        transform:
+            scale(1.08);
+
     }
 
     20% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
+
     }
 
     30% {
-        transform: scale(1.08);
+
+        transform:
+            scale(1.08);
+
     }
 
     40% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
+
     }
+
 }
 
 
@@ -844,28 +1063,25 @@ body {
 
     0%,
     100% {
+
         transform:
-            translate(
-                var(--translate-x),
-                var(--translate-y)
-            )
             rotate(
                 var(--rotation)
             )
             scale(1);
+
     }
 
     50% {
+
         transform:
-            translate(
-                var(--translate-x),
-                var(--translate-y)
-            )
             rotate(
                 var(--rotation)
             )
-            scale(0.9);
+            scale(0.90);
+
     }
+
 }
 
 
@@ -890,6 +1106,7 @@ body {
             translateY(0);
 
     }
+
 }
 
 
@@ -905,7 +1122,7 @@ body {
 
         padding:
             15px
-            10px
+            8px
             50px;
 
     }
@@ -913,7 +1130,8 @@ body {
 
     .wall-header {
 
-        margin-bottom: 10px;
+        margin-bottom:
+            8px;
 
         padding:
             0
@@ -929,37 +1147,63 @@ body {
     }
 
 
+    /*
+       TELEPHONE
+
+       5 colonnes
+       28 lignes
+       = 140
+    */
+
     .wall {
+
+        max-width: none;
+
+        padding:
+            15px
+            2px;
 
         grid-template-columns:
             repeat(
-                auto-fill,
-                minmax(62px, 1fr)
+                5,
+                1fr
+            );
+
+        grid-template-rows:
+            repeat(
+                28,
+                1fr
             );
 
         gap:
-            17px
-            5px;
-
-        padding: 12px 5px;
+            14px
+            2px;
 
     }
 
 
     .postit {
 
-        width: 65px;
+        width: 60px;
 
-        height: 62px;
-
-        font-size: 13px;
+        height: 57px;
 
     }
 
 
     .postit span {
 
-        top: 28px;
+        top: 25px;
+
+        font-size: 12px;
+
+    }
+
+
+    .modal {
+
+        padding:
+            15px;
 
     }
 
@@ -995,7 +1239,7 @@ body {
 
 
 /* =========================================
-   TRES PETIT TELEPHONE
+   TRES PETITS TELEPHONES
 ========================================= */
 
 @media (
@@ -1004,34 +1248,33 @@ body {
 
     .wall {
 
-        grid-template-columns:
-            repeat(
-                auto-fill,
-                minmax(55px, 1fr)
-            );
+        padding:
+            12px
+            0;
 
         gap:
-            14px
-            2px;
+            12px
+            0;
 
     }
 
 
     .postit {
 
-        width: 58px;
+        width: 54px;
 
-        height: 56px;
+        height: 52px;
 
     }
 
 
     .postit span {
 
-        top: 25px;
+        top: 23px;
 
-        font-size: 12px;
+        font-size: 11px;
 
     }
 
 }
+```
