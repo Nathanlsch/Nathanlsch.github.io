@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
@@ -11,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>❤️ 140 surprises</title>
+    <title>❤️ 140 petits cœurs</title>
 
     <link
         rel="stylesheet"
@@ -24,408 +23,2004 @@
 <body>
 
 
-    <!-- =================================================
-         CONNEXION
-    ================================================== -->
+<!-- =====================================================
+     PAGE DE CONNEXION
+===================================================== -->
 
-    <div
-        id="login"
-        class="login"
-    >
+<section id="login">
 
-        <div class="login-card">
+    <div class="login-card">
 
-            <h1>
-                Bienvenue ❤️
-            </h1>
+        <div class="login-heart">
+            ♥
+        </div>
 
-            <p class="login-subtitle">
-                Entre le mot de passe pour découvrir
-                ce qui t'attend.
-            </p>
+        <h1>
+            Un petit quelque chose...
+        </h1>
+
+        <p class="login-subtitle">
+            Entre le mot de passe pour découvrir
+            ce qui t'attend ❤️
+        </p>
 
 
-            <!-- CONNEXION UTILISATEUR -->
+        <!-- CONNEXION UTILISATEUR -->
 
-            <div
-                id="normalLogin"
-                class="login-form"
+        <div
+            id="normalLogin"
+            class="login-form"
+        >
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Mot de passe"
+                autocomplete="current-password"
             >
-
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Mot de passe"
-                    autocomplete="current-password"
-                >
-
-                <button
-                    id="loginButton"
-                    type="button"
-                >
-                    Entrer
-                </button>
-
-            </div>
-
-
-            <!-- CONNEXION ADMIN -->
-
-            <div
-                id="adminLogin"
-                class="login-form"
-                style="display: none;"
-            >
-
-                <input
-                    id="adminEmail"
-                    type="email"
-                    placeholder="Email"
-                    autocomplete="username"
-                >
-
-                <input
-                    id="adminPassword"
-                    type="password"
-                    placeholder="Mot de passe"
-                    autocomplete="current-password"
-                >
-
-                <button
-                    id="adminLoginButton"
-                    type="button"
-                >
-                    Se connecter
-                </button>
-
-            </div>
-
-
-            <p
-                id="error"
-                class="login-error"
-            ></p>
-
 
             <button
-                id="adminToggle"
-                class="admin-toggle"
+                id="loginButton"
                 type="button"
             >
-                Accès administrateur
+                Entrer ❤️
             </button>
 
         </div>
 
+
+        <!-- CONNEXION ADMIN -->
+
+        <div
+            id="adminLogin"
+            class="login-form"
+            style="display: none;"
+        >
+
+            <input
+                id="adminEmail"
+                type="email"
+                placeholder="Email"
+                autocomplete="username"
+            >
+
+            <input
+                id="adminPassword"
+                type="password"
+                placeholder="Mot de passe"
+                autocomplete="current-password"
+            >
+
+            <button
+                id="adminLoginButton"
+                type="button"
+            >
+                Se connecter
+            </button>
+
+        </div>
+
+
+        <p
+            id="error"
+            class="login-error"
+        ></p>
+
+
+        <button
+            id="adminToggle"
+            class="admin-toggle"
+            type="button"
+        >
+            Accès administrateur
+        </button>
+
     </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<main
+    id="app"
+    style="display: none;"
+>
+
+
+    <!-- HEADER -->
+
+    <header class="app-header">
+
+        <div class="header-title">
+            ❤️
+            <span>
+                Le mur
+            </span>
+        </div>
+
+
+        <nav class="navigation">
+
+            <button
+                id="wallButton"
+                class="nav-button active"
+                type="button"
+            >
+                ❤️ Mur
+            </button>
+
+            <button
+                id="giftsButton"
+                class="nav-button"
+                type="button"
+            >
+                📋 Mes cadeaux
+            </button>
+
+        </nav>
+
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+            type="button"
+        >
+            Déconnexion
+        </button>
+
+    </header>
 
 
 
     <!-- =================================================
-         APPLICATION
+         MUR
     ================================================== -->
 
-    <div
-        id="app"
-        style="display: none;"
+    <section
+        id="wallView"
+        class="view"
     >
 
+        <div class="wall-introduction">
 
-        <!-- =================================================
-             HEADER
-        ================================================== -->
+            <h2>
+                140 petits cœurs ❤️
+            </h2>
 
-        <header class="app-header">
+            <p>
+                Choisis celui que tu veux découvrir.
+            </p>
+
+            <div
+                id="progressText"
+                class="progress"
+            >
+                0 / 140 découvert
+            </div>
+
+            <div
+                id="creditsText"
+                class="credits"
+            >
+                ❤️ 0 crédit disponible
+            </div>
+
+        </div>
 
 
-            <div class="header-title">
+        <div
+            id="wall"
+            class="wall"
+        ></div>
+
+
+        <div
+            id="wallMessage"
+            class="wall-message"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MES CADEAUX
+    ================================================== -->
+
+    <section
+        id="giftsView"
+        class="view hidden"
+    >
+
+        <div class="gifts-header">
+
+            <h2>
+                Mes cadeaux ❤️
+            </h2>
+
+            <p>
+                Tous les petits mots que tu as découverts.
+            </p>
+
+        </div>
+
+
+        <div class="gift-stats">
+
+            <div class="stat-card">
+
+                <strong id="openedCount">
+                    0
+                </strong>
 
                 <span>
-                    Le mur
+                    Découverts
                 </span>
 
             </div>
 
 
-            <nav class="navigation">
+            <div class="stat-card">
 
-                <button
-                    id="wallButton"
-                    class="nav-button active"
-                    type="button"
-                >
-                    Mur
-                </button>
+                <strong id="doneCount">
+                    0
+                </strong>
 
-
-                <button
-                    id="giftsButton"
-                    class="nav-button"
-                    type="button"
-                >
-                    Surprises
-                </button>
-
-            </nav>
-
-
-            <button
-                id="logoutButton"
-                class="logout-button"
-                type="button"
-            >
-                Déconnexion
-            </button>
-
-        </header>
-
-
-
-        <!-- =================================================
-             MUR
-        ================================================== -->
-
-        <section
-            id="wallView"
-            class="view"
-        >
-
-
-            <div class="wall-introduction">
-
-
-                <h2>
-                    140 surprises
-                </h2>
-
-
-                <p>
-                    Une surprise par jour ❤️
-                </p>
-
-
-                <div class="wall-info">
-
-
-                    <div
-                        id="progressText"
-                        class="progress"
-                    >
-                        0 / 140 découvert
-                    </div>
-
-
-                    <div
-                        id="creditsText"
-                        class="credits"
-                    >
-                        0 crédit disponible
-                    </div>
-
-
-                </div>
+                <span>
+                    Faits
+                </span>
 
             </div>
 
 
-            <div
-                id="wall"
-                class="wall"
-            ></div>
+            <div class="stat-card">
 
+                <strong id="todoCount">
+                    0
+                </strong>
 
-            <div
-                id="wallMessage"
-                class="wall-message"
-            ></div>
-
-
-        </section>
-
-
-
-        <!-- =================================================
-             SURPRISES
-        ================================================== -->
-
-        <section
-            id="giftsView"
-            class="view hidden"
-        >
-
-
-            <div class="gifts-header">
-
-
-                <h2>
-                    Surprises
-                </h2>
-
-
-                <p>
-                    Toutes les surprises que tu as découvertes.
-                </p>
-
+                <span>
+                    À faire
+                </span>
 
             </div>
-
-
-
-            <!-- STATISTIQUES -->
-
-            <div class="gift-stats">
-
-
-                <div class="stat-card">
-
-                    <strong id="openedCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Découvertes
-                    </span>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <strong id="doneCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Faites
-                    </span>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <strong id="todoCount">
-                        0
-                    </strong>
-
-                    <span>
-                        À faire
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- LISTE DES SURPRISES -->
-
-            <div
-                id="giftsList"
-                class="gifts-list"
-            ></div>
-
-
-
-            <!-- AUCUNE SURPRISE -->
-
-            <div
-                id="emptyGifts"
-                class="empty-gifts"
-            >
-
-
-                <div>
-                    ♡
-                </div>
-
-
-                <h3>
-                    Aucune surprise découverte
-                </h3>
-
-
-                <p>
-                    Retourne sur le mur pour découvrir
-                    ta première surprise.
-                </p>
-
-
-            </div>
-
-
-        </section>
-
-
-    </div>
-
-
-
-    <!-- =================================================
-         MODAL SURPRISE
-    ================================================== -->
-
-    <div
-        id="modal"
-        class="modal hidden"
-    >
-
-
-        <div
-            id="modalBackground"
-            class="modal-background"
-        ></div>
-
-
-        <div class="modal-card">
-
-
-            <button
-                id="closeModal"
-                class="close-modal"
-                type="button"
-            >
-                ×
-            </button>
-
-
-            <div
-                id="modalHeart"
-                class="modal-heart"
-            >
-                ♥
-            </div>
-
-
-            <div
-                id="modalNumber"
-                class="modal-number"
-            >
-                #1
-            </div>
-
-
-            <p
-                id="modalMessage"
-                class="modal-message"
-            ></p>
-
-
-            <button
-                id="modalDoneButton"
-                class="modal-done-button"
-                type="button"
-            >
-                ✓ Marquer comme fait
-            </button>
-
 
         </div>
 
 
+        <div
+            id="giftsList"
+            class="gifts-list"
+        ></div>
+
+
+        <div
+            id="emptyGifts"
+            class="empty-gifts"
+        >
+
+            <div>
+                ♡
+            </div>
+
+            <h3>
+                Aucun cadeau découvert
+            </h3>
+
+            <p>
+                Retourne sur le mur pour découvrir ton premier cœur.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+    id="modal"
+    class="modal hidden"
+>
+
+    <div
+        id="modalBackground"
+        class="modal-background"
+    ></div>
+
+
+    <div class="modal-card">
+
+        <button
+            id="closeModal"
+            class="close-modal"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div
+            id="modalHeart"
+            class="modal-heart"
+        >
+            ♥
+        </div>
+
+
+        <div
+            id="modalNumber"
+            class="modal-number"
+        >
+            #1
+        </div>
+
+
+        <p
+            id="modalMessage"
+            class="modal-message"
+        ></p>
+
+
+        <button
+            id="modalDoneButton"
+            class="modal-done-button"
+            type="button"
+        >
+            ✓ Marquer comme fait
+        </button>
+
     </div>
 
+</div>
+
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        console.log("❤️ DOM chargé");
+
+
+        /* =================================================
+           SUPABASE
+        ================================================= */
+
+        const SUPABASE_URL =
+            "https://ffrsqutaqqxnfmkjnzhg.supabase.co";
+
+
+        const SUPABASE_KEY =
+            "sb_publishable_anU48SsDFt5QZthETgtHhg_FrGEb3Zs";
+
+
+        if (
+            typeof window.supabase ===
+            "undefined"
+        ) {
+
+            console.error(
+                "❌ Supabase JS non chargé"
+            );
+
+            return;
+
+        }
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        console.log(
+            "✅ Client Supabase créé"
+        );
+
+
+        /* =================================================
+           CONFIGURATION
+        ================================================= */
+
+        const DEFAULT_USER_EMAIL =
+            "user.user@gmail.com";
+
+
+        let currentUser =
+            null;
+
+
+        let postits =
+            [];
+
+
+        let openedData =
+            [];
+
+
+        let openedPostits =
+            new Set();
+
+
+        let currentPostit =
+            null;
+
+        let bonusCredits = 0;
+
+        let availableCredits = 0;
+
+        const START_DATE =
+            new Date("2026-08-15T00:00:00+02:00");
+
+        const END_DATE =
+            new Date("2026-12-31T00:00:00+01:00");
+
+
+        /* =================================================
+           ELEMENTS
+        ================================================= */
+
+        const login =
+            document.getElementById("login");
+
+        const app =
+            document.getElementById("app");
+
+        const normalLogin =
+            document.getElementById("normalLogin");
+
+        const adminLogin =
+            document.getElementById("adminLogin");
+
+        const password =
+            document.getElementById("password");
+
+        const adminEmail =
+            document.getElementById("adminEmail");
+
+        const adminPassword =
+            document.getElementById("adminPassword");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const adminLoginButton =
+            document.getElementById("adminLoginButton");
+
+        const adminToggle =
+            document.getElementById("adminToggle");
+
+        const error =
+            document.getElementById("error");
+
+        const wall =
+            document.getElementById("wall");
+
+        const wallMessage =
+            document.getElementById("wallMessage");
+
+        const wallView =
+            document.getElementById("wallView");
+
+        const giftsView =
+            document.getElementById("giftsView");
+
+        const wallButton =
+            document.getElementById("wallButton");
+
+        const giftsButton =
+            document.getElementById("giftsButton");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+        const progressText =
+            document.getElementById("progressText");
+
+        const creditsText =
+            document.getElementById("creditsText");
+
+        const giftsList =
+            document.getElementById("giftsList");
+
+        const emptyGifts =
+            document.getElementById("emptyGifts");
+
+        const openedCount =
+            document.getElementById("openedCount");
+
+        const doneCount =
+            document.getElementById("doneCount");
+
+        const todoCount =
+            document.getElementById("todoCount");
+
+        const modal =
+            document.getElementById("modal");
+
+        const modalBackground =
+            document.getElementById("modalBackground");
+
+        const closeModal =
+            document.getElementById("closeModal");
+
+        const modalNumber =
+            document.getElementById("modalNumber");
+
+        const modalMessage =
+            document.getElementById("modalMessage");
+
+        const modalDoneButton =
+            document.getElementById("modalDoneButton");
+
+
+        /* =================================================
+           ERREUR
+        ================================================= */
+
+        function showError(message) {
+
+            error.textContent =
+                message;
+
+        }
+
+
+        /* =================================================
+           CONNEXION UTILISATEUR
+        ================================================= */
+
+        async function doLogin() {
+
+            console.log(
+                "❤️ CLICK Entrer"
+            );
+
+
+            const passwordValue =
+                password.value;
+
+
+            if (!passwordValue) {
+
+                showError(
+                    "Entre ton mot de passe ❤️"
+                );
+
+                return;
+
+            }
+
+
+            loginButton.disabled =
+                true;
+
+            loginButton.textContent =
+                "Connexion...";
+
+
+            showError("");
+
+
+            try {
+
+                const result =
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
+
+                            email:
+                                DEFAULT_USER_EMAIL,
+
+                            password:
+                                passwordValue
+
+                        });
+
+
+                if (
+                    result.error
+                ) {
+
+                    console.error(
+                        result.error
+                    );
+
+                    showError(
+                        "Mot de passe incorrect."
+                    );
+
+                    return;
+
+                }
+
+
+                currentUser =
+                    result.data.user;
+
+
+                await enterApplication();
+
+            }
+
+            catch (exception) {
+
+                console.error(
+                    exception
+                );
+
+                showError(
+                    "Erreur de connexion."
+                );
+
+            }
+
+            finally {
+
+                loginButton.disabled =
+                    false;
+
+                loginButton.textContent =
+                    "Entrer ❤️";
+
+            }
+
+        }
+
+
+        /* =================================================
+           CONNEXION ADMIN
+        ================================================= */
+
+        async function doAdminLogin() {
+
+            console.log(
+                "🔐 CLICK ADMIN"
+            );
+
+
+            const emailValue =
+                adminEmail.value.trim();
+
+
+            const passwordValue =
+                adminPassword.value;
+
+
+            if (
+                !emailValue ||
+                !passwordValue
+            ) {
+
+                showError(
+                    "Remplis les deux champs."
+                );
+
+                return;
+
+            }
+
+
+            adminLoginButton.disabled =
+                true;
+
+            adminLoginButton.textContent =
+                "Connexion...";
+
+
+            showError("");
+
+
+            try {
+
+                const result =
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
+
+                            email:
+                                emailValue,
+
+                            password:
+                                passwordValue
+
+                        });
+
+
+                if (
+                    result.error
+                ) {
+
+                    console.error(
+                        result.error
+                    );
+
+                    showError(
+                        "Email ou mot de passe incorrect."
+                    );
+
+                    return;
+
+                }
+
+
+                currentUser =
+                    result.data.user;
+
+
+                await enterApplication();
+
+            }
+
+            catch (exception) {
+
+                console.error(
+                    exception
+                );
+
+                showError(
+                    "Erreur de connexion."
+                );
+
+            }
+
+            finally {
+
+                adminLoginButton.disabled =
+                    false;
+
+                adminLoginButton.textContent =
+                    "Se connecter";
+
+            }
+
+        }
+
+
+        /* =================================================
+           ENTRER DANS L'APPLICATION
+        ================================================= */
+
+        async function enterApplication() {
+
+            login.style.display =
+                "none";
+
+            app.style.display =
+                "block";
+
+
+            await initialize();
+
+        }
+
+
+        /* =================================================
+           INITIALISATION
+        ================================================= */
+
+        async function initialize() {
+
+            console.log(
+                "🚀 Initialisation"
+            );
+
+
+            await loadPostits();
+
+            await loadOpenedPostits();
+            await loadBonusCredits();
+
+            updateCredits();
+            renderWall();
+
+            renderGifts();
+
+        }
+
+
+        /* =================================================
+           CHARGER LES POST-ITS
+        ================================================= */
+
+        async function loadPostits() {
+
+            const result =
+                await supabaseClient
+                    .from("postits")
+                    .select(
+                        "id, message"
+                    )
+                    .order(
+                        "id",
+                        {
+                            ascending: true
+                        }
+                    );
+
+
+            if (
+                result.error
+            ) {
+
+                console.error(
+                    "Erreur postits :",
+                    result.error
+                );
+
+                return;
+
+            }
+
+
+            postits =
+                result.data || [];
+
+
+            console.log(
+                "❤️ Post-its chargés :",
+                postits.length
+            );
+
+        }
+
+
+        /* =================================================
+           CHARGER LES POST-ITS OUVERTS
+        ================================================= */
+
+        async function loadOpenedPostits() {
+
+            const result =
+                await supabaseClient
+                    .from("opened_postits")
+                    .select(
+                        "postit_id, done"
+                    )
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    );
+
+
+            if (
+                result.error
+            ) {
+
+                console.error(
+                    "Erreur ouvertures :",
+                    result.error
+                );
+
+                return;
+
+            }
+
+
+            openedData =
+                result.data || [];
+
+
+            openedPostits =
+                new Set(
+                    openedData.map(
+                        item =>
+                            item.postit_id
+                    )
+                );
+
+
+            console.log(
+                "❤️ Ouverts :",
+                openedPostits.size
+            );
+
+        }
+
+
+        /* =================================================
+           CHARGER LES CREDITS BONUS
+        ================================================= */
+
+        async function loadBonusCredits() {
+
+            const result =
+                await supabaseClient
+                    .from("user_bonus_credits")
+                    .select("credits")
+                    .eq("user_id", currentUser.id)
+                    .maybeSingle();
+
+            if (result.error) {
+                console.error(
+                    "Erreur crédits bonus :",
+                    result.error
+                );
+
+                bonusCredits = 0;
+                return;
+            }
+
+            bonusCredits =
+                result.data?.credits || 0;
+        }
+
+
+        /* =================================================
+           CALCUL DES CREDITS
+
+           15 août = 1 crédit
+           +1 crédit chaque jour
+           Les crédits non utilisés s'accumulent.
+
+           Du 15 août au 30 décembre il y a 138 jours.
+           Le 31 décembre, on ajoute le crédit final afin
+           que les 140 ouvertures soient possibles.
+        ================================================= */
+
+        function calculateAvailableCredits() {
+
+            const now = new Date();
+
+            const today = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate()
+            );
+
+            const start = new Date(
+                START_DATE.getFullYear(),
+                START_DATE.getMonth(),
+                START_DATE.getDate()
+            );
+
+            const end = new Date(
+                END_DATE.getFullYear(),
+                END_DATE.getMonth(),
+                END_DATE.getDate()
+            );
+
+            let earned = 0;
+
+            if (today >= start) {
+
+                const daysElapsed =
+                    Math.floor(
+                        (today - start) /
+                        (1000 * 60 * 60 * 24)
+                    );
+
+                earned = daysElapsed + 1;
+
+                if (today >= end) {
+                    earned = 140;
+                }
+            }
+
+            const opened =
+                openedPostits.size;
+
+            availableCredits =
+                Math.max(
+                    0,
+                    Math.min(
+                        140 - opened,
+                        earned + bonusCredits - opened
+                    )
+                );
+
+            return availableCredits;
+        }
+
+
+        function updateCredits() {
+
+            const credits =
+                calculateAvailableCredits();
+
+            if (creditsText) {
+                creditsText.textContent =
+                    `❤️ ${credits} crédit${credits > 1 ? "s" : ""} disponible${credits > 1 ? "s" : ""}`;
+            }
+        }
+
+
+        /* =================================================
+           AFFICHER LE MUR
+        ================================================= */
+
+        function renderWall() {
+
+            wall.innerHTML =
+                "";
+
+
+            const colors = [
+
+                "light-pink",
+                "pink",
+                "soft-rose",
+                "rose",
+                "dark-pink",
+                "coral",
+                "red",
+                "dark-red",
+                "burgundy"
+
+            ];
+
+
+            const rotations = [
+
+                -4,
+                3,
+                -2,
+                5,
+                -3,
+                2,
+                -5,
+                4,
+                -1,
+                1
+
+            ];
+
+
+            postits.forEach(
+                (
+                    postit,
+                    index
+                ) => {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.type =
+                        "button";
+
+
+                    button.className =
+                        "postit " +
+                        colors[
+                            index %
+                            colors.length
+                        ];
+
+
+                    button.style.setProperty(
+                        "--rotation",
+                        rotations[
+                            index %
+                            rotations.length
+                        ] + "deg"
+                    );
+
+
+                    if (
+                        openedPostits.has(
+                            postit.id
+                        )
+                    ) {
+
+                        button.classList.add(
+                            "opened"
+                        );
+
+                    }
+
+
+                    const number =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    number.textContent =
+                        postit.id;
+
+
+                    button.appendChild(
+                        number
+                    );
+
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            openPostit(
+                                postit
+                            );
+
+                        }
+                    );
+
+
+                    wall.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+
+            const count =
+                openedPostits.size;
+
+
+            progressText.textContent =
+                `${count} / 140 découvert${count > 1 ? "s" : ""}`;
+
+        }
+
+
+        /* =================================================
+           OUVRIR UN POST-IT
+        ================================================= */
+
+        async function openPostit(
+            postit
+        ) {
+
+            /*
+             * Déjà ouvert :
+             * on affiche simplement son contenu.
+             */
+
+            if (
+                openedPostits.has(
+                    postit.id
+                )
+            ) {
+
+                showPostit(
+                    postit
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const result =
+                    await supabaseClient
+                        .rpc(
+                            "open_postit",
+                            {
+                                p_postit_id:
+                                    postit.id
+                            }
+                        );
+
+
+                if (
+                    result.error
+                ) {
+
+                    console.error(
+                        result.error
+                    );
+
+
+                    if (
+                        result.error.message
+                            .includes("NO_OPENINGS_AVAILABLE")
+                    ) {
+                        showErrorMessage(
+                            "Tu n'as plus de crédit disponible ❤️"
+                        );
+                        return;
+                    }
+
+                    /*
+                     * Si le RPC indique que
+                     * le post-it est déjà ouvert.
+                     */
+
+                    if (
+                        result.error.message
+                            .includes(
+                                "POSTIT_ALREADY_OPENED"
+                            )
+                    ) {
+
+                        await loadOpenedPostits();
+
+                        renderWall();
+
+                        renderGifts();
+
+                        showPostit(
+                            postit
+                        );
+
+                    }
+
+                    return;
+
+                }
+
+
+                openedPostits.add(
+                    postit.id
+                );
+
+
+                openedData.push({
+
+                    postit_id:
+                        postit.id,
+
+                    done:
+                        false
+
+                });
+
+
+                renderWall();
+
+                renderGifts();
+
+                showPostit(
+                    postit
+                );
+
+            }
+
+            catch (exception) {
+
+                console.error(
+                    exception
+                );
+
+            }
+
+        }
+
+
+        /* =================================================
+           AFFICHER LE MODAL
+        ================================================= */
+
+        function showPostit(
+            postit
+        ) {
+
+            currentPostit =
+                postit;
+
+
+            modalNumber.textContent =
+                "#" +
+                postit.id;
+
+
+            modalMessage.textContent =
+                postit.message;
+
+
+            modal.classList.remove(
+                "hidden"
+            );
+
+
+            updateDoneButton();
+
+        }
+
+
+        /* =================================================
+           FERMER LE MODAL
+        ================================================= */
+
+        function closePostit() {
+
+            modal.classList.add(
+                "hidden"
+            );
+
+        }
+
+
+        /* =================================================
+           ETAT DU BOUTON DU MODAL
+        ================================================= */
+
+        function updateDoneButton() {
+
+            if (
+                !currentPostit
+            ) {
+
+                return;
+
+            }
+
+
+            const entry =
+                openedData.find(
+                    item =>
+                        item.postit_id ===
+                        currentPostit.id
+                );
+
+
+            if (
+                entry &&
+                entry.done
+            ) {
+
+                modalDoneButton.textContent =
+                    "✓ Cadeau réalisé";
+
+                modalDoneButton.classList.add(
+                    "done"
+                );
+
+            }
+
+            else {
+
+                modalDoneButton.textContent =
+                    "✓ Marquer comme fait";
+
+                modalDoneButton.classList.remove(
+                    "done"
+                );
+
+            }
+
+        }
+
+
+        /* =================================================
+           MODIFIER L'ETAT DEPUIS LE MODAL
+        ================================================= */
+
+        async function toggleDone() {
+
+            if (
+                !currentPostit
+            ) {
+
+                return;
+
+            }
+
+
+            await toggleGiftDone(
+                currentPostit.id
+            );
+
+
+            updateDoneButton();
+
+        }
+
+
+        /* =================================================
+           MODIFIER L'ETAT D'UN CADEAU
+        ================================================= */
+
+        async function toggleGiftDone(
+            postitId
+        ) {
+
+            const entry =
+                openedData.find(
+                    item =>
+                        item.postit_id ===
+                        postitId
+                );
+
+
+            if (!entry) {
+
+                return;
+
+            }
+
+
+            const newValue =
+                !entry.done;
+
+
+            console.log(
+                "Modification cadeau :",
+                postitId,
+                newValue
+            );
+
+
+            const result =
+                await supabaseClient
+                    .from("opened_postits")
+                    .update({
+                        done:
+                            newValue
+                    })
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    )
+                    .eq(
+                        "postit_id",
+                        postitId
+                    );
+
+
+            if (
+                result.error
+            ) {
+
+                console.error(
+                    "Erreur modification cadeau :",
+                    result.error
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Mise à jour locale
+             */
+
+            entry.done =
+                newValue;
+
+
+            /*
+             * Rafraîchir la page cadeaux
+             */
+
+            renderGifts();
+
+
+            /*
+             * Rafraîchir le bouton du modal
+             */
+
+            updateDoneButton();
+
+        }
+
+
+        /* =================================================
+           AFFICHER LES CADEAUX
+        ================================================= */
+
+        function renderGifts() {
+
+            giftsList.innerHTML =
+                "";
+
+
+            const opened =
+                openedData.length;
+
+
+            const done =
+                openedData.filter(
+                    item =>
+                        item.done === true
+                ).length;
+
+
+            const todo =
+                opened -
+                done;
+
+
+            openedCount.textContent =
+                opened;
+
+
+            doneCount.textContent =
+                done;
+
+
+            todoCount.textContent =
+                todo;
+
+
+            if (
+                opened === 0
+            ) {
+
+                emptyGifts.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            emptyGifts.style.display =
+                "none";
+
+
+            /*
+             * Tri par numéro
+             */
+
+            const sorted =
+                [...openedData].sort(
+                    (
+                        a,
+                        b
+                    ) =>
+                        a.postit_id -
+                        b.postit_id
+                );
+
+
+            sorted.forEach(
+                entry => {
+
+                    const postit =
+                        postits.find(
+                            item =>
+                                item.id ===
+                                entry.postit_id
+                        );
+
+
+                    if (!postit) {
+
+                        return;
+
+                    }
+
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "gift-card";
+
+
+                    if (
+                        entry.done
+                    ) {
+
+                        card.classList.add(
+                            "is-done"
+                        );
+
+                    }
+
+
+                    /*
+                     * NUMERO
+                     */
+
+                    const number =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    number.className =
+                        "gift-number";
+
+
+                    number.textContent =
+                        "#" +
+                        postit.id;
+
+
+                    /*
+                     * MESSAGE
+                     */
+
+                    const message =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    message.className =
+                        "gift-message";
+
+
+                    message.textContent =
+                        postit.message;
+
+
+                    /*
+                     * ETAT
+                     */
+
+                    const status =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    status.className =
+                        "gift-status";
+
+
+                    status.textContent =
+                        entry.done
+                            ? "✓ FAIT"
+                            : "○ À FAIRE";
+
+
+                    /*
+                     * BOUTON
+                     */
+
+                    const actionButton =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    actionButton.type =
+                        "button";
+
+
+                    actionButton.className =
+                        "gift-action";
+
+
+                    actionButton.textContent =
+                        entry.done
+                            ? "↩ À refaire"
+                            : "✓ Marquer comme fait";
+
+
+                    actionButton.addEventListener(
+                        "click",
+                        async function () {
+
+                            await toggleGiftDone(
+                                postit.id
+                            );
+
+                        }
+                    );
+
+
+                    /*
+                     * ASSEMBLAGE
+                     */
+
+                    card.appendChild(
+                        number
+                    );
+
+
+                    card.appendChild(
+                        message
+                    );
+
+
+                    card.appendChild(
+                        status
+                    );
+
+
+                    card.appendChild(
+                        actionButton
+                    );
+
+
+                    giftsList.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           NAVIGATION : MUR
+        ================================================= */
+
+        wallButton.addEventListener(
+            "click",
+            function () {
+
+                wallView.classList.remove(
+                    "hidden"
+                );
+
+                giftsView.classList.add(
+                    "hidden"
+                );
+
+
+                wallButton.classList.add(
+                    "active"
+                );
+
+                giftsButton.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           NAVIGATION : CADEAUX
+        ================================================= */
+
+        giftsButton.addEventListener(
+            "click",
+            function () {
+
+                wallView.classList.add(
+                    "hidden"
+                );
+
+                giftsView.classList.remove(
+                    "hidden"
+                );
+
+
+                wallButton.classList.remove(
+                    "active"
+                );
+
+                giftsButton.classList.add(
+                    "active"
+                );
+
+
+                renderGifts();
+
+            }
+        );
+
+
+        /* =================================================
+           TOGGLE ADMIN
+        ================================================= */
+
+        adminToggle.addEventListener(
+            "click",
+            function () {
+
+                showError("");
+
+
+                const adminVisible =
+                    adminLogin.style.display !==
+                    "none";
+
+
+                if (
+                    adminVisible
+                ) {
+
+                    adminLogin.style.display =
+                        "none";
+
+                    normalLogin.style.display =
+                        "flex";
+
+                    adminToggle.textContent =
+                        "Accès administrateur";
+
+                }
+
+                else {
+
+                    normalLogin.style.display =
+                        "none";
+
+                    adminLogin.style.display =
+                        "flex";
+
+                    adminToggle.textContent =
+                        "← Retour";
+
+                    adminEmail.focus();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           LOGIN
+        ================================================= */
+
+        loginButton.addEventListener(
+            "click",
+            doLogin
+        );
+
+
+        adminLoginButton.addEventListener(
+            "click",
+            doAdminLogin
+        );
+
+
+        /* =================================================
+           ENTER
+        ================================================= */
+
+        password.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    doLogin();
+
+                }
+
+            }
+        );
+
+
+        adminPassword.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    doAdminLogin();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           MODAL
+        ================================================= */
+
+        closeModal.addEventListener(
+            "click",
+            closePostit
+        );
+
+
+        modalBackground.addEventListener(
+            "click",
+            closePostit
+        );
+
+
+        modalDoneButton.addEventListener(
+            "click",
+            toggleDone
+        );
+
+
+        /* =================================================
+           DECONNEXION
+        ================================================= */
+
+        logoutButton.addEventListener(
+            "click",
+            async function () {
+
+                await supabaseClient
+                    .auth
+                    .signOut();
+
+
+                currentUser =
+                    null;
+
+
+                postits =
+                    [];
+
+                openedData =
+                    [];
+
+                openedPostits =
+                    new Set();
+
+
+                app.style.display =
+                    "none";
+
+
+                login.style.display =
+                    "flex";
+
+
+                password.value =
+                    "";
+
+            }
+        );
+
+
+        /* =================================================
+           SESSION EXISTANTE
+        ================================================= */
+
+        async function checkSession() {
+
+            const result =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (
+                result.data &&
+                result.data.session
+            ) {
+
+                currentUser =
+                    result.data.session.user;
+
+
+                await enterApplication();
+
+            }
+
+        }
+
+
+        /* =================================================
+           DEMARRAGE
+        ================================================= */
+
+        console.log(
+            "🎉 Application prête"
+        );
+
+
+        checkSession();
+
+    }
+
+);
+
+</script>
 
 </body>
 
