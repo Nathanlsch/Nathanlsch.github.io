@@ -64,7 +64,8 @@ body {
     --text-light: #956675;
 
     --shadow:
-        0 8px 25px rgba(
+        0 8px 25px
+        rgba(
             150,
             55,
             80,
@@ -72,13 +73,13 @@ body {
         );
 
     --shadow-hover:
-        0 15px 35px rgba(
+        0 15px 35px
+        rgba(
             150,
             55,
             80,
             0.22
         );
-
 }
 
 
@@ -97,25 +98,27 @@ body {
     align-items: center;
 
     padding: 25px;
-
 }
 
 
 .login-card {
 
-    width: min(
-        420px,
-        100%
-    );
+    width:
+        min(
+            420px,
+            100%
+        );
 
-    padding: 45px 35px;
+    padding:
+        45px 35px;
 
-    background: rgba(
-        255,
-        255,
-        255,
-        0.92
-    );
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
 
     border-radius: 28px;
 
@@ -132,7 +135,6 @@ body {
 
     backdrop-filter:
         blur(10px);
-
 }
 
 
@@ -172,7 +174,6 @@ body {
             100,
             0.25
         );
-
 }
 
 
@@ -183,7 +184,6 @@ body {
     margin-bottom: 10px;
 
     color: #542332;
-
 }
 
 
@@ -194,7 +194,6 @@ body {
     line-height: 1.5;
 
     margin-bottom: 30px;
-
 }
 
 
@@ -209,7 +208,6 @@ body {
     flex-direction: column;
 
     gap: 14px;
-
 }
 
 
@@ -217,7 +215,8 @@ body {
 
     width: 100%;
 
-    padding: 15px 18px;
+    padding:
+        15px 18px;
 
     border:
         1px solid #f1c8d3;
@@ -235,7 +234,6 @@ body {
     transition:
         border 0.2s,
         box-shadow 0.2s;
-
 }
 
 
@@ -252,7 +250,6 @@ body {
             155,
             0.12
         );
-
 }
 
 
@@ -291,7 +288,6 @@ body {
     transition:
         transform 0.2s,
         box-shadow 0.2s;
-
 }
 
 
@@ -308,15 +304,6 @@ body {
             100,
             0.3
         );
-
-}
-
-
-.login-form button:active {
-
-    transform:
-        translateY(0);
-
 }
 
 
@@ -325,7 +312,6 @@ body {
     opacity: 0.6;
 
     cursor: wait;
-
 }
 
 
@@ -344,7 +330,6 @@ body {
     font-size: 14px;
 
     font-weight: 600;
-
 }
 
 
@@ -367,14 +352,12 @@ body {
     cursor: pointer;
 
     text-decoration: underline;
-
 }
 
 
 .admin-toggle:hover {
 
     color: #c9405f;
-
 }
 
 
@@ -385,7 +368,6 @@ body {
 #app {
 
     min-height: 100vh;
-
 }
 
 
@@ -419,7 +401,7 @@ body {
             255,
             255,
             255,
-            0.92
+            0.93
         );
 
     backdrop-filter:
@@ -427,7 +409,6 @@ body {
 
     border-bottom:
         1px solid #f5d6df;
-
 }
 
 
@@ -444,7 +425,6 @@ body {
     font-weight: 800;
 
     color: #542332;
-
 }
 
 
@@ -453,7 +433,6 @@ body {
     display: flex;
 
     gap: 8px;
-
 }
 
 
@@ -477,7 +456,6 @@ body {
     transition:
         background 0.2s,
         color 0.2s;
-
 }
 
 
@@ -486,7 +464,6 @@ body {
     background: #fff0f4;
 
     color: #c9405f;
-
 }
 
 
@@ -495,7 +472,6 @@ body {
     background: #ffe1e9;
 
     color: #c9405f;
-
 }
 
 
@@ -514,14 +490,12 @@ body {
     border-radius: 10px;
 
     cursor: pointer;
-
 }
 
 
 .logout-button:hover {
 
     background: #fff2f5;
-
 }
 
 
@@ -532,19 +506,17 @@ body {
 .view {
 
     width: 100%;
-
 }
 
 
 .hidden {
 
     display: none !important;
-
 }
 
 
 /* =====================================================
-   INTRODUCTION MUR
+   INTRODUCTION
 ===================================================== */
 
 .wall-introduction {
@@ -553,7 +525,6 @@ body {
 
     padding:
         35px 20px 25px;
-
 }
 
 
@@ -569,14 +540,12 @@ body {
     color: #542332;
 
     margin-bottom: 7px;
-
 }
 
 
 .wall-introduction p {
 
     color: #956675;
-
 }
 
 
@@ -607,7 +576,6 @@ body {
             80,
             0.08
         );
-
 }
 
 
@@ -617,19 +585,16 @@ body {
 
 .wall {
 
-    width: min(
-        1500px,
-        calc(100% - 40px)
-    );
+    width:
+        min(
+            1500px,
+            calc(100% - 40px)
+        );
 
     margin:
         0 auto 50px;
 
     display: grid;
-
-    /*
-     * 14 colonnes × 10 lignes
-     */
 
     grid-template-columns:
         repeat(
@@ -644,14 +609,12 @@ body {
             18px
         );
 
-    padding:
-        15px;
-
+    padding: 15px;
 }
 
 
 /* =====================================================
-   POST-IT COEUR
+   COEURS
 ===================================================== */
 
 .postit {
@@ -666,7 +629,41 @@ body {
 
     cursor: pointer;
 
-    background: transparent;
+    color: #ff9fba;
+
+    background: currentColor;
+
+    /*
+     * Vrai coeur CSS
+     */
+    clip-path: polygon(
+        50% 92%,
+        43% 85%,
+        35% 77%,
+        27% 69%,
+        19% 60%,
+        13% 51%,
+        10% 42%,
+        11% 33%,
+        15% 25%,
+        22% 19%,
+        30% 17%,
+        38% 19%,
+        44% 25%,
+        50% 32%,
+        56% 25%,
+        62% 19%,
+        70% 17%,
+        78% 19%,
+        85% 25%,
+        89% 33%,
+        90% 42%,
+        87% 51%,
+        81% 60%,
+        73% 69%,
+        65% 77%,
+        57% 85%
+    );
 
     transform:
         rotate(
@@ -675,7 +672,8 @@ body {
 
     transition:
         transform 0.25s ease,
-        filter 0.25s ease;
+        filter 0.25s ease,
+        opacity 0.25s ease;
 
     filter:
         drop-shadow(
@@ -684,72 +682,15 @@ body {
                 120,
                 40,
                 60,
-                0.12
+                0.15
             )
         );
-
 }
 
 
-/*
- * Création du cœur avec
- * deux cercles + forme centrale.
- */
-
-.postit::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 70%;
-
-    height: 70%;
-
-    top: 18%;
-
-    left: 15%;
-
-    transform:
-        rotate(-45deg);
-
-    border-radius:
-        12% 0 12% 0;
-
-    background:
-        currentColor;
-
-}
-
-
-.postit::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 48%;
-
-    height: 48%;
-
-    top: 7%;
-
-    left: 11%;
-
-    border-radius: 50%;
-
-    background:
-        currentColor;
-
-    box-shadow:
-        44% 0 0 currentColor;
-
-}
-
-
-/*
- * Numéro
- */
+/* =====================================================
+   NUMERO
+===================================================== */
 
 .postit span {
 
@@ -757,7 +698,7 @@ body {
 
     z-index: 3;
 
-    top: 40%;
+    top: 48%;
 
     left: 50%;
 
@@ -767,12 +708,13 @@ body {
             -50%
         );
 
-    color: rgba(
-        255,
-        255,
-        255,
-        0.95
-    );
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
 
     font-size:
         clamp(
@@ -784,74 +726,47 @@ body {
     font-weight: 800;
 
     pointer-events: none;
-
 }
 
 
 /* =====================================================
-   COULEURS COEURS
+   COULEURS
 ===================================================== */
 
 .postit.light-pink {
-
     color: #ffd2df;
-
 }
-
 
 .postit.pink {
-
     color: #ffb5ca;
-
 }
-
 
 .postit.soft-rose {
-
     color: #ff9fba;
-
 }
-
 
 .postit.rose {
-
     color: #f78fa9;
-
 }
-
 
 .postit.dark-pink {
-
     color: #ef7594;
-
 }
-
 
 .postit.coral {
-
     color: #ed7b87;
-
 }
-
 
 .postit.red {
-
     color: #e9687c;
-
 }
-
 
 .postit.dark-red {
-
     color: #d95770;
-
 }
 
-
 .postit.burgundy {
-
     color: #bd4963;
-
 }
 
 
@@ -867,17 +782,16 @@ body {
 
     filter:
         drop-shadow(
-            0 10px 12px
+            0 10px 13px
             rgba(
                 120,
                 40,
                 60,
-                0.25
+                0.27
             )
         );
 
     z-index: 5;
-
 }
 
 
@@ -886,18 +800,19 @@ body {
     transform:
         rotate(0deg)
         scale(0.95);
-
 }
 
 
 /* =====================================================
-   POST-IT OUVERT
+   DEJA OUVERT
 ===================================================== */
 
 .postit.opened {
 
+    opacity: 0.55;
+
     filter:
-        grayscale(0.15)
+        grayscale(0.1)
         drop-shadow(
             0 4px 5px
             rgba(
@@ -907,72 +822,12 @@ body {
                 0.10
             )
         );
-
-    opacity: 0.65;
-
 }
 
 
 .postit.opened:hover {
 
     opacity: 1;
-
-}
-
-
-/* =====================================================
-   MESSAGE MUR
-===================================================== */
-
-.wall-message {
-
-    position: fixed;
-
-    bottom: 25px;
-
-    left: 50%;
-
-    transform:
-        translate(
-            -50%,
-            20px
-        );
-
-    z-index: 200;
-
-    padding:
-        12px 20px;
-
-    border-radius: 14px;
-
-    background:
-        #542332;
-
-    color: white;
-
-    font-size: 14px;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition:
-        opacity 0.25s,
-        transform 0.25s;
-
-}
-
-
-.wall-message.visible {
-
-    opacity: 1;
-
-    transform:
-        translate(
-            -50%,
-            0
-        );
-
 }
 
 
@@ -986,7 +841,6 @@ body {
 
     padding:
         40px 20px 25px;
-
 }
 
 
@@ -995,14 +849,12 @@ body {
     font-size: 32px;
 
     margin-bottom: 8px;
-
 }
 
 
 .gifts-header p {
 
     color: #956675;
-
 }
 
 
@@ -1030,7 +882,6 @@ body {
         );
 
     gap: 15px;
-
 }
 
 
@@ -1046,7 +897,6 @@ body {
         var(--shadow);
 
     text-align: center;
-
 }
 
 
@@ -1059,7 +909,6 @@ body {
     color: #d95770;
 
     margin-bottom: 4px;
-
 }
 
 
@@ -1068,7 +917,6 @@ body {
     color: #956675;
 
     font-size: 13px;
-
 }
 
 
@@ -1080,7 +928,7 @@ body {
 
     width:
         min(
-            900px,
+            950px,
             calc(100% - 40px)
         );
 
@@ -1092,7 +940,6 @@ body {
     flex-direction: column;
 
     gap: 12px;
-
 }
 
 
@@ -1107,6 +954,7 @@ body {
     grid-template-columns:
         65px
         1fr
+        auto
         auto;
 
     align-items: center;
@@ -1128,7 +976,6 @@ body {
 
     transition:
         transform 0.2s;
-
 }
 
 
@@ -1136,7 +983,6 @@ body {
 
     transform:
         translateY(-2px);
-
 }
 
 
@@ -1145,7 +991,6 @@ body {
     color: #d95770;
 
     font-weight: 800;
-
 }
 
 
@@ -1154,7 +999,6 @@ body {
     color: #542332;
 
     line-height: 1.45;
-
 }
 
 
@@ -1173,30 +1017,79 @@ body {
 
     font-weight: 800;
 
+    white-space: nowrap;
 }
 
 
-.gift-status.done {
+.gift-action {
 
-    background: #e8f7ed;
+    border: none;
 
-    color: #3d8c59;
+    padding:
+        8px 12px;
 
+    border-radius: 10px;
+
+    background:
+        #fff0f4;
+
+    color: #d95770;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+
+.gift-action:hover {
+
+    background:
+        #ffe0e8;
+
+    transform:
+        translateY(-1px);
 }
 
 
 .gift-card.is-done {
 
-    opacity: 0.65;
+    opacity: 0.68;
 
     border-left-color:
         #72b886;
+}
 
+
+.gift-card.is-done .gift-status {
+
+    background:
+        #e8f7ed;
+
+    color:
+        #4b9862;
+}
+
+
+.gift-card.is-done .gift-action {
+
+    background:
+        #e8f7ed;
+
+    color:
+        #4b9862;
 }
 
 
 /* =====================================================
-   EMPTY
+   AUCUN CADEAU
 ===================================================== */
 
 .empty-gifts {
@@ -1207,7 +1100,6 @@ body {
         60px 20px;
 
     color: #956675;
-
 }
 
 
@@ -1218,7 +1110,6 @@ body {
     color: #f19ab0;
 
     margin-bottom: 10px;
-
 }
 
 
@@ -1227,7 +1118,6 @@ body {
     color: #542332;
 
     margin-bottom: 7px;
-
 }
 
 
@@ -1250,14 +1140,12 @@ body {
     justify-content: center;
 
     padding: 20px;
-
 }
 
 
 .modal.hidden {
 
     display: none;
-
 }
 
 
@@ -1277,7 +1165,6 @@ body {
 
     backdrop-filter:
         blur(5px);
-
 }
 
 
@@ -1314,7 +1201,6 @@ body {
     animation:
         modalAppear
         0.25s ease;
-
 }
 
 
@@ -1327,7 +1213,6 @@ body {
         transform:
             scale(0.9)
             translateY(15px);
-
     }
 
     to {
@@ -1337,9 +1222,7 @@ body {
         transform:
             scale(1)
             translateY(0);
-
     }
-
 }
 
 
@@ -1356,7 +1239,6 @@ body {
     color: #ed718b;
 
     margin-bottom: 10px;
-
 }
 
 
@@ -1369,7 +1251,6 @@ body {
     font-size: 14px;
 
     margin-bottom: 18px;
-
 }
 
 
@@ -1382,12 +1263,11 @@ body {
     color: #542332;
 
     margin-bottom: 25px;
-
 }
 
 
 /* =====================================================
-   FERMER MODAL
+   FERMER
 ===================================================== */
 
 .close-modal {
@@ -1415,19 +1295,18 @@ body {
     line-height: 1;
 
     cursor: pointer;
-
 }
 
 
 .close-modal:hover {
 
-    background: #ffe1e9;
-
+    background:
+        #ffe1e9;
 }
 
 
 /* =====================================================
-   BOUTON FAIT
+   BOUTON FAIT DU MODAL
 ===================================================== */
 
 .modal-done-button {
@@ -1454,7 +1333,6 @@ body {
 
     transition:
         transform 0.2s;
-
 }
 
 
@@ -1462,7 +1340,6 @@ body {
 
     transform:
         translateY(-2px);
-
 }
 
 
@@ -1470,12 +1347,11 @@ body {
 
     background:
         #65a879;
-
 }
 
 
 /* =====================================================
-   RESPONSIVE TABLETTE
+   TABLETTE
 ===================================================== */
 
 @media (
@@ -1489,20 +1365,18 @@ body {
                 10,
                 1fr
             );
-
     }
 
 }
 
 
 /* =====================================================
-   RESPONSIVE TELEPHONE
+   TELEPHONE
 ===================================================== */
 
 @media (
     max-width: 700px
 ) {
-
 
     /* HEADER */
 
@@ -1510,13 +1384,11 @@ body {
 
         min-height: auto;
 
-        padding:
-            12px;
+        padding: 12px;
 
         flex-wrap: wrap;
 
         justify-content: center;
-
     }
 
 
@@ -1525,7 +1397,6 @@ body {
         width: 100%;
 
         justify-content: center;
-
     }
 
 
@@ -1536,7 +1407,6 @@ body {
         width: 100%;
 
         justify-content: center;
-
     }
 
 
@@ -1552,7 +1422,6 @@ body {
 
         padding:
             7px 9px;
-
     }
 
 
@@ -1562,18 +1431,16 @@ body {
 
         padding:
             25px 15px 15px;
-
     }
 
 
     .wall-introduction h2 {
 
         font-size: 25px;
-
     }
 
 
-    /* MUR */
+    /* MUR 5 COLONNES */
 
     .wall {
 
@@ -1588,16 +1455,13 @@ body {
                 1fr
             );
 
-        gap:
-            9px;
-
+        gap: 9px;
     }
 
 
     .postit span {
 
         font-size: 11px;
-
     }
 
 
@@ -1609,28 +1473,25 @@ body {
             calc(100% - 30px);
 
         gap: 8px;
-
     }
 
 
     .stat-card {
 
-        padding: 14px 8px;
-
+        padding:
+            14px 8px;
     }
 
 
     .stat-card strong {
 
         font-size: 24px;
-
     }
 
 
     .stat-card span {
 
         font-size: 11px;
-
     }
 
 
@@ -1640,7 +1501,6 @@ body {
 
         width:
             calc(100% - 30px);
-
     }
 
 
@@ -1650,22 +1510,26 @@ body {
             45px
             1fr;
 
-        gap: 8px 12px;
+        gap:
+            8px 12px;
 
-        padding:
-            15px;
-
+        padding: 15px;
     }
 
 
     .gift-status {
 
-        grid-column:
-            2;
+        grid-column: 2;
 
-        justify-self:
-            start;
+        justify-self: start;
+    }
 
+
+    .gift-action {
+
+        grid-column: 2;
+
+        justify-self: start;
     }
 
 
@@ -1675,21 +1539,18 @@ body {
 
         padding:
             35px 22px 25px;
-
     }
 
 
     .modal-heart {
 
         font-size: 60px;
-
     }
 
 
     .modal-message {
 
         font-size: 18px;
-
     }
 
 }
@@ -1709,14 +1570,12 @@ body {
 
         width:
             calc(100% - 10px);
-
     }
 
 
     .wall-introduction h2 {
 
         font-size: 22px;
-
     }
 
 
@@ -1726,7 +1585,6 @@ body {
             8px 11px;
 
         font-size: 12px;
-
     }
 
 }
@@ -1740,7 +1598,6 @@ button {
 
     -webkit-tap-highlight-color:
         transparent;
-
 }
 
 
@@ -1757,12 +1614,11 @@ input:focus-visible {
         );
 
     outline-offset: 2px;
-
 }
 
 
 /* =====================================================
-   REDUCTION ANIMATIONS
+   REDUCTION DES ANIMATIONS
 ===================================================== */
 
 @media (
@@ -1779,7 +1635,6 @@ input:focus-visible {
 
         transition-duration:
             0.01ms !important;
-
     }
 
 }
