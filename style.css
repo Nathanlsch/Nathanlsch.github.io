@@ -1,6 +1,6 @@
-/* =========================================
+/* =====================================================
    RESET
-========================================= */
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -17,6 +17,7 @@ body {
 
 
 body {
+
     font-family:
         Georgia,
         "Times New Roman",
@@ -25,17 +26,21 @@ body {
     color: #4b3838;
 
     background:
+
         radial-gradient(
             circle at 20% 20%,
             rgba(255, 255, 255, 0.7),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 80% 70%,
             rgba(255, 255, 255, 0.5),
             transparent 30%
         ),
+
         #f3e7d8;
+
 }
 
 
@@ -45,9 +50,14 @@ input {
 }
 
 
-/* =========================================
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =====================================================
    CONNEXION
-========================================= */
+===================================================== */
 
 #login {
 
@@ -66,10 +76,11 @@ input {
 
 .login-card {
 
-    width: min(
-        400px,
-        100%
-    );
+    width:
+        min(
+            400px,
+            100%
+        );
 
     padding:
         45px
@@ -82,7 +93,7 @@ input {
             255,
             250,
             243,
-            0.95
+            0.96
         );
 
     border-radius: 24px;
@@ -105,7 +116,8 @@ input {
 
     line-height: 1;
 
-    color: #df6075;
+    color:
+        #df6075;
 
     margin-bottom: 20px;
 
@@ -128,7 +140,8 @@ input {
 
 .login-subtitle {
 
-    color: #987f7f;
+    color:
+        #987f7f;
 
     font-size: 16px;
 
@@ -157,7 +170,8 @@ input {
 
     border-radius: 11px;
 
-    background: white;
+    background:
+        white;
 
     font-size: 16px;
 
@@ -198,7 +212,8 @@ input {
     background:
         #df6075;
 
-    color: white;
+    color:
+        white;
 
     font-size: 17px;
 
@@ -234,16 +249,17 @@ input {
 
     margin-top: 15px;
 
-    color: #c34b58;
+    color:
+        #c34b58;
 
     font-size: 14px;
 
 }
 
 
-/* =========================================
-   PAGE PRINCIPALE
-========================================= */
+/* =====================================================
+   APPLICATION
+===================================================== */
 
 #wallPage {
 
@@ -252,20 +268,21 @@ input {
     min-height: 100vh;
 
     padding:
-        25px
-        25px
+        20px
+        20px
         60px;
 
 }
 
 
-/* =========================================
+/* =====================================================
    HEADER
-========================================= */
+===================================================== */
 
 .wall-header {
 
-    max-width: 1400px;
+    max-width:
+        1450px;
 
     margin:
         0 auto
@@ -273,10 +290,9 @@ input {
 
     display: flex;
 
-    justify-content:
-        space-between;
-
     align-items: center;
+
+    gap: 20px;
 
 }
 
@@ -289,10 +305,12 @@ input {
 
     gap: 12px;
 
+    margin-right: auto;
+
 }
 
 
-.wall-header h1 {
+.site-title {
 
     color:
         #df6075;
@@ -304,21 +322,103 @@ input {
 }
 
 
-#progressText {
+.page-title {
 
     color:
-        #987f7f;
+        #6c5252;
 
-    font-size: 14px;
+    font-size: 22px;
 
 }
 
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.navigation {
+
+    display: flex;
+
+    gap: 7px;
+
+    padding: 5px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.45
+        );
+
+}
+
+
+.nav-button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding:
+        9px
+        14px;
+
+    background:
+        transparent;
+
+    color:
+        #806969;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.nav-button:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.7
+        );
+
+}
+
+
+.nav-button.active {
+
+    background:
+        #df6075;
+
+    color:
+        white;
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
 
 .logout-button {
 
     width: 38px;
 
     height: 38px;
+
+    flex-shrink: 0;
 
     border: none;
 
@@ -341,9 +441,6 @@ input {
 
     cursor: pointer;
 
-    transition:
-        background 0.2s ease;
-
 }
 
 
@@ -360,17 +457,77 @@ input {
 }
 
 
-/* =========================================
+/* =====================================================
+   PAGES
+===================================================== */
+
+.page-view {
+
+    display: block;
+
+}
+
+
+.hidden-page {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   INTRODUCTION MUR
+===================================================== */
+
+.wall-introduction {
+
+    text-align: center;
+
+    margin:
+        5px
+        auto
+        10px;
+
+}
+
+
+.wall-introduction h2 {
+
+    color:
+        #604848;
+
+    font-size: 20px;
+
+    font-weight: normal;
+
+}
+
+
+.wall-introduction p {
+
+    margin-top: 5px;
+
+    color:
+        #a08484;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
    MUR
-========================================= */
+===================================================== */
 
 .wall {
 
     width: 100%;
 
-    max-width: 1400px;
+    max-width:
+        1450px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
     padding:
         25px;
@@ -378,11 +535,11 @@ input {
     display: grid;
 
     /*
-       ORDINATEUR
+        ORDINATEUR
 
-       14 colonnes
-       10 lignes
-       = 140
+        14 colonnes
+        10 lignes
+        = 140
     */
 
     grid-template-columns:
@@ -400,16 +557,18 @@ input {
     gap:
         18px;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-items: center;
+    justify-items:
+        center;
 
 }
 
 
-/* =========================================
-   COEUR
-========================================= */
+/* =====================================================
+   COEURS DU MUR
+===================================================== */
 
 .postit {
 
@@ -421,7 +580,8 @@ input {
 
     border: none;
 
-    background: transparent;
+    background:
+        transparent;
 
     cursor: pointer;
 
@@ -484,10 +644,6 @@ input {
 }
 
 
-/* =========================================
-   NUMERO
-========================================= */
-
 .postit span {
 
     position: absolute;
@@ -519,11 +675,23 @@ input {
 }
 
 
-/* =========================================
-   COULEURS
-========================================= */
+/* =====================================================
+   PALETTE ROSE / ROUGE
+===================================================== */
 
-.postit.pink {
+.postit.light-pink,
+.modal-heart.light-pink,
+.gift-heart.light-pink {
+
+    color:
+        #f8c5d0;
+
+}
+
+
+.postit.pink,
+.modal-heart.pink,
+.gift-heart.pink {
 
     color:
         #f3a6b6;
@@ -531,57 +699,79 @@ input {
 }
 
 
-.postit.rose {
+.postit.soft-rose,
+.modal-heart.soft-rose,
+.gift-heart.soft-rose {
 
     color:
-        #ed8098;
+        #ef9aaa;
 
 }
 
 
-.postit.red {
+.postit.rose,
+.modal-heart.rose,
+.gift-heart.rose {
 
     color:
-        #e87982;
+        #eb8197;
 
 }
 
 
-.postit.purple {
+.postit.dark-pink,
+.modal-heart.dark-pink,
+.gift-heart.dark-pink {
 
     color:
-        #c5a2d8;
+        #df6075;
 
 }
 
 
-.postit.blue {
+.postit.red,
+.modal-heart.red,
+.gift-heart.red {
 
     color:
-        #9dc5da;
+        #d94c5f;
 
 }
 
 
-.postit.yellow {
+.postit.coral,
+.modal-heart.coral,
+.gift-heart.coral {
 
     color:
-        #f1d98b;
+        #e87578;
 
 }
 
 
-.postit.orange {
+.postit.dark-red,
+.modal-heart.dark-red,
+.gift-heart.dark-red {
 
     color:
-        #efb17f;
+        #c93d4e;
 
 }
 
 
-/* =========================================
+.postit.burgundy,
+.modal-heart.burgundy,
+.gift-heart.burgundy {
+
+    color:
+        #a8324b;
+
+}
+
+
+/* =====================================================
    HOVER
-========================================= */
+===================================================== */
 
 .postit:hover {
 
@@ -593,7 +783,8 @@ input {
             1.15
         );
 
-    z-index: 10;
+    z-index:
+        10;
 
 }
 
@@ -614,15 +805,15 @@ input {
 }
 
 
-/* =========================================
-   POST-IT OUVERT
-========================================= */
+/* =====================================================
+   COEUR DEJA OUVERT
+===================================================== */
 
 .postit.opened {
 
     filter:
         saturate(
-            0.55
+            0.65
         )
         brightness(
             0.97
@@ -633,49 +824,62 @@ input {
 
 .postit.opened::after {
 
-    content: "✓";
+    content:
+        "✓";
 
-    position: absolute;
+    position:
+        absolute;
 
-    z-index: 4;
+    z-index:
+        4;
 
-    top: 6px;
+    top:
+        6px;
 
-    right: 5px;
+    right:
+        5px;
 
-    width: 17px;
+    width:
+        17px;
 
-    height: 17px;
+    height:
+        17px;
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: center;
+    align-items:
+        center;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     background:
         rgba(
             255,
             255,
             255,
-            0.8
+            0.85
         );
 
     color:
         #71936d;
 
-    font-size: 10px;
+    font-size:
+        10px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
 }
 
 
-/* =========================================
-   CHARGEMENT
-========================================= */
+/* =====================================================
+   LOADING
+===================================================== */
 
 .postit.loading {
 
@@ -687,25 +891,30 @@ input {
 }
 
 
-/* =========================================
-   MESSAGE DU MUR
-========================================= */
+/* =====================================================
+   MESSAGE TEMPORAIRE
+===================================================== */
 
 .wall-message {
 
-    position: fixed;
+    position:
+        fixed;
 
-    left: 50%;
+    left:
+        50%;
 
-    bottom: 25px;
+    bottom:
+        25px;
 
-    z-index: 100;
+    z-index:
+        100;
 
     padding:
         13px
         22px;
 
-    border-radius: 50px;
+    border-radius:
+        50px;
 
     background:
         rgba(
@@ -715,17 +924,21 @@ input {
             0.94
         );
 
-    color: white;
+    color:
+        white;
 
-    font-size: 15px;
+    font-size:
+        15px;
 
-    opacity: 0;
+    opacity:
+        0;
 
     transform:
         translateX(-50%)
         translateY(20px);
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
     transition:
         opacity 0.3s ease,
@@ -736,7 +949,8 @@ input {
 
 .wall-message.visible {
 
-    opacity: 1;
+    opacity:
+        1;
 
     transform:
         translateX(-50%)
@@ -745,41 +959,575 @@ input {
 }
 
 
-/* =========================================
+/* =====================================================
+   PAGE CADEAUX
+===================================================== */
+
+.gifts-header {
+
+    max-width:
+        1000px;
+
+    margin:
+        25px auto
+        20px;
+
+    text-align:
+        center;
+
+}
+
+
+.gifts-header h2 {
+
+    color:
+        #604848;
+
+    font-size:
+        28px;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.gifts-header p {
+
+    color:
+        #987f7f;
+
+    font-size:
+        14px;
+
+}
+
+
+/* =====================================================
+   STATISTIQUES
+===================================================== */
+
+.gift-stats {
+
+    width:
+        min(
+            700px,
+            100%
+        );
+
+    margin:
+        0 auto
+        30px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        12px;
+
+}
+
+
+.stat-card {
+
+    padding:
+        17px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(
+            255,
+            250,
+            243,
+            0.75
+        );
+
+    border:
+        1px solid
+        rgba(
+            220,
+            180,
+            180,
+            0.3
+        );
+
+    border-radius:
+        16px;
+
+}
+
+
+.stat-number {
+
+    color:
+        #df6075;
+
+    font-size:
+        27px;
+
+    font-weight:
+        bold;
+
+}
+
+
+.stat-label {
+
+    margin-top:
+        3px;
+
+    color:
+        #987f7f;
+
+    font-size:
+        13px;
+
+}
+
+
+/* =====================================================
+   LISTE CADEAUX
+===================================================== */
+
+.gifts-list {
+
+    width:
+        min(
+            1000px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        14px;
+
+}
+
+
+/* =====================================================
+   CARTE CADEAU
+===================================================== */
+
+.gift-card {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        80px
+        1fr
+        170px;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    padding:
+        18px
+        20px;
+
+    background:
+        rgba(
+            255,
+            250,
+            243,
+            0.9
+        );
+
+    border:
+        1px solid
+        rgba(
+            220,
+            180,
+            180,
+            0.3
+        );
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(
+            80,
+            45,
+            35,
+            0.07
+        );
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+}
+
+
+.gift-card:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.gift-card.is-done {
+
+    opacity:
+        0.65;
+
+}
+
+
+/* =====================================================
+   PETIT COEUR DE LA LISTE
+===================================================== */
+
+.gift-left {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    gap:
+        2px;
+
+}
+
+
+.gift-heart {
+
+    width:
+        42px;
+
+    height:
+        39px;
+
+    position:
+        relative;
+
+}
+
+
+.gift-heart::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        currentColor;
+
+    clip-path:
+        polygon(
+            50% 100%,
+            0% 38%,
+            0% 22%,
+            8% 8%,
+            22% 0%,
+            35% 1%,
+            50% 18%,
+            65% 1%,
+            78% 0%,
+            92% 8%,
+            100% 22%,
+            100% 38%
+        );
+
+}
+
+
+.gift-number {
+
+    color:
+        #987f7f;
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.gift-middle {
+
+    min-width:
+        0;
+
+}
+
+
+.gift-message {
+
+    color:
+        #574141;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.5;
+
+    word-break:
+        break-word;
+
+}
+
+
+.gift-card.is-done .gift-message {
+
+    text-decoration:
+        line-through;
+
+    text-decoration-color:
+        rgba(
+            120,
+            80,
+            80,
+            0.5
+        );
+
+}
+
+
+/* =====================================================
+   ETAT
+===================================================== */
+
+.gift-right {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-end;
+
+    gap:
+        8px;
+
+}
+
+
+.gift-status {
+
+    color:
+        #b07a7a;
+
+    font-size:
+        13px;
+
+    font-weight:
+        bold;
+
+}
+
+
+.gift-status.done {
+
+    color:
+        #71936d;
+
+}
+
+
+.gift-done-button {
+
+    padding:
+        8px
+        11px;
+
+    border:
+        1px solid
+        #e4b8be;
+
+    border-radius:
+        9px;
+
+    background:
+        white;
+
+    color:
+        #c65d6e;
+
+    font-size:
+        12px;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.gift-done-button:hover {
+
+    background:
+        #df6075;
+
+    color:
+        white;
+
+}
+
+
+.gift-done-button:disabled {
+
+    opacity:
+        0.5;
+
+    cursor:
+        wait;
+
+}
+
+
+/* =====================================================
+   AUCUN CADEAU
+===================================================== */
+
+.empty-gifts {
+
+    width:
+        min(
+            500px,
+            100%
+        );
+
+    margin:
+        60px auto;
+
+    text-align:
+        center;
+
+}
+
+
+.empty-heart {
+
+    color:
+        #e9a0ad;
+
+    font-size:
+        70px;
+
+    line-height:
+        1;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.empty-gifts h3 {
+
+    color:
+        #604848;
+
+    font-size:
+        20px;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.empty-gifts p {
+
+    color:
+        #987f7f;
+
+    font-size:
+        14px;
+
+}
+
+
+/* =====================================================
    MODAL
-========================================= */
+===================================================== */
 
 .modal {
 
-    position: fixed;
+    position:
+        fixed;
 
-    inset: 0;
+    inset:
+        0;
 
-    z-index: 1000;
+    z-index:
+        1000;
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: center;
+    align-items:
+        center;
 
-    padding: 25px;
+    padding:
+        25px;
 
 }
 
 
 .modal.hidden {
 
-    display: none;
+    display:
+        none;
 
 }
 
 
 .modal-background {
 
-    position: absolute;
+    position:
+        absolute;
 
-    inset: 0;
+    inset:
+        0;
 
     background:
         rgba(
@@ -797,9 +1545,11 @@ input {
 
 .modal-content {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
     width:
         min(
@@ -807,27 +1557,34 @@ input {
             100%
         );
 
-    min-height: 350px;
+    min-height:
+        390px;
 
     padding:
         50px
         35px
-        40px;
+        35px;
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: center;
+    align-items:
+        center;
 
-    text-align: center;
+    text-align:
+        center;
 
     background:
         #fffaf2;
 
-    border-radius: 25px;
+    border-radius:
+        25px;
 
     box-shadow:
         0 25px 70px
@@ -848,56 +1605,73 @@ input {
 
 .close-modal {
 
-    position: absolute;
+    position:
+        absolute;
 
-    top: 13px;
+    top:
+        13px;
 
-    right: 17px;
+    right:
+        17px;
 
-    width: 35px;
+    width:
+        35px;
 
-    height: 35px;
+    height:
+        35px;
 
-    border: none;
+    border:
+        none;
 
-    background: transparent;
+    background:
+        transparent;
 
     color:
         #987f7f;
 
-    font-size: 30px;
+    font-size:
+        30px;
 
-    line-height: 1;
+    line-height:
+        1;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
 }
 
 
-/* =========================================
-   COEUR DU MODAL
-========================================= */
+/* =====================================================
+   COEUR MODAL
+===================================================== */
 
 .modal-heart {
 
-    width: 115px;
+    width:
+        115px;
 
-    height: 105px;
+    height:
+        105px;
 
-    position: relative;
+    position:
+        relative;
 
-    margin-bottom: 15px;
+    margin-bottom:
+        10px;
 
 }
 
 
 .modal-heart::before {
 
-    content: "";
+    content:
+        "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    inset: 0;
+    inset:
+        0;
 
     background:
         currentColor;
@@ -932,90 +1706,108 @@ input {
 }
 
 
-.modal-heart.pink {
-
-    color: #f3a6b6;
-
-}
-
-
-.modal-heart.rose {
-
-    color: #ed8098;
-
-}
-
-
-.modal-heart.red {
-
-    color: #e87982;
-
-}
-
-
-.modal-heart.purple {
-
-    color: #c5a2d8;
-
-}
-
-
-.modal-heart.blue {
-
-    color: #9dc5da;
-
-}
-
-
-.modal-heart.yellow {
-
-    color: #f1d98b;
-
-}
-
-
-.modal-heart.orange {
-
-    color: #efb17f;
-
-}
-
-
-/* =========================================
-   MODAL TEXTE
-========================================= */
-
 .modal-number {
 
     color:
         #a58d8d;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    margin-bottom: 20px;
+    margin-bottom:
+        15px;
 
 }
 
 
 .modal-message {
 
-    max-width: 400px;
+    max-width:
+        400px;
 
     color:
         #4d3939;
 
-    font-size: 23px;
+    font-size:
+        22px;
 
-    line-height: 1.6;
+    line-height:
+        1.6;
 
-    white-space: pre-wrap;
+    white-space:
+        pre-wrap;
+
+    margin-bottom:
+        25px;
 
 }
 
 
-/* =========================================
+/* =====================================================
+   BOUTON MODAL FAIT
+===================================================== */
+
+.modal-done-button {
+
+    padding:
+        11px
+        20px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        #df6075;
+
+    color:
+        white;
+
+    font-size:
+        14px;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.modal-done-button:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.modal-done-button.done {
+
+    background:
+        #71936d;
+
+}
+
+
+.modal-done-button:disabled {
+
+    opacity:
+        0.6;
+
+    cursor:
+        wait;
+
+}
+
+
+/* =====================================================
    ANIMATIONS
-========================================= */
+===================================================== */
 
 @keyframes heartbeat {
 
@@ -1088,7 +1880,8 @@ input {
 
     from {
 
-        opacity: 0;
+        opacity:
+            0;
 
         transform:
             scale(0.85)
@@ -1098,7 +1891,8 @@ input {
 
     to {
 
-        opacity: 1;
+        opacity:
+            1;
 
         transform:
             scale(1)
@@ -1109,58 +1903,118 @@ input {
 }
 
 
-/* =========================================
+/* =====================================================
    MOBILE
-========================================= */
+===================================================== */
 
 @media (
-    max-width: 600px
+    max-width: 700px
 ) {
+
 
     #wallPage {
 
         padding:
-            15px
-            8px
-            50px;
+            12px
+            7px
+            45px;
 
     }
 
+
+    /* -----------------------------------------------
+       HEADER
+    ------------------------------------------------ */
 
     .wall-header {
 
         margin-bottom:
             8px;
 
+        gap:
+            6px;
+
+        flex-wrap:
+            wrap;
+
+    }
+
+
+    .header-left {
+
+        width:
+            100%;
+
+        margin-right:
+            0;
+
+    }
+
+
+    .page-title {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .navigation {
+
+        order:
+            3;
+
+        width:
+            100%;
+
+        justify-content:
+            center;
+
+    }
+
+
+    .nav-button {
+
+        flex:
+            1;
+
         padding:
-            0
+            9px
+            5px;
+
+    }
+
+
+    .logout-button {
+
+        position:
+            absolute;
+
+        top:
+            13px;
+
+        right:
             8px;
 
     }
 
 
-    .wall-header h1 {
-
-        font-size: 28px;
-
-    }
-
-
-    /*
-       TELEPHONE
+    /* -----------------------------------------------
+       MUR
 
        5 colonnes
        28 lignes
        = 140
-    */
+    ------------------------------------------------ */
 
     .wall {
 
-        max-width: none;
+        max-width:
+            none;
 
         padding:
-            15px
-            2px;
+            14px
+            0;
 
         grid-template-columns:
             repeat(
@@ -1183,21 +2037,132 @@ input {
 
     .postit {
 
-        width: 60px;
+        width:
+            58px;
 
-        height: 57px;
+        height:
+            55px;
 
     }
 
 
     .postit span {
 
-        top: 25px;
+        top:
+            24px;
 
-        font-size: 12px;
+        font-size:
+            11px;
 
     }
 
+
+    /* -----------------------------------------------
+       STATISTIQUES
+    ------------------------------------------------ */
+
+    .gift-stats {
+
+        gap:
+            7px;
+
+        margin-bottom:
+            20px;
+
+    }
+
+
+    .stat-card {
+
+        padding:
+            13px
+            5px;
+
+    }
+
+
+    .stat-number {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .stat-label {
+
+        font-size:
+            11px;
+
+    }
+
+
+    /* -----------------------------------------------
+       CARTES CADEAUX
+    ------------------------------------------------ */
+
+    .gifts-list {
+
+        gap:
+            10px;
+
+    }
+
+
+    .gift-card {
+
+        grid-template-columns:
+            55px
+            1fr;
+
+        gap:
+            10px;
+
+        padding:
+            14px;
+
+    }
+
+
+    .gift-left {
+
+        align-self:
+            start;
+
+    }
+
+
+    .gift-right {
+
+        grid-column:
+            2;
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            row;
+
+        justify-content:
+            space-between;
+
+        width:
+            100%;
+
+    }
+
+
+    .gift-message {
+
+        font-size:
+            15px;
+
+    }
+
+
+    /* -----------------------------------------------
+       MODAL
+    ------------------------------------------------ */
 
     .modal {
 
@@ -1209,50 +2174,51 @@ input {
 
     .modal-content {
 
-        min-height: 320px;
+        min-height:
+            350px;
 
         padding:
-            50px
-            25px
-            35px;
+            45px
+            22px
+            25px;
 
     }
 
 
     .modal-heart {
 
-        width: 100px;
+        width:
+            95px;
 
-        height: 92px;
+        height:
+            87px;
 
     }
 
 
     .modal-message {
 
-        font-size: 20px;
+        font-size:
+            19px;
 
     }
 
 }
 
 
-/* =========================================
+/* =====================================================
    TRES PETITS TELEPHONES
-========================================= */
+===================================================== */
 
 @media (
     max-width: 370px
 ) {
 
+
     .wall {
 
-        padding:
-            12px
-            0;
-
         gap:
-            12px
+            11px
             0;
 
     }
@@ -1260,18 +2226,38 @@ input {
 
     .postit {
 
-        width: 54px;
+        width:
+            53px;
 
-        height: 52px;
+        height:
+            51px;
 
     }
 
 
     .postit span {
 
-        top: 23px;
+        top:
+            22px;
 
-        font-size: 11px;
+        font-size:
+            10px;
+
+    }
+
+
+    .gift-card {
+
+        padding:
+            11px;
+
+    }
+
+
+    .gift-message {
+
+        font-size:
+            14px;
 
     }
 
