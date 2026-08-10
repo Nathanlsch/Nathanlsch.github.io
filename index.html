@@ -1,95 +1,162 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>❤️ Mon mur</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
     <!-- ========================================= -->
-    <!-- CONNEXION -->
+    <!-- PAGE DE CONNEXION                         -->
     <!-- ========================================= -->
 
-    <div id="login">
+    <section id="login">
 
-        <h1>❤️ Mon mur</h1>
+        <div class="login-card">
 
-        <h2>Connexion</h2>
+            <div class="login-heart">♥</div>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            autocomplete="email"
+            <h1>Mon petit mur</h1>
+
+            <p class="login-subtitle">
+                Il y a quelque chose qui t'attend ici...
+            </p>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                autocomplete="email"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Mot de passe"
+                autocomplete="current-password"
+            >
+
+            <button id="loginButton">
+                Entrer ❤️
+            </button>
+
+            <p id="error"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- MUR                                      -->
+    <!-- ========================================= -->
+
+    <main id="wallPage" style="display: none;">
+
+        <header class="wall-header">
+
+            <div>
+
+                <h1>❤️</h1>
+
+                <p id="progressText">
+                    0 / 140
+                </p>
+
+            </div>
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+            >
+                ×
+            </button>
+
+        </header>
+
+
+        <section
+            id="wall"
+            class="wall"
         >
+        </section>
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Mot de passe"
-            autocomplete="current-password"
-        >
 
-        <button id="loginButton">
-            Entrer ❤️
-        </button>
+        <p
+            id="wallMessage"
+            class="wall-message"
+        ></p>
 
-        <p id="error"></p>
+    </main>
+
+
+    <!-- ========================================= -->
+    <!-- MODAL DU POST-IT                         -->
+    <!-- ========================================= -->
+
+    <div
+        id="postitModal"
+        class="modal hidden"
+    >
+
+        <div
+            class="modal-background"
+            id="modalBackground"
+        ></div>
+
+
+        <div class="modal-content">
+
+            <button
+                id="closeModal"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+
+            <div
+                id="modalHeart"
+                class="modal-heart"
+            >
+                ♥
+            </div>
+
+
+            <div
+                id="modalNumber"
+                class="modal-number"
+            >
+                #1
+            </div>
+
+
+            <div
+                id="modalMessage"
+                class="modal-message"
+            >
+            </div>
+
+        </div>
 
     </div>
 
 
     <!-- ========================================= -->
-    <!-- UTILISATEUR CONNECTÉ -->
-    <!-- ========================================= -->
-
-    <div id="loggedIn" style="display: none;">
-
-        <h1>Bienvenue ❤️</h1>
-
-        <p id="userEmail"></p>
-
-        <button id="logoutButton">
-            Se déconnecter
-        </button>
-
-
-        <!-- ===================================== -->
-        <!-- TEST DES POST-IT -->
-        <!-- ===================================== -->
-
-        <hr>
-
-        <h2>Test des post-it</h2>
-
-        <p>
-            Choisis un numéro entre 1 et 140.
-        </p>
-
-        <input
-            type="number"
-            id="postitId"
-            min="1"
-            max="140"
-            placeholder="ID du post-it"
-        >
-
-        <button id="openPostitButton">
-            Ouvrir
-        </button>
-
-        <p id="postitResult"></p>
-
-    </div>
-
-
-    <!-- ========================================= -->
-    <!-- SUPABASE -->
+    <!-- SUPABASE                                 -->
     <!-- ========================================= -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -98,20 +165,20 @@
 
 
     <!-- ========================================= -->
-    <!-- APPLICATION -->
+    <!-- APPLICATION                              -->
     <!-- ========================================= -->
 
     <script>
 
         // ========================================
-        // ELEMENTS HTML
+        // ELEMENTS
         // ========================================
 
-        const loginDiv =
+        const loginPage =
             document.getElementById("login");
 
-        const loggedInDiv =
-            document.getElementById("loggedIn");
+        const wallPage =
+            document.getElementById("wallPage");
 
         const emailInput =
             document.getElementById("email");
@@ -128,85 +195,58 @@
         const errorText =
             document.getElementById("error");
 
-        const userEmail =
-            document.getElementById("userEmail");
+        const wall =
+            document.getElementById("wall");
 
-        const postitIdInput =
-            document.getElementById("postitId");
+        const progressText =
+            document.getElementById("progressText");
 
-        const openPostitButton =
-            document.getElementById("openPostitButton");
+        const wallMessage =
+            document.getElementById("wallMessage");
 
-        const postitResult =
-            document.getElementById("postitResult");
+        const modal =
+            document.getElementById("postitModal");
 
+        const modalBackground =
+            document.getElementById("modalBackground");
 
-        // ========================================
-        // AFFICHER LA PAGE CONNECTÉE
-        // ========================================
+        const closeModalButton =
+            document.getElementById("closeModal");
 
-        function showLoggedIn(user) {
+        const modalHeart =
+            document.getElementById("modalHeart");
 
-            loginDiv.style.display = "none";
+        const modalNumber =
+            document.getElementById("modalNumber");
 
-            loggedInDiv.style.display = "block";
-
-            userEmail.textContent =
-                "Connecté avec : " + user.email;
-
-            errorText.textContent = "";
-        }
+        const modalMessage =
+            document.getElementById("modalMessage");
 
 
         // ========================================
-        // AFFICHER LA PAGE DE CONNEXION
+        // DONNEES
         // ========================================
 
-        function showLogin() {
+        let postits = [];
 
-            loginDiv.style.display = "block";
+        let openedPostits = new Set();
 
-            loggedInDiv.style.display = "none";
-
-            userEmail.textContent = "";
-
-            postitResult.textContent = "";
-        }
+        let user = null;
 
 
         // ========================================
-        // VERIFIER L'UTILISATEUR
+        // COULEURS
         // ========================================
 
-        async function checkUser() {
-
-            const {
-                data: { user },
-                error
-            } = await supabaseClient.auth.getUser();
-
-            if (error) {
-
-                console.error(
-                    "Erreur récupération utilisateur :",
-                    error
-                );
-
-                showLogin();
-
-                return;
-            }
-
-            if (user) {
-
-                showLoggedIn(user);
-
-            } else {
-
-                showLogin();
-
-            }
-        }
+        const heartColors = [
+            "pink",
+            "rose",
+            "red",
+            "purple",
+            "blue",
+            "yellow",
+            "orange"
+        ];
 
 
         // ========================================
@@ -221,7 +261,9 @@
             const password =
                 passwordInput.value;
 
+
             errorText.textContent = "";
+
 
             if (!email || !password) {
 
@@ -246,19 +288,19 @@
 
             if (error) {
 
-                console.error(
-                    "Erreur Supabase :",
-                    error
-                );
+                console.error(error);
 
                 errorText.textContent =
-                    error.message;
+                    "Email ou mot de passe incorrect.";
 
                 return;
             }
 
 
-            showLoggedIn(data.user);
+            user = data.user;
+
+            await startWall();
+
         }
 
 
@@ -268,15 +310,128 @@
 
         async function logout() {
 
+            await supabaseClient.auth.signOut();
+
+            user = null;
+
+            postits = [];
+
+            openedPostits.clear();
+
+            wall.innerHTML = "";
+
+            wallPage.style.display = "none";
+
+            loginPage.style.display = "flex";
+
+        }
+
+
+        // ========================================
+        // INITIALISATION
+        // ========================================
+
+        async function checkUser() {
+
             const {
+                data: {
+                    user: currentUser
+                }
+            } = await supabaseClient.auth.getUser();
+
+
+            if (currentUser) {
+
+                user = currentUser;
+
+                await startWall();
+
+            } else {
+
+                loginPage.style.display = "flex";
+
+                wallPage.style.display = "none";
+
+            }
+
+        }
+
+
+        // ========================================
+        // CHARGER LES DONNEES
+        // ========================================
+
+        async function startWall() {
+
+            loginPage.style.display = "none";
+
+            wallPage.style.display = "block";
+
+
+            await loadPostits();
+
+            await loadOpenedPostits();
+
+            renderWall();
+
+        }
+
+
+        // ========================================
+        // RECUPERER LES 140 POST-IT
+        // ========================================
+
+        async function loadPostits() {
+
+            const {
+                data,
                 error
-            } = await supabaseClient.auth.signOut();
+            } = await supabaseClient
+                .from("postits")
+                .select("id, message")
+                .order("id", {
+                    ascending: true
+                });
 
 
             if (error) {
 
                 console.error(
-                    "Erreur déconnexion :",
+                    "Erreur chargement post-its :",
+                    error
+                );
+
+                wallMessage.textContent =
+                    "Impossible de charger le mur.";
+
+                return;
+            }
+
+
+            postits = data || [];
+
+        }
+
+
+        // ========================================
+        // RECUPERER LES POST-IT DEJA OUVERTS
+        // ========================================
+
+        async function loadOpenedPostits() {
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("opened_postits")
+                .select("postit_id")
+                .eq("user_id", user.id);
+
+
+            if (error) {
+
+                console.error(
+                    "Erreur chargement ouvertures :",
                     error
                 );
 
@@ -284,40 +439,175 @@
             }
 
 
-            showLogin();
+            openedPostits = new Set(
+                data.map(item => item.postit_id)
+            );
+
         }
 
 
         // ========================================
-        // OUVRIR UN POST-IT
+        // CREER LE MUR
         // ========================================
 
-        async function openPostit() {
+        function renderWall() {
 
-            postitResult.textContent = "";
-
-
-            const postitId =
-                Number(postitIdInput.value);
+            wall.innerHTML = "";
 
 
-            // Vérification de l'ID
+            postits.forEach(
+                (postit, index) => {
+
+                    const heart =
+                        document.createElement("button");
+
+
+                    heart.className =
+                        "postit";
+
+
+                    // --------------------------------
+                    // Etat
+                    // --------------------------------
+
+                    if (
+                        openedPostits.has(
+                            postit.id
+                        )
+                    ) {
+
+                        heart.classList.add(
+                            "opened"
+                        );
+
+                    }
+
+
+                    // --------------------------------
+                    // Couleur
+                    // --------------------------------
+
+                    const color =
+                        heartColors[
+                            index %
+                            heartColors.length
+                        ];
+
+
+                    heart.classList.add(
+                        color
+                    );
+
+
+                    // --------------------------------
+                    // Rotation aléatoire
+                    // --------------------------------
+
+                    const rotation =
+                        Math.random() * 10 - 5;
+
+
+                    const translationX =
+                        Math.random() * 8 - 4;
+
+
+                    const translationY =
+                        Math.random() * 8 - 4;
+
+
+                    heart.style.setProperty(
+                        "--rotation",
+                        rotation + "deg"
+                    );
+
+
+                    heart.style.setProperty(
+                        "--translate-x",
+                        translationX + "px"
+                    );
+
+
+                    heart.style.setProperty(
+                        "--translate-y",
+                        translationY + "px"
+                    );
+
+
+                    // --------------------------------
+                    // Numéro
+                    // --------------------------------
+
+                    heart.innerHTML = `
+                        <span>
+                            ${postit.id}
+                        </span>
+                    `;
+
+
+                    // --------------------------------
+                    // Clic
+                    // --------------------------------
+
+                    heart.addEventListener(
+                        "click",
+                        () => {
+
+                            handlePostitClick(
+                                postit,
+                                heart
+                            );
+
+                        }
+                    );
+
+
+                    wall.appendChild(heart);
+
+                }
+            );
+
+
+            updateProgress();
+
+        }
+
+
+        // ========================================
+        // CLIC SUR UN POST-IT
+        // ========================================
+
+        async function handlePostitClick(
+            postit,
+            element
+        ) {
+
+            // --------------------------------
+            // Déjà ouvert
+            // --------------------------------
 
             if (
-                !postitId ||
-                postitId < 1 ||
-                postitId > 140 ||
-                !Number.isInteger(postitId)
+                openedPostits.has(
+                    postit.id
+                )
             ) {
 
-                postitResult.textContent =
-                    "Entre un ID entier entre 1 et 140.";
+                showPostit(
+                    postit,
+                    element
+                );
 
                 return;
             }
 
 
-            // Appel de la fonction PostgreSQL
+            // --------------------------------
+            // Nouveau post-it
+            // --------------------------------
+
+            element.classList.add(
+                "loading"
+            );
+
 
             const {
                 data,
@@ -325,19 +615,23 @@
             } = await supabaseClient.rpc(
                 "open_postit",
                 {
-                    p_postit_id: postitId
+                    p_postit_id: postit.id
                 }
             );
 
 
-            // Gestion des erreurs
+            element.classList.remove(
+                "loading"
+            );
+
+
+            // --------------------------------
+            // Erreur
+            // --------------------------------
 
             if (error) {
 
-                console.error(
-                    "Erreur ouverture post-it :",
-                    error
-                );
+                console.error(error);
 
 
                 if (
@@ -346,8 +640,9 @@
                     )
                 ) {
 
-                    postitResult.textContent =
-                        "Tu as déjà ouvert un post-it aujourd'hui ❤️";
+                    showWallMessage(
+                        "Tu as déjà ouvert ton petit mot aujourd'hui ❤️"
+                    );
 
                 }
 
@@ -357,63 +652,162 @@
                     )
                 ) {
 
-                    postitResult.textContent =
-                        "Tu as déjà ouvert ce post-it ❤️";
+                    openedPostits.add(
+                        postit.id
+                    );
 
-                }
+                    element.classList.add(
+                        "opened"
+                    );
 
-                else if (
-                    error.message.includes(
-                        "POSTIT_NOT_FOUND"
-                    )
-                ) {
-
-                    postitResult.textContent =
-                        "Ce post-it n'existe pas.";
-
-                }
-
-                else if (
-                    error.message.includes(
-                        "NOT_AUTHENTICATED"
-                    )
-                ) {
-
-                    postitResult.textContent =
-                        "Tu dois être connecté.";
-
-                    showLogin();
+                    showPostit(
+                        postit,
+                        element
+                    );
 
                 }
 
                 else {
 
-                    postitResult.textContent =
-                        "Une erreur est survenue.";
+                    showWallMessage(
+                        "Une petite erreur est survenue..."
+                    );
 
                 }
+
 
                 return;
             }
 
 
+            // --------------------------------
             // Succès
+            // --------------------------------
 
-            console.log(
-                "Ouverture enregistrée :",
-                data
+            openedPostits.add(
+                postit.id
             );
 
 
-            postitResult.textContent =
-                "Post-it #" +
-                postitId +
-                " ouvert ❤️";
+            element.classList.add(
+                "opened"
+            );
 
 
-            // On vide le champ
+            updateProgress();
 
-            postitIdInput.value = "";
+
+            showPostit(
+                postit,
+                element
+            );
+
+        }
+
+
+        // ========================================
+        // AFFICHER LE MESSAGE
+        // ========================================
+
+        function showPostit(
+            postit,
+            element
+        ) {
+
+            modalNumber.textContent =
+                "#" + postit.id;
+
+
+            modalMessage.textContent =
+                postit.message;
+
+
+            // Récupérer la couleur
+
+            const colorClass =
+                heartColors.find(
+                    color =>
+                        element.classList.contains(
+                            color
+                        )
+                );
+
+
+            modalHeart.className =
+                "modal-heart " +
+                (colorClass || "pink");
+
+
+            modal.classList.remove(
+                "hidden"
+            );
+
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+        }
+
+
+        // ========================================
+        // FERMER LE MESSAGE
+        // ========================================
+
+        function closeModal() {
+
+            modal.classList.add(
+                "hidden"
+            );
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+        }
+
+
+        // ========================================
+        // PROGRESSION
+        // ========================================
+
+        function updateProgress() {
+
+            progressText.textContent =
+                openedPostits.size +
+                " / 140";
+
+        }
+
+
+        // ========================================
+        // MESSAGE SUR LE MUR
+        // ========================================
+
+        function showWallMessage(
+            message
+        ) {
+
+            wallMessage.textContent =
+                message;
+
+
+            wallMessage.classList.add(
+                "visible"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    wallMessage.classList.remove(
+                        "visible"
+                    );
+
+                },
+                3500
+            );
+
         }
 
 
@@ -433,20 +827,25 @@
         );
 
 
-        openPostitButton.addEventListener(
+        closeModalButton.addEventListener(
             "click",
-            openPostit
+            closeModal
         );
 
 
-        // Permettre d'appuyer sur ENTER
-        // dans le champ mot de passe
+        modalBackground.addEventListener(
+            "click",
+            closeModal
+        );
+
 
         passwordInput.addEventListener(
             "keydown",
-            function(event) {
+            event => {
 
-                if (event.key === "Enter") {
+                if (
+                    event.key === "Enter"
+                ) {
 
                     login();
 
@@ -456,16 +855,15 @@
         );
 
 
-        // Permettre d'appuyer sur ENTER
-        // dans le champ du post-it
-
-        postitIdInput.addEventListener(
+        document.addEventListener(
             "keydown",
-            function(event) {
+            event => {
 
-                if (event.key === "Enter") {
+                if (
+                    event.key === "Escape"
+                ) {
 
-                    openPostit();
+                    closeModal();
 
                 }
 
@@ -474,7 +872,7 @@
 
 
         // ========================================
-        // INITIALISATION
+        // START
         // ========================================
 
         checkUser();
@@ -484,4 +882,3 @@
 </body>
 
 </html>
-```
