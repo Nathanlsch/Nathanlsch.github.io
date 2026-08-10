@@ -733,40 +733,40 @@ body {
    COULEURS
 ===================================================== */
 
-.postit.light-pink {
-    color: #ffd2df;
-}
+/* =====================================================
+   COULEURS DES COEURS
+===================================================== */
 
 .postit.pink {
-    color: #ffb5ca;
+    color: #f05f82;
 }
 
 .postit.soft-rose {
-    color: #ff9fba;
+    color: #eb5277;
 }
 
 .postit.rose {
-    color: #f78fa9;
+    color: #e9486d;
 }
 
 .postit.dark-pink {
-    color: #ef7594;
+    color: #df3f64;
 }
 
 .postit.coral {
-    color: #ed7b87;
+    color: #dc465d;
 }
 
 .postit.red {
-    color: #e9687c;
+    color: #d83b55;
 }
 
 .postit.dark-red {
-    color: #d95770;
+    color: #c93451;
 }
 
 .postit.burgundy {
-    color: #bd4963;
+    color: #b72f4b;
 }
 
 
