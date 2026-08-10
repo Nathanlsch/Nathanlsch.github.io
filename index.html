@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -11,86 +12,155 @@
 
     <title>❤️</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 
 <body>
 
-    <!-- =========================================
-         PAGE DE CONNEXION
-    ========================================== -->
 
-    <section id="login">
+<!-- =====================================================
+     PAGE DE CONNEXION
+===================================================== -->
 
-        <div class="login-card">
+<section id="login">
 
-            <div class="login-heart">♥</div>
+    <div class="login-card">
 
-            <h1>Mon petit mur</h1>
-
-            <p class="login-subtitle">
-                Il y a quelque chose qui t'attend ici...
-            </p>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                autocomplete="email"
-            >
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Mot de passe"
-                autocomplete="current-password"
-            >
-
-            <button id="loginButton">
-                Entrer ❤️
-            </button>
-
-            <p id="error"></p>
-
+        <div class="login-heart">
+            ♥
         </div>
 
-    </section>
+        <h1>
+            Mon petit mur
+        </h1>
+
+        <p class="login-subtitle">
+            Il y a quelque chose qui t'attend ici...
+        </p>
 
 
-    <!-- =========================================
-         PAGE PRINCIPALE
-    ========================================== -->
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            autocomplete="email"
+        >
 
-    <main id="wallPage">
 
-        <!-- HEADER -->
+        <input
+            type="password"
+            id="password"
+            placeholder="Mot de passe"
+            autocomplete="current-password"
+        >
 
-        <header class="wall-header">
 
-            <div class="header-left">
+        <button id="loginButton">
+            Entrer ❤️
+        </button>
 
-                <h1>❤️</h1>
 
-                <p id="progressText">
-                    0 / 140
-                </p>
+        <p id="error"></p>
 
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<main id="wallPage">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="wall-header">
+
+
+        <div class="header-left">
+
+            <div class="site-title">
+                ❤️
             </div>
 
 
-            <button
-                id="logoutButton"
-                class="logout-button"
-                aria-label="Déconnexion"
+            <div
+                id="pageTitle"
+                class="page-title"
             >
-                ×
+                Le mur
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <button
+                id="wallButton"
+                class="nav-button active"
+            >
+                ❤️ Mur
             </button>
 
-        </header>
+
+            <button
+                id="giftsButton"
+                class="nav-button"
+            >
+                📋 Mes cadeaux
+            </button>
+
+        </nav>
 
 
-        <!-- MUR -->
+        <button
+            id="logoutButton"
+            class="logout-button"
+            aria-label="Déconnexion"
+        >
+            ×
+        </button>
+
+    </header>
+
+
+
+    <!-- =================================================
+         PAGE MUR
+    ================================================== -->
+
+    <section
+        id="wallView"
+        class="page-view"
+    >
+
+
+        <div class="wall-introduction">
+
+            <h2>
+                Un petit cœur à découvrir...
+            </h2>
+
+            <p>
+                <span id="progressText">
+                    0 / 140
+                </span>
+                cadeaux découverts
+            </p>
+
+        </div>
+
 
         <section
             id="wall"
@@ -98,579 +168,685 @@
         ></section>
 
 
-        <!-- MESSAGE TEMPORAIRE -->
-
         <p
             id="wallMessage"
             class="wall-message"
         ></p>
 
-    </main>
+    </section>
 
 
-    <!-- =========================================
-         MODAL
-    ========================================== -->
 
-    <div
-        id="postitModal"
-        class="modal hidden"
+    <!-- =================================================
+         PAGE CADEAUX
+    ================================================== -->
+
+    <section
+        id="giftsView"
+        class="page-view hidden-page"
     >
 
-        <div
-            id="modalBackground"
-            class="modal-background"
-        ></div>
 
+        <div class="gifts-header">
 
-        <div class="modal-content">
+            <h2>
+                Mes cadeaux ❤️
+            </h2>
 
-            <button
-                id="closeModal"
-                class="close-modal"
-                aria-label="Fermer"
-            >
-                ×
-            </button>
-
-
-            <div
-                id="modalHeart"
-                class="modal-heart pink"
-            ></div>
-
-
-            <div
-                id="modalNumber"
-                class="modal-number"
-            >
-                #1
-            </div>
-
-
-            <div
-                id="modalMessage"
-                class="modal-message"
-            ></div>
+            <p>
+                Retrouve ici tous les cadeaux que tu as découverts.
+            </p>
 
         </div>
 
+
+        <!-- STATISTIQUES -->
+
+        <div class="gift-stats">
+
+
+            <div class="stat-card">
+
+                <div
+                    id="openedCount"
+                    class="stat-number"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Découverts
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div
+                    id="doneCount"
+                    class="stat-number"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Faits
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div
+                    id="todoCount"
+                    class="stat-number"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    À faire
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- LISTE -->
+
+        <div
+            id="giftsList"
+            class="gifts-list"
+        ></div>
+
+
+        <div
+            id="emptyGifts"
+            class="empty-gifts"
+        >
+
+            <div class="empty-heart">
+                ♡
+            </div>
+
+            <h3>
+                Aucun cadeau découvert
+            </h3>
+
+            <p>
+                Retourne sur le mur pour découvrir ton premier cœur.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     MODAL MESSAGE
+===================================================== -->
+
+<div
+    id="postitModal"
+    class="modal hidden"
+>
+
+
+    <div
+        id="modalBackground"
+        class="modal-background"
+    ></div>
+
+
+    <div class="modal-content">
+
+
+        <button
+            id="closeModal"
+            class="close-modal"
+            aria-label="Fermer"
+        >
+            ×
+        </button>
+
+
+        <div
+            id="modalHeart"
+            class="modal-heart light-pink"
+        ></div>
+
+
+        <div
+            id="modalNumber"
+            class="modal-number"
+        >
+            #1
+        </div>
+
+
+        <div
+            id="modalMessage"
+            class="modal-message"
+        ></div>
+
+
+        <button
+            id="modalDoneButton"
+            class="modal-done-button"
+        >
+            ✓ Marquer comme fait
+        </button>
+
+
     </div>
 
+</div>
 
-    <!-- =========================================
-         SUPABASE
-    ========================================== -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <script src="supabase.js"></script>
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- =========================================
-         APPLICATION
-    ========================================== -->
+<script src="supabase.js"></script>
 
-    <script>
 
-        // ========================================
-        // ELEMENTS HTML
-        // ========================================
 
-        const loginPage =
-            document.getElementById("login");
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
-        const wallPage =
-            document.getElementById("wallPage");
+<script>
 
-        const emailInput =
-            document.getElementById("email");
 
-        const passwordInput =
-            document.getElementById("password");
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-        const loginButton =
-            document.getElementById("loginButton");
+const loginPage =
+    document.getElementById("login");
 
-        const logoutButton =
-            document.getElementById("logoutButton");
+const wallPage =
+    document.getElementById("wallPage");
 
-        const errorText =
-            document.getElementById("error");
+const emailInput =
+    document.getElementById("email");
 
-        const wall =
-            document.getElementById("wall");
+const passwordInput =
+    document.getElementById("password");
 
-        const progressText =
-            document.getElementById("progressText");
+const loginButton =
+    document.getElementById("loginButton");
 
-        const wallMessage =
-            document.getElementById("wallMessage");
+const logoutButton =
+    document.getElementById("logoutButton");
 
-        const modal =
-            document.getElementById("postitModal");
+const errorText =
+    document.getElementById("error");
 
-        const modalBackground =
-            document.getElementById("modalBackground");
+const wall =
+    document.getElementById("wall");
 
-        const closeModalButton =
-            document.getElementById("closeModal");
+const wallView =
+    document.getElementById("wallView");
 
-        const modalHeart =
-            document.getElementById("modalHeart");
+const giftsView =
+    document.getElementById("giftsView");
 
-        const modalNumber =
-            document.getElementById("modalNumber");
+const wallButton =
+    document.getElementById("wallButton");
 
-        const modalMessage =
-            document.getElementById("modalMessage");
+const giftsButton =
+    document.getElementById("giftsButton");
 
+const pageTitle =
+    document.getElementById("pageTitle");
 
-        // ========================================
-        // VARIABLES
-        // ========================================
+const progressText =
+    document.getElementById("progressText");
 
-        let user = null;
+const wallMessage =
+    document.getElementById("wallMessage");
 
-        let postits = [];
+const giftsList =
+    document.getElementById("giftsList");
 
-        let openedPostits = new Set();
+const emptyGifts =
+    document.getElementById("emptyGifts");
 
+const openedCount =
+    document.getElementById("openedCount");
 
-        // ========================================
-        // COULEURS DES COEURS
-        // ========================================
+const doneCount =
+    document.getElementById("doneCount");
 
-        const heartColors = [
-            "pink",
-            "rose",
-            "red",
-            "purple",
-            "blue",
-            "yellow",
-            "orange"
-        ];
+const todoCount =
+    document.getElementById("todoCount");
 
+const modal =
+    document.getElementById("postitModal");
 
-        // ========================================
-        // AFFICHER LA PAGE DE CONNEXION
-        // ========================================
+const modalBackground =
+    document.getElementById("modalBackground");
 
-        function showLogin() {
+const closeModalButton =
+    document.getElementById("closeModal");
 
-            loginPage.style.display = "flex";
+const modalHeart =
+    document.getElementById("modalHeart");
 
-            wallPage.style.display = "none";
+const modalNumber =
+    document.getElementById("modalNumber");
 
-        }
+const modalMessage =
+    document.getElementById("modalMessage");
 
+const modalDoneButton =
+    document.getElementById("modalDoneButton");
 
-        // ========================================
-        // AFFICHER LE MUR
-        // ========================================
 
-        function showWall() {
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-            loginPage.style.display = "none";
+let user = null;
 
-            wallPage.style.display = "block";
+let postits = [];
 
-        }
+let openedPostits = new Set();
 
+let openedData = [];
 
-        // ========================================
-        // CONNEXION
-        // ========================================
+let currentPostit = null;
 
-        async function login() {
+let currentPostitElement = null;
 
-            const email =
-                emailInput.value.trim();
 
-            const password =
-                passwordInput.value;
+/* =====================================================
+   COULEURS
+   UNIQUEMENT ROSE / ROUGE
+===================================================== */
 
+const heartColors = [
 
-            errorText.textContent = "";
+    "light-pink",
 
+    "pink",
 
-            if (!email || !password) {
+    "soft-rose",
 
-                errorText.textContent =
-                    "Entre ton email et ton mot de passe.";
+    "rose",
 
-                return;
-            }
+    "dark-pink",
 
+    "red",
 
-            loginButton.disabled = true;
+    "coral",
 
-            loginButton.textContent =
-                "Connexion...";
+    "dark-red",
 
+    "burgundy"
 
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.auth.signInWithPassword({
+];
 
-                    email: email,
 
-                    password: password
+/* =====================================================
+   CONNEXION
+===================================================== */
 
-                });
+async function login() {
 
 
-            loginButton.disabled = false;
+    const email =
+        emailInput.value.trim();
 
-            loginButton.textContent =
-                "Entrer ❤️";
+    const password =
+        passwordInput.value;
 
 
-            if (error) {
+    errorText.textContent = "";
 
-                console.error(
-                    "Erreur connexion :",
-                    error
-                );
 
-                errorText.textContent =
-                    "Email ou mot de passe incorrect.";
+    if (!email || !password) {
 
-                return;
-            }
+        errorText.textContent =
+            "Entre ton email et ton mot de passe.";
 
+        return;
 
-            user = data.user;
+    }
 
-            await startApplication();
 
-        }
+    loginButton.disabled = true;
 
+    loginButton.textContent =
+        "Connexion...";
 
-        // ========================================
-        // DECONNEXION
-        // ========================================
 
-        async function logout() {
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.signInWithPassword({
 
-            await supabaseClient.auth.signOut();
+            email: email,
 
+            password: password
 
-            user = null;
+        });
 
-            postits = [];
 
-            openedPostits.clear();
+    loginButton.disabled = false;
 
-            wall.innerHTML = "";
+    loginButton.textContent =
+        "Entrer ❤️";
 
 
-            showLogin();
+    if (error) {
 
-        }
+        console.error(
+            "Erreur connexion :",
+            error
+        );
 
+        errorText.textContent =
+            "Email ou mot de passe incorrect.";
 
-        // ========================================
-        // VERIFIER LA SESSION
-        // ========================================
+        return;
 
-        async function checkUser() {
+    }
 
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.auth.getUser();
 
+    user =
+        data.user;
 
-            if (error) {
 
-                console.error(
-                    "Erreur récupération session :",
-                    error
-                );
+    await startApplication();
 
-                showLogin();
+}
 
-                return;
-            }
 
+/* =====================================================
+   DECONNEXION
+===================================================== */
 
-            if (data.user) {
+async function logout() {
 
-                user = data.user;
 
-                await startApplication();
+    await supabaseClient.auth.signOut();
 
-            }
 
-            else {
+    user = null;
 
-                showLogin();
+    postits = [];
 
-            }
+    openedPostits.clear();
 
-        }
+    openedData = [];
 
 
-        // ========================================
-        // INITIALISATION DE L'APPLICATION
-        // ========================================
+    wall.innerHTML = "";
 
-        async function startApplication() {
+    giftsList.innerHTML = "";
 
-            showWall();
 
+    showLogin();
 
-            const postitsLoaded =
-                await loadPostits();
+}
 
 
-            if (!postitsLoaded) {
+/* =====================================================
+   SESSION
+===================================================== */
 
-                return;
+async function checkUser() {
 
-            }
 
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.getUser();
 
-            const openedLoaded =
-                await loadOpenedPostits();
 
+    if (error) {
 
-            if (!openedLoaded) {
+        console.error(
+            "Erreur session :",
+            error
+        );
 
-                return;
+        showLogin();
 
-            }
+        return;
 
+    }
 
-            renderWall();
 
-        }
+    if (data.user) {
 
+        user =
+            data.user;
 
-        // ========================================
-        // CHARGER LES POST-IT
-        // ========================================
+        await startApplication();
 
-        async function loadPostits() {
+    }
 
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .from("postits")
-                    .select("id, message")
-                    .order("id", {
-                        ascending: true
-                    });
+    else {
 
+        showLogin();
 
-            if (error) {
+    }
 
-                console.error(
-                    "Erreur chargement post-it :",
-                    error
-                );
+}
 
-                showWallMessage(
-                    "Impossible de charger les post-it."
-                );
 
-                return false;
+/* =====================================================
+   DEMARRAGE
+===================================================== */
 
-            }
+async function startApplication() {
 
 
-            postits = data || [];
+    showWall();
 
 
-            return true;
+    const postitsLoaded =
+        await loadPostits();
 
-        }
 
+    if (!postitsLoaded) {
 
-        // ========================================
-        // CHARGER LES POST-IT DEJA OUVERTS
-        // ========================================
+        return;
 
-        async function loadOpenedPostits() {
+    }
 
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .from("opened_postits")
-                    .select("postit_id")
-                    .eq(
-                        "user_id",
-                        user.id
-                    );
 
+    const openedLoaded =
+        await loadOpenedPostits();
 
-            if (error) {
 
-                console.error(
-                    "Erreur chargement ouvertures :",
-                    error
-                );
+    if (!openedLoaded) {
 
-                showWallMessage(
-                    "Impossible de récupérer les ouvertures."
-                );
+        return;
 
-                return false;
+    }
 
-            }
 
+    renderWall();
 
-            openedPostits =
-                new Set(
-                    (data || []).map(
-                        item => item.postit_id
-                    )
-                );
+    renderGifts();
 
+}
 
-            return true;
 
-        }
+/* =====================================================
+   CHARGER LES POST-IT
+===================================================== */
 
+async function loadPostits() {
 
-        // ========================================
-        // GENERER LE MUR
-        // ========================================
 
-        function renderWall() {
-
-            wall.innerHTML = "";
-
-
-            postits.forEach(
-                (postit, index) => {
-
-                    const heart =
-                        document.createElement("button");
-
-
-                    heart.type = "button";
-
-
-                    heart.classList.add(
-                        "postit"
-                    );
-
-
-                    // --------------------------------
-                    // COULEUR
-                    // --------------------------------
-
-                    const color =
-                        heartColors[
-                            index %
-                            heartColors.length
-                        ];
-
-
-                    heart.classList.add(
-                        color
-                    );
-
-
-                    // --------------------------------
-                    // ROTATION
-                    // --------------------------------
-
-                    const rotation =
-                        Math.random() * 10 - 5;
-
-
-                    heart.style.setProperty(
-                        "--rotation",
-                        rotation + "deg"
-                    );
-
-
-                    // --------------------------------
-                    // POST-IT DEJA OUVERT
-                    // --------------------------------
-
-                    if (
-                        openedPostits.has(
-                            postit.id
-                        )
-                    ) {
-
-                        heart.classList.add(
-                            "opened"
-                        );
-
-                    }
-
-
-                    // --------------------------------
-                    // NUMERO
-                    // --------------------------------
-
-                    const number =
-                        document.createElement("span");
-
-
-                    number.textContent =
-                        postit.id;
-
-
-                    heart.appendChild(
-                        number
-                    );
-
-
-                    // --------------------------------
-                    // CLIC
-                    // --------------------------------
-
-                    heart.addEventListener(
-                        "click",
-                        () => {
-
-                            handlePostitClick(
-                                postit,
-                                heart
-                            );
-
-                        }
-                    );
-
-
-                    wall.appendChild(
-                        heart
-                    );
-
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("postits")
+            .select("id, message")
+            .order(
+                "id",
+                {
+                    ascending: true
                 }
             );
 
 
-            updateProgress();
+    if (error) {
 
-        }
+        console.error(
+            "Erreur chargement post-it :",
+            error
+        );
+
+        showWallMessage(
+            "Impossible de charger les post-it."
+        );
+
+        return false;
+
+    }
 
 
-        // ========================================
-        // CLIC SUR UN POST-IT
-        // ========================================
+    postits =
+        data || [];
 
-        async function handlePostitClick(
+
+    return true;
+
+}
+
+
+/* =====================================================
+   CHARGER LES OUVERTURES
+===================================================== */
+
+async function loadOpenedPostits() {
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("opened_postits")
+            .select(
+                "postit_id, done"
+            )
+            .eq(
+                "user_id",
+                user.id
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Erreur chargement ouvertures :",
+            error
+        );
+
+        showWallMessage(
+            "Impossible de récupérer les cadeaux."
+        );
+
+        return false;
+
+    }
+
+
+    openedData =
+        data || [];
+
+
+    openedPostits =
+        new Set(
+            openedData.map(
+                item =>
+                    item.postit_id
+            )
+        );
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   AFFICHER LE MUR
+===================================================== */
+
+function renderWall() {
+
+
+    wall.innerHTML = "";
+
+
+    postits.forEach(
+        (
             postit,
-            element
-        ) {
+            index
+        ) => {
 
-            // --------------------------------
-            // DEJA OUVERT
-            // --------------------------------
+
+            const heart =
+                document.createElement(
+                    "button"
+                );
+
+
+            heart.type =
+                "button";
+
+
+            heart.classList.add(
+                "postit"
+            );
+
+
+            const color =
+                heartColors[
+                    index %
+                    heartColors.length
+                ];
+
+
+            heart.classList.add(
+                color
+            );
+
+
+            const rotation =
+                Math.random() * 10 - 5;
+
+
+            heart.style.setProperty(
+                "--rotation",
+                rotation + "deg"
+            );
+
 
             if (
                 openedPostits.has(
@@ -678,128 +854,149 @@
                 )
             ) {
 
-                showPostit(
-                    postit,
-                    element
+                heart.classList.add(
+                    "opened"
                 );
-
-                return;
 
             }
 
 
-            // --------------------------------
-            // CHARGEMENT
-            // --------------------------------
-
-            element.classList.add(
-                "loading"
-            );
-
-
-            element.disabled = true;
-
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.rpc(
-                    "open_postit",
-                    {
-                        p_postit_id:
-                            postit.id
-                    }
+            const number =
+                document.createElement(
+                    "span"
                 );
 
 
-            element.classList.remove(
-                "loading"
+            number.textContent =
+                postit.id;
+
+
+            heart.appendChild(
+                number
             );
 
 
-            element.disabled = false;
+            heart.addEventListener(
+                "click",
+                () => {
 
-
-            // --------------------------------
-            // ERREUR
-            // --------------------------------
-
-            if (error) {
-
-                console.error(
-                    "Erreur ouverture :",
-                    error
-                );
-
-
-                if (
-                    error.message.includes(
-                        "ALREADY_OPENED_TODAY"
-                    )
-                ) {
-
-                    showWallMessage(
-                        "Tu as déjà ouvert ton petit mot aujourd'hui ❤️"
-                    );
-
-                }
-
-                else if (
-                    error.message.includes(
-                        "POSTIT_ALREADY_OPENED"
-                    )
-                ) {
-
-                    openedPostits.add(
-                        postit.id
-                    );
-
-                    element.classList.add(
-                        "opened"
-                    );
-
-                    updateProgress();
-
-
-                    showPostit(
+                    handlePostitClick(
                         postit,
-                        element
+                        heart
                     );
 
                 }
-
-                else if (
-                    error.message.includes(
-                        "NOT_AUTHENTICATED"
-                    )
-                ) {
-
-                    showLogin();
-
-                }
-
-                else {
-
-                    showWallMessage(
-                        "Une erreur est survenue..."
-                    );
-
-                }
-
-
-                return;
-
-            }
-
-
-            // --------------------------------
-            // SUCCES
-            // --------------------------------
-
-            openedPostits.add(
-                postit.id
             );
+
+
+            wall.appendChild(
+                heart
+            );
+
+        }
+    );
+
+
+    updateProgress();
+
+}
+
+
+/* =====================================================
+   CLIQUER SUR UN POST-IT
+===================================================== */
+
+async function handlePostitClick(
+    postit,
+    element
+) {
+
+
+    /* -----------------------------------------------
+       DEJA OUVERT
+    ------------------------------------------------ */
+
+    if (
+        openedPostits.has(
+            postit.id
+        )
+    ) {
+
+        showPostit(
+            postit,
+            element
+        );
+
+        return;
+
+    }
+
+
+    element.classList.add(
+        "loading"
+    );
+
+
+    element.disabled =
+        true;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.rpc(
+            "open_postit",
+            {
+                p_postit_id:
+                    postit.id
+            }
+        );
+
+
+    element.classList.remove(
+        "loading"
+    );
+
+
+    element.disabled =
+        false;
+
+
+    /* -----------------------------------------------
+       ERREUR
+    ------------------------------------------------ */
+
+    if (error) {
+
+
+        console.error(
+            "Erreur ouverture :",
+            error
+        );
+
+
+        if (
+            error.message.includes(
+                "ALREADY_OPENED_TODAY"
+            )
+        ) {
+
+            showWallMessage(
+                "Tu as déjà ouvert ton petit mot aujourd'hui ❤️"
+            );
+
+        }
+
+
+        else if (
+            error.message.includes(
+                "POSTIT_ALREADY_OPENED"
+            )
+        ) {
+
+
+            await loadOpenedPostits();
 
 
             element.classList.add(
@@ -807,7 +1004,7 @@
             );
 
 
-            updateProgress();
+            renderGifts();
 
 
             showPostit(
@@ -818,181 +1015,850 @@
         }
 
 
-        // ========================================
-        // AFFICHER LE MESSAGE
-        // ========================================
-
-        function showPostit(
-            postit,
-            element
+        else if (
+            error.message.includes(
+                "NOT_AUTHENTICATED"
+            )
         ) {
 
-            modalNumber.textContent =
+            showLogin();
+
+        }
+
+
+        else {
+
+            showWallMessage(
+                "Une erreur est survenue..."
+            );
+
+        }
+
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------
+       SUCCES
+    ------------------------------------------------ */
+
+    openedPostits.add(
+        postit.id
+    );
+
+
+    openedData.push({
+
+        postit_id:
+            postit.id,
+
+        done:
+            false
+
+    });
+
+
+    element.classList.add(
+        "opened"
+    );
+
+
+    updateProgress();
+
+    renderGifts();
+
+
+    showPostit(
+        postit,
+        element
+    );
+
+}
+
+
+/* =====================================================
+   AFFICHER UN POST-IT
+===================================================== */
+
+function showPostit(
+    postit,
+    element
+) {
+
+
+    currentPostit =
+        postit;
+
+
+    currentPostitElement =
+        element;
+
+
+    modalNumber.textContent =
+        "#" + postit.id;
+
+
+    modalMessage.textContent =
+        postit.message;
+
+
+    const color =
+        heartColors.find(
+            item =>
+                element.classList.contains(
+                    item
+                )
+        ) ||
+        "pink";
+
+
+    modalHeart.className =
+        "modal-heart " +
+        color;
+
+
+    updateModalDoneButton(
+        postit.id
+    );
+
+
+    modal.classList.remove(
+        "hidden"
+    );
+
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+}
+
+
+/* =====================================================
+   BOUTON FAIT DU MODAL
+===================================================== */
+
+function updateModalDoneButton(
+    postitId
+) {
+
+
+    const entry =
+        openedData.find(
+            item =>
+                item.postit_id ===
+                postitId
+        );
+
+
+    if (
+        entry &&
+        entry.done
+    ) {
+
+
+        modalDoneButton.textContent =
+            "✓ Cadeau réalisé";
+
+
+        modalDoneButton.classList.add(
+            "done"
+        );
+
+    }
+
+    else {
+
+
+        modalDoneButton.textContent =
+            "✓ Marquer comme fait";
+
+
+        modalDoneButton.classList.remove(
+            "done"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   MODIFIER L'ETAT FAIT
+===================================================== */
+
+async function toggleDone(
+    postitId
+) {
+
+
+    const entry =
+        openedData.find(
+            item =>
+                item.postit_id ===
+                postitId
+        );
+
+
+    if (!entry) {
+
+        return;
+
+    }
+
+
+    const newDone =
+        !entry.done;
+
+
+    modalDoneButton.disabled =
+        true;
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("opened_postits")
+            .update({
+
+                done:
+                    newDone
+
+            })
+            .eq(
+                "user_id",
+                user.id
+            )
+            .eq(
+                "postit_id",
+                postitId
+            );
+
+
+    modalDoneButton.disabled =
+        false;
+
+
+    if (error) {
+
+        console.error(
+            "Erreur changement état :",
+            error
+        );
+
+
+        showWallMessage(
+            "Impossible de modifier l'état."
+        );
+
+        return;
+
+    }
+
+
+    entry.done =
+        newDone;
+
+
+    updateModalDoneButton(
+        postitId
+    );
+
+
+    renderGifts();
+
+}
+
+
+/* =====================================================
+   AFFICHER LA PAGE CADEAUX
+===================================================== */
+
+function renderGifts() {
+
+
+    giftsList.innerHTML = "";
+
+
+    const opened =
+        openedData
+            .slice()
+            .sort(
+                (
+                    a,
+                    b
+                ) =>
+                    a.postit_id -
+                    b.postit_id
+            );
+
+
+    /* -----------------------------------------------
+       STATISTIQUES
+    ------------------------------------------------ */
+
+    const totalOpened =
+        opened.length;
+
+
+    const totalDone =
+        opened.filter(
+            item =>
+                item.done
+        ).length;
+
+
+    const totalTodo =
+        totalOpened -
+        totalDone;
+
+
+    openedCount.textContent =
+        totalOpened;
+
+
+    doneCount.textContent =
+        totalDone;
+
+
+    todoCount.textContent =
+        totalTodo;
+
+
+    /* -----------------------------------------------
+       RIEN
+    ------------------------------------------------ */
+
+    if (
+        opened.length === 0
+    ) {
+
+        emptyGifts.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyGifts.style.display =
+        "none";
+
+
+    /* -----------------------------------------------
+       CARTES
+    ------------------------------------------------ */
+
+    opened.forEach(
+        entry => {
+
+
+            const postit =
+                postits.find(
+                    item =>
+                        item.id ===
+                        entry.postit_id
+                );
+
+
+            if (!postit) {
+
+                return;
+
+            }
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.classList.add(
+                "gift-card"
+            );
+
+
+            if (entry.done) {
+
+                card.classList.add(
+                    "is-done"
+                );
+
+            }
+
+
+            /* ---------------------------------------
+               COEUR
+            ---------------------------------------- */
+
+            const heart =
+                document.createElement(
+                    "div"
+                );
+
+
+            heart.classList.add(
+                "gift-heart"
+            );
+
+
+            const color =
+                heartColors[
+                    (postit.id - 1) %
+                    heartColors.length
+                ];
+
+
+            heart.classList.add(
+                color
+            );
+
+
+            /* ---------------------------------------
+               NUMERO
+            ---------------------------------------- */
+
+            const number =
+                document.createElement(
+                    "div"
+                );
+
+
+            number.classList.add(
+                "gift-number"
+            );
+
+
+            number.textContent =
                 "#" + postit.id;
 
 
-            modalMessage.textContent =
+            /* ---------------------------------------
+               MESSAGE
+            ---------------------------------------- */
+
+            const message =
+                document.createElement(
+                    "div"
+                );
+
+
+            message.classList.add(
+                "gift-message"
+            );
+
+
+            message.textContent =
                 postit.message;
 
 
-            // --------------------------------
-            // COULEUR
-            // --------------------------------
+            /* ---------------------------------------
+               ETAT
+            ---------------------------------------- */
 
-            const color =
-                heartColors.find(
-                    item =>
-                        element.classList.contains(
-                            item
-                        )
-                ) || "pink";
+            const status =
+                document.createElement(
+                    "div"
+                );
 
 
-            modalHeart.className =
-                "modal-heart " + color;
-
-
-            modal.classList.remove(
-                "hidden"
+            status.classList.add(
+                "gift-status"
             );
 
 
-            document.body.classList.add(
-                "modal-open"
+            if (entry.done) {
+
+                status.classList.add(
+                    "done"
+                );
+
+
+                status.textContent =
+                    "✓ FAIT";
+
+            }
+
+            else {
+
+                status.textContent =
+                    "○ À FAIRE";
+
+            }
+
+
+            /* ---------------------------------------
+               BOUTON
+            ---------------------------------------- */
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.classList.add(
+                "gift-done-button"
+            );
+
+
+            if (entry.done) {
+
+                button.textContent =
+                    "Marquer comme à faire";
+
+            }
+
+            else {
+
+                button.textContent =
+                    "Marquer comme fait";
+
+            }
+
+
+            button.addEventListener(
+                "click",
+                async () => {
+
+
+                    await toggleDone(
+                        entry.postit_id
+                    );
+
+
+                }
+            );
+
+
+            /* ---------------------------------------
+               ASSEMBLAGE
+            ---------------------------------------- */
+
+            const left =
+                document.createElement(
+                    "div"
+                );
+
+
+            left.classList.add(
+                "gift-left"
+            );
+
+
+            left.appendChild(
+                heart
+            );
+
+
+            left.appendChild(
+                number
+            );
+
+
+            const middle =
+                document.createElement(
+                    "div"
+                );
+
+
+            middle.classList.add(
+                "gift-middle"
+            );
+
+
+            middle.appendChild(
+                message
+            );
+
+
+            const right =
+                document.createElement(
+                    "div"
+                );
+
+
+            right.classList.add(
+                "gift-right"
+            );
+
+
+            right.appendChild(
+                status
+            );
+
+
+            right.appendChild(
+                button
+            );
+
+
+            card.appendChild(
+                left
+            );
+
+
+            card.appendChild(
+                middle
+            );
+
+
+            card.appendChild(
+                right
+            );
+
+
+            giftsList.appendChild(
+                card
             );
 
         }
+    );
+
+}
 
 
-        // ========================================
-        // FERMER LE MODAL
-        // ========================================
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-        function closeModal() {
-
-            modal.classList.add(
-                "hidden"
-            );
+function showWall() {
 
 
-            document.body.classList.remove(
-                "modal-open"
-            );
-
-        }
+    wallView.classList.remove(
+        "hidden-page"
+    );
 
 
-        // ========================================
-        // PROGRESSION
-        // ========================================
-
-        function updateProgress() {
-
-            progressText.textContent =
-                openedPostits.size +
-                " / 140";
-
-        }
+    giftsView.classList.add(
+        "hidden-page"
+    );
 
 
-        // ========================================
-        // MESSAGE TEMPORAIRE
-        // ========================================
-
-        function showWallMessage(
-            message
-        ) {
-
-            wallMessage.textContent =
-                message;
+    wallButton.classList.add(
+        "active"
+    );
 
 
-            wallMessage.classList.add(
+    giftsButton.classList.remove(
+        "active"
+    );
+
+
+    pageTitle.textContent =
+        "Le mur";
+
+}
+
+
+function showGifts() {
+
+
+    wallView.classList.add(
+        "hidden-page"
+    );
+
+
+    giftsView.classList.remove(
+        "hidden-page"
+    );
+
+
+    wallButton.classList.remove(
+        "active"
+    );
+
+
+    giftsButton.classList.add(
+        "active"
+    );
+
+
+    pageTitle.textContent =
+        "Mes cadeaux";
+
+
+    renderGifts();
+
+}
+
+
+/* =====================================================
+   FERMER MODAL
+===================================================== */
+
+function closeModal() {
+
+
+    modal.classList.add(
+        "hidden"
+    );
+
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+
+    currentPostit =
+        null;
+
+
+    currentPostitElement =
+        null;
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+function updateProgress() {
+
+
+    progressText.textContent =
+        openedPostits.size +
+        " / 140";
+
+}
+
+
+/* =====================================================
+   MESSAGE TEMPORAIRE
+===================================================== */
+
+function showWallMessage(
+    message
+) {
+
+
+    wallMessage.textContent =
+        message;
+
+
+    wallMessage.classList.add(
+        "visible"
+    );
+
+
+    setTimeout(
+        () => {
+
+            wallMessage.classList.remove(
                 "visible"
             );
 
+        },
+        3500
+    );
 
-            setTimeout(
-                () => {
+}
 
-                    wallMessage.classList.remove(
-                        "visible"
-                    );
 
-                },
-                3500
+/* =====================================================
+   EVENEMENTS
+===================================================== */
+
+loginButton.addEventListener(
+    "click",
+    login
+);
+
+
+logoutButton.addEventListener(
+    "click",
+    logout
+);
+
+
+wallButton.addEventListener(
+    "click",
+    showWall
+);
+
+
+giftsButton.addEventListener(
+    "click",
+    showGifts
+);
+
+
+closeModalButton.addEventListener(
+    "click",
+    closeModal
+);
+
+
+modalBackground.addEventListener(
+    "click",
+    closeModal
+);
+
+
+modalDoneButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            currentPostit
+        ) {
+
+            toggleDone(
+                currentPostit.id
             );
 
         }
 
-
-        // ========================================
-        // EVENEMENTS
-        // ========================================
-
-        loginButton.addEventListener(
-            "click",
-            login
-        );
+    }
+);
 
 
-        logoutButton.addEventListener(
-            "click",
-            logout
-        );
+passwordInput.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            login();
+
+        }
+
+    }
+);
 
 
-        closeModalButton.addEventListener(
-            "click",
-            closeModal
-        );
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
 
 
-        modalBackground.addEventListener(
-            "click",
-            closeModal
-        );
+/* =====================================================
+   DEMARRAGE
+===================================================== */
+
+checkUser();
 
 
-        passwordInput.addEventListener(
-            "keydown",
-            event => {
+</script>
 
-                if (
-                    event.key === "Enter"
-                ) {
-
-                    login();
-
-                }
-
-            }
-        );
-
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    event.key === "Escape"
-                ) {
-
-                    closeModal();
-
-                }
-
-            }
-        );
-
-
-        // ========================================
-        // DEMARRAGE
-        // ========================================
-
-        checkUser();
-
-    </script>
 
 </body>
 
