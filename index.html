@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>❤️ 140 petits cœurs</title>
+    <title>❤️ 140 surprises</title>
 
     <link
         rel="stylesheet"
@@ -31,13 +31,6 @@
 
     <div class="login-card">
 
-        <div class="login-heart">
-            ♥
-        </div>
-
-        <h1>
-            Un petit quelque chose...
-        </h1>
 
         <p class="login-subtitle">
             Entre le mot de passe pour découvrir
@@ -59,11 +52,12 @@
                 autocomplete="current-password"
             >
 
+
             <button
                 id="loginButton"
                 type="button"
             >
-                Entrer ❤️
+                Entrer
             </button>
 
         </div>
@@ -84,12 +78,14 @@
                 autocomplete="username"
             >
 
+
             <input
                 id="adminPassword"
                 type="password"
                 placeholder="Mot de passe"
                 autocomplete="current-password"
             >
+
 
             <button
                 id="adminLoginButton"
@@ -135,31 +131,36 @@
 
     <header class="app-header">
 
+
         <div class="header-title">
-            ❤️
+
             <span>
                 Le mur
             </span>
+
         </div>
 
 
         <nav class="navigation">
+
 
             <button
                 id="wallButton"
                 class="nav-button active"
                 type="button"
             >
-                ❤️ Mur
+                Mur
             </button>
+
 
             <button
                 id="giftsButton"
                 class="nav-button"
                 type="button"
             >
-                📋 Mes cadeaux
+                Surprises
             </button>
+
 
         </nav>
 
@@ -171,6 +172,7 @@
         >
             Déconnexion
         </button>
+
 
     </header>
 
@@ -185,15 +187,19 @@
         class="view"
     >
 
+
         <div class="wall-introduction">
 
+
             <h2>
-                140 petits cœurs ❤️
+                140 surprises
             </h2>
 
+
             <p>
-                Choisis celui que tu veux découvrir.
+                Une surprise par jour ❤️
             </p>
+
 
             <div
                 id="progressText"
@@ -202,12 +208,14 @@
                 0 / 140 découvert
             </div>
 
+
             <div
                 id="creditsText"
                 class="credits"
             >
-                ❤️ 0 crédit disponible
+                0 crédit disponible
             </div>
+
 
         </div>
 
@@ -223,12 +231,13 @@
             class="wall-message"
         ></div>
 
+
     </section>
 
 
 
     <!-- =================================================
-         MES CADEAUX
+         SURPRISES
     ================================================== -->
 
     <section
@@ -236,20 +245,26 @@
         class="view hidden"
     >
 
+
         <div class="gifts-header">
 
+
             <h2>
-                Mes cadeaux ❤️
+                Surprises
             </h2>
 
+
             <p>
-                Tous les petits mots que tu as découverts.
+                Toutes les surprises que tu as découvertes.
             </p>
+
 
         </div>
 
 
+
         <div class="gift-stats">
+
 
             <div class="stat-card">
 
@@ -258,7 +273,7 @@
                 </strong>
 
                 <span>
-                    Découverts
+                    Découvertes
                 </span>
 
             </div>
@@ -271,7 +286,7 @@
                 </strong>
 
                 <span>
-                    Faits
+                    Faites
                 </span>
 
             </div>
@@ -289,7 +304,9 @@
 
             </div>
 
+
         </div>
+
 
 
         <div
@@ -298,26 +315,34 @@
         ></div>
 
 
+
         <div
             id="emptyGifts"
             class="empty-gifts"
         >
 
+
             <div>
                 ♡
             </div>
 
+
             <h3>
-                Aucun cadeau découvert
+                Aucune surprise découverte
             </h3>
 
+
             <p>
-                Retourne sur le mur pour découvrir ton premier cœur.
+                Retourne sur le mur pour découvrir
+                ta première surprise.
             </p>
+
 
         </div>
 
+
     </section>
+
 
 </main>
 
@@ -332,6 +357,7 @@
     class="modal hidden"
 >
 
+
     <div
         id="modalBackground"
         class="modal-background"
@@ -339,6 +365,7 @@
 
 
     <div class="modal-card">
+
 
         <button
             id="closeModal"
@@ -379,7 +406,9 @@
             ✓ Marquer comme fait
         </button>
 
+
     </div>
+
 
 </div>
 
@@ -397,6 +426,7 @@
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
 
         console.log("❤️ DOM chargé");
 
@@ -439,6 +469,7 @@ document.addEventListener(
         );
 
 
+
         /* =================================================
            CONFIGURATION
         ================================================= */
@@ -466,15 +497,20 @@ document.addEventListener(
         let currentPostit =
             null;
 
+
         let bonusCredits = 0;
 
+
         let availableCredits = 0;
+
 
         const START_DATE =
             new Date("2026-08-15T00:00:00+02:00");
 
+
         const END_DATE =
             new Date("2026-12-31T00:00:00+01:00");
+
 
 
         /* =================================================
@@ -484,95 +520,126 @@ document.addEventListener(
         const login =
             document.getElementById("login");
 
+
         const app =
             document.getElementById("app");
+
 
         const normalLogin =
             document.getElementById("normalLogin");
 
+
         const adminLogin =
             document.getElementById("adminLogin");
+
 
         const password =
             document.getElementById("password");
 
+
         const adminEmail =
             document.getElementById("adminEmail");
+
 
         const adminPassword =
             document.getElementById("adminPassword");
 
+
         const loginButton =
             document.getElementById("loginButton");
+
 
         const adminLoginButton =
             document.getElementById("adminLoginButton");
 
+
         const adminToggle =
             document.getElementById("adminToggle");
+
 
         const error =
             document.getElementById("error");
 
+
         const wall =
             document.getElementById("wall");
+
 
         const wallMessage =
             document.getElementById("wallMessage");
 
+
         const wallView =
             document.getElementById("wallView");
+
 
         const giftsView =
             document.getElementById("giftsView");
 
+
         const wallButton =
             document.getElementById("wallButton");
+
 
         const giftsButton =
             document.getElementById("giftsButton");
 
+
         const logoutButton =
             document.getElementById("logoutButton");
+
 
         const progressText =
             document.getElementById("progressText");
 
+
         const creditsText =
             document.getElementById("creditsText");
+
 
         const giftsList =
             document.getElementById("giftsList");
 
+
         const emptyGifts =
             document.getElementById("emptyGifts");
+
 
         const openedCount =
             document.getElementById("openedCount");
 
+
         const doneCount =
             document.getElementById("doneCount");
+
 
         const todoCount =
             document.getElementById("todoCount");
 
+
         const modal =
             document.getElementById("modal");
+
 
         const modalBackground =
             document.getElementById("modalBackground");
 
+
         const closeModal =
             document.getElementById("closeModal");
+
 
         const modalNumber =
             document.getElementById("modalNumber");
 
+
         const modalMessage =
             document.getElementById("modalMessage");
 
+
         const modalDoneButton =
             document.getElementById("modalDoneButton");
+
 
 
         /* =================================================
@@ -587,11 +654,13 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            CONNEXION UTILISATEUR
         ================================================= */
 
         async function doLogin() {
+
 
             console.log(
                 "❤️ CLICK Entrer"
@@ -616,6 +685,7 @@ document.addEventListener(
             loginButton.disabled =
                 true;
 
+
             loginButton.textContent =
                 "Connexion...";
 
@@ -624,6 +694,7 @@ document.addEventListener(
 
 
             try {
+
 
                 const result =
                     await supabaseClient
@@ -643,13 +714,16 @@ document.addEventListener(
                     result.error
                 ) {
 
+
                     console.error(
                         result.error
                     );
 
+
                     showError(
                         "Mot de passe incorrect."
                     );
+
 
                     return;
 
@@ -662,31 +736,41 @@ document.addEventListener(
 
                 await enterApplication();
 
+
             }
 
+
             catch (exception) {
+
 
                 console.error(
                     exception
                 );
 
+
                 showError(
                     "Erreur de connexion."
                 );
 
+
             }
 
+
             finally {
+
 
                 loginButton.disabled =
                     false;
 
+
                 loginButton.textContent =
-                    "Entrer ❤️";
+                    "Entrer";
+
 
             }
 
         }
+
 
 
         /* =================================================
@@ -694,6 +778,7 @@ document.addEventListener(
         ================================================= */
 
         async function doAdminLogin() {
+
 
             console.log(
                 "🔐 CLICK ADMIN"
@@ -713,9 +798,11 @@ document.addEventListener(
                 !passwordValue
             ) {
 
+
                 showError(
                     "Remplis les deux champs."
                 );
+
 
                 return;
 
@@ -725,6 +812,7 @@ document.addEventListener(
             adminLoginButton.disabled =
                 true;
 
+
             adminLoginButton.textContent =
                 "Connexion...";
 
@@ -733,6 +821,7 @@ document.addEventListener(
 
 
             try {
+
 
                 const result =
                     await supabaseClient
@@ -752,13 +841,16 @@ document.addEventListener(
                     result.error
                 ) {
 
+
                     console.error(
                         result.error
                     );
 
+
                     showError(
                         "Email ou mot de passe incorrect."
                     );
+
 
                     return;
 
@@ -771,31 +863,41 @@ document.addEventListener(
 
                 await enterApplication();
 
+
             }
 
+
             catch (exception) {
+
 
                 console.error(
                     exception
                 );
 
+
                 showError(
                     "Erreur de connexion."
                 );
 
+
             }
 
+
             finally {
+
 
                 adminLoginButton.disabled =
                     false;
 
+
                 adminLoginButton.textContent =
                     "Se connecter";
+
 
             }
 
         }
+
 
 
         /* =================================================
@@ -804,8 +906,10 @@ document.addEventListener(
 
         async function enterApplication() {
 
+
             login.style.display =
                 "none";
+
 
             app.style.display =
                 "block";
@@ -816,11 +920,13 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            INITIALISATION
         ================================================= */
 
         async function initialize() {
+
 
             console.log(
                 "🚀 Initialisation"
@@ -829,15 +935,23 @@ document.addEventListener(
 
             await loadPostits();
 
+
             await loadOpenedPostits();
+
+
             await loadBonusCredits();
 
+
             updateCredits();
+
+
             renderWall();
+
 
             renderGifts();
 
         }
+
 
 
         /* =================================================
@@ -845,6 +959,7 @@ document.addEventListener(
         ================================================= */
 
         async function loadPostits() {
+
 
             const result =
                 await supabaseClient
@@ -864,10 +979,12 @@ document.addEventListener(
                 result.error
             ) {
 
+
                 console.error(
                     "Erreur postits :",
                     result.error
                 );
+
 
                 return;
 
@@ -886,11 +1003,13 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            CHARGER LES POST-ITS OUVERTS
         ================================================= */
 
         async function loadOpenedPostits() {
+
 
             const result =
                 await supabaseClient
@@ -908,10 +1027,12 @@ document.addEventListener(
                 result.error
             ) {
 
+
                 console.error(
                     "Erreur ouvertures :",
                     result.error
                 );
+
 
                 return;
 
@@ -939,32 +1060,47 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            CHARGER LES CREDITS BONUS
         ================================================= */
 
         async function loadBonusCredits() {
 
+
             const result =
                 await supabaseClient
                     .from("user_bonus_credits")
                     .select("credits")
-                    .eq("user_id", currentUser.id)
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    )
                     .maybeSingle();
 
+
             if (result.error) {
+
+
                 console.error(
                     "Erreur crédits bonus :",
                     result.error
                 );
 
+
                 bonusCredits = 0;
+
+
                 return;
+
             }
+
 
             bonusCredits =
                 result.data?.credits || 0;
+
         }
+
 
 
         /* =================================================
@@ -981,7 +1117,9 @@ document.addEventListener(
 
         function calculateAvailableCredits() {
 
+
             const now = new Date();
+
 
             const today = new Date(
                 now.getFullYear(),
@@ -989,11 +1127,13 @@ document.addEventListener(
                 now.getDate()
             );
 
+
             const start = new Date(
                 START_DATE.getFullYear(),
                 START_DATE.getMonth(),
                 START_DATE.getDate()
             );
+
 
             const end = new Date(
                 END_DATE.getFullYear(),
@@ -1001,9 +1141,12 @@ document.addEventListener(
                 END_DATE.getDate()
             );
 
+
             let earned = 0;
 
+
             if (today >= start) {
+
 
                 const daysElapsed =
                     Math.floor(
@@ -1011,39 +1154,59 @@ document.addEventListener(
                         (1000 * 60 * 60 * 24)
                     );
 
-                earned = daysElapsed + 1;
+
+                earned =
+                    daysElapsed + 1;
+
 
                 if (today >= end) {
+
                     earned = 140;
+
                 }
+
             }
+
 
             const opened =
                 openedPostits.size;
+
 
             availableCredits =
                 Math.max(
                     0,
                     Math.min(
                         140 - opened,
-                        earned + bonusCredits - opened
+                        earned +
+                            bonusCredits -
+                            opened
                     )
                 );
 
+
             return availableCredits;
+
         }
+
 
 
         function updateCredits() {
 
+
             const credits =
                 calculateAvailableCredits();
 
+
             if (creditsText) {
+
+
                 creditsText.textContent =
-                    `❤️ ${credits} crédit${credits > 1 ? "s" : ""} disponible${credits > 1 ? "s" : ""}`;
+                    `${credits} crédit${credits > 1 ? "s" : ""} disponible${credits > 1 ? "s" : ""}`;
+
             }
+
         }
+
 
 
         /* =================================================
@@ -1052,13 +1215,13 @@ document.addEventListener(
 
         function renderWall() {
 
+
             wall.innerHTML =
                 "";
 
 
             const colors = [
 
-                "light-pink",
                 "pink",
                 "soft-rose",
                 "rose",
@@ -1093,6 +1256,7 @@ document.addEventListener(
                     index
                 ) => {
 
+
                     const button =
                         document.createElement(
                             "button"
@@ -1126,6 +1290,7 @@ document.addEventListener(
                         )
                     ) {
 
+
                         button.classList.add(
                             "opened"
                         );
@@ -1151,6 +1316,7 @@ document.addEventListener(
                     button.addEventListener(
                         "click",
                         function () {
+
 
                             openPostit(
                                 postit
@@ -1178,6 +1344,7 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            OUVRIR UN POST-IT
         ================================================= */
@@ -1185,6 +1352,7 @@ document.addEventListener(
         async function openPostit(
             postit
         ) {
+
 
             /*
              * Déjà ouvert :
@@ -1197,9 +1365,11 @@ document.addEventListener(
                 )
             ) {
 
+
                 showPostit(
                     postit
                 );
+
 
                 return;
 
@@ -1207,6 +1377,7 @@ document.addEventListener(
 
 
             try {
+
 
                 const result =
                     await supabaseClient
@@ -1223,6 +1394,7 @@ document.addEventListener(
                     result.error
                 ) {
 
+
                     console.error(
                         result.error
                     );
@@ -1230,13 +1402,21 @@ document.addEventListener(
 
                     if (
                         result.error.message
-                            .includes("NO_OPENINGS_AVAILABLE")
+                            .includes(
+                                "NO_OPENINGS_AVAILABLE"
+                            )
                     ) {
+
+
                         showErrorMessage(
                             "Tu n'as plus de crédit disponible ❤️"
                         );
+
+
                         return;
+
                     }
+
 
                     /*
                      * Si le RPC indique que
@@ -1250,17 +1430,22 @@ document.addEventListener(
                             )
                     ) {
 
+
                         await loadOpenedPostits();
+
 
                         renderWall();
 
+
                         renderGifts();
+
 
                         showPostit(
                             postit
                         );
 
                     }
+
 
                     return;
 
@@ -1285,15 +1470,23 @@ document.addEventListener(
 
                 renderWall();
 
+
                 renderGifts();
+
+
+                updateCredits();
+
 
                 showPostit(
                     postit
                 );
 
+
             }
 
+
             catch (exception) {
+
 
                 console.error(
                     exception
@@ -1304,6 +1497,7 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            AFFICHER LE MODAL
         ================================================= */
@@ -1311,6 +1505,7 @@ document.addEventListener(
         function showPostit(
             postit
         ) {
+
 
             currentPostit =
                 postit;
@@ -1335,11 +1530,13 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            FERMER LE MODAL
         ================================================= */
 
         function closePostit() {
+
 
             modal.classList.add(
                 "hidden"
@@ -1348,11 +1545,13 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            ETAT DU BOUTON DU MODAL
         ================================================= */
 
         function updateDoneButton() {
+
 
             if (
                 !currentPostit
@@ -1376,19 +1575,25 @@ document.addEventListener(
                 entry.done
             ) {
 
+
                 modalDoneButton.textContent =
-                    "✓ Cadeau réalisé";
+                    "✓ Surprise réalisée";
+
 
                 modalDoneButton.classList.add(
                     "done"
                 );
 
+
             }
+
 
             else {
 
+
                 modalDoneButton.textContent =
                     "✓ Marquer comme fait";
+
 
                 modalDoneButton.classList.remove(
                     "done"
@@ -1399,11 +1604,13 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            MODIFIER L'ETAT DEPUIS LE MODAL
         ================================================= */
 
         async function toggleDone() {
+
 
             if (
                 !currentPostit
@@ -1424,13 +1631,15 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
-           MODIFIER L'ETAT D'UN CADEAU
+           MODIFIER L'ETAT D'UNE SURPRISE
         ================================================= */
 
         async function toggleGiftDone(
             postitId
         ) {
+
 
             const entry =
                 openedData.find(
@@ -1452,7 +1661,7 @@ document.addEventListener(
 
 
             console.log(
-                "Modification cadeau :",
+                "Modification surprise :",
                 postitId,
                 newValue
             );
@@ -1479,10 +1688,12 @@ document.addEventListener(
                 result.error
             ) {
 
+
                 console.error(
-                    "Erreur modification cadeau :",
+                    "Erreur modification surprise :",
                     result.error
                 );
+
 
                 return;
 
@@ -1498,7 +1709,7 @@ document.addEventListener(
 
 
             /*
-             * Rafraîchir la page cadeaux
+             * Rafraîchir la page surprises
              */
 
             renderGifts();
@@ -1513,11 +1724,13 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
-           AFFICHER LES CADEAUX
+           AFFICHER LES SURPRISES
         ================================================= */
 
         function renderGifts() {
+
 
             giftsList.innerHTML =
                 "";
@@ -1555,8 +1768,10 @@ document.addEventListener(
                 opened === 0
             ) {
 
+
                 emptyGifts.style.display =
                     "block";
+
 
                 return;
 
@@ -1584,6 +1799,7 @@ document.addEventListener(
 
             sorted.forEach(
                 entry => {
+
 
                     const postit =
                         postits.find(
@@ -1614,11 +1830,13 @@ document.addEventListener(
                         entry.done
                     ) {
 
+
                         card.classList.add(
                             "is-done"
                         );
 
                     }
+
 
 
                     /*
@@ -1640,6 +1858,7 @@ document.addEventListener(
                         postit.id;
 
 
+
                     /*
                      * MESSAGE
                      */
@@ -1656,6 +1875,7 @@ document.addEventListener(
 
                     message.textContent =
                         postit.message;
+
 
 
                     /*
@@ -1676,6 +1896,7 @@ document.addEventListener(
                         entry.done
                             ? "✓ FAIT"
                             : "○ À FAIRE";
+
 
 
                     /*
@@ -1706,12 +1927,14 @@ document.addEventListener(
                         "click",
                         async function () {
 
+
                             await toggleGiftDone(
                                 postit.id
                             );
 
                         }
                     );
+
 
 
                     /*
@@ -1748,6 +1971,7 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            NAVIGATION : MUR
         ================================================= */
@@ -1756,9 +1980,11 @@ document.addEventListener(
             "click",
             function () {
 
+
                 wallView.classList.remove(
                     "hidden"
                 );
+
 
                 giftsView.classList.add(
                     "hidden"
@@ -1769,6 +1995,7 @@ document.addEventListener(
                     "active"
                 );
 
+
                 giftsButton.classList.remove(
                     "active"
                 );
@@ -1777,17 +2004,20 @@ document.addEventListener(
         );
 
 
+
         /* =================================================
-           NAVIGATION : CADEAUX
+           NAVIGATION : SURPRISES
         ================================================= */
 
         giftsButton.addEventListener(
             "click",
             function () {
 
+
                 wallView.classList.add(
                     "hidden"
                 );
+
 
                 giftsView.classList.remove(
                     "hidden"
@@ -1797,6 +2027,7 @@ document.addEventListener(
                 wallButton.classList.remove(
                     "active"
                 );
+
 
                 giftsButton.classList.add(
                     "active"
@@ -1809,6 +2040,7 @@ document.addEventListener(
         );
 
 
+
         /* =================================================
            TOGGLE ADMIN
         ================================================= */
@@ -1816,6 +2048,7 @@ document.addEventListener(
         adminToggle.addEventListener(
             "click",
             function () {
+
 
                 showError("");
 
@@ -1829,27 +2062,36 @@ document.addEventListener(
                     adminVisible
                 ) {
 
+
                     adminLogin.style.display =
                         "none";
 
+
                     normalLogin.style.display =
                         "flex";
+
 
                     adminToggle.textContent =
                         "Accès administrateur";
 
+
                 }
 
+
                 else {
+
 
                     normalLogin.style.display =
                         "none";
 
+
                     adminLogin.style.display =
                         "flex";
 
+
                     adminToggle.textContent =
                         "← Retour";
+
 
                     adminEmail.focus();
 
@@ -1857,6 +2099,7 @@ document.addEventListener(
 
             }
         );
+
 
 
         /* =================================================
@@ -1875,6 +2118,7 @@ document.addEventListener(
         );
 
 
+
         /* =================================================
            ENTER
         ================================================= */
@@ -1883,10 +2127,12 @@ document.addEventListener(
             "keydown",
             function (event) {
 
+
                 if (
                     event.key ===
                     "Enter"
                 ) {
+
 
                     doLogin();
 
@@ -1900,10 +2146,12 @@ document.addEventListener(
             "keydown",
             function (event) {
 
+
                 if (
                     event.key ===
                     "Enter"
                 ) {
+
 
                     doAdminLogin();
 
@@ -1911,6 +2159,7 @@ document.addEventListener(
 
             }
         );
+
 
 
         /* =================================================
@@ -1935,6 +2184,7 @@ document.addEventListener(
         );
 
 
+
         /* =================================================
            DECONNEXION
         ================================================= */
@@ -1942,6 +2192,7 @@ document.addEventListener(
         logoutButton.addEventListener(
             "click",
             async function () {
+
 
                 await supabaseClient
                     .auth
@@ -1955,8 +2206,10 @@ document.addEventListener(
                 postits =
                     [];
 
+
                 openedData =
                     [];
+
 
                 openedPostits =
                     new Set();
@@ -1977,11 +2230,13 @@ document.addEventListener(
         );
 
 
+
         /* =================================================
            SESSION EXISTANTE
         ================================================= */
 
         async function checkSession() {
+
 
             const result =
                 await supabaseClient
@@ -1994,6 +2249,7 @@ document.addEventListener(
                 result.data.session
             ) {
 
+
                 currentUser =
                     result.data.session.user;
 
@@ -2003,6 +2259,7 @@ document.addEventListener(
             }
 
         }
+
 
 
         /* =================================================
@@ -2016,11 +2273,13 @@ document.addEventListener(
 
         checkSession();
 
+
     }
 
 );
 
 </script>
+
 
 </body>
 
