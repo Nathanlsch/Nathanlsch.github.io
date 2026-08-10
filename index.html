@@ -202,6 +202,13 @@
                 0 / 140 découvert
             </div>
 
+            <div
+                id="creditsText"
+                class="credits"
+            >
+                ❤️ 0 crédit disponible
+            </div>
+
         </div>
 
 
@@ -459,6 +466,16 @@ document.addEventListener(
         let currentPostit =
             null;
 
+        let bonusCredits = 0;
+
+        let availableCredits = 0;
+
+        const START_DATE =
+            new Date("2026-08-15T00:00:00+02:00");
+
+        const END_DATE =
+            new Date("2026-12-31T00:00:00+01:00");
+
 
         /* =================================================
            ELEMENTS
@@ -500,6 +517,9 @@ document.addEventListener(
         const wall =
             document.getElementById("wall");
 
+        const wallMessage =
+            document.getElementById("wallMessage");
+
         const wallView =
             document.getElementById("wallView");
 
@@ -517,6 +537,9 @@ document.addEventListener(
 
         const progressText =
             document.getElementById("progressText");
+
+        const creditsText =
+            document.getElementById("creditsText");
 
         const giftsList =
             document.getElementById("giftsList");
@@ -807,7 +830,9 @@ document.addEventListener(
             await loadPostits();
 
             await loadOpenedPostits();
+            await loadBonusCredits();
 
+            updateCredits();
             renderWall();
 
             renderGifts();
@@ -911,6 +936,113 @@ document.addEventListener(
                 openedPostits.size
             );
 
+        }
+
+
+        /* =================================================
+           CHARGER LES CREDITS BONUS
+        ================================================= */
+
+        async function loadBonusCredits() {
+
+            const result =
+                await supabaseClient
+                    .from("user_bonus_credits")
+                    .select("credits")
+                    .eq("user_id", currentUser.id)
+                    .maybeSingle();
+
+            if (result.error) {
+                console.error(
+                    "Erreur crédits bonus :",
+                    result.error
+                );
+
+                bonusCredits = 0;
+                return;
+            }
+
+            bonusCredits =
+                result.data?.credits || 0;
+        }
+
+
+        /* =================================================
+           CALCUL DES CREDITS
+
+           15 août = 1 crédit
+           +1 crédit chaque jour
+           Les crédits non utilisés s'accumulent.
+
+           Du 15 août au 30 décembre il y a 138 jours.
+           Le 31 décembre, on ajoute le crédit final afin
+           que les 140 ouvertures soient possibles.
+        ================================================= */
+
+        function calculateAvailableCredits() {
+
+            const now = new Date();
+
+            const today = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate()
+            );
+
+            const start = new Date(
+                START_DATE.getFullYear(),
+                START_DATE.getMonth(),
+                START_DATE.getDate()
+            );
+
+            const end = new Date(
+                END_DATE.getFullYear(),
+                END_DATE.getMonth(),
+                END_DATE.getDate()
+            );
+
+            let earned = 0;
+
+            if (today >= start) {
+
+                const daysElapsed =
+                    Math.floor(
+                        (today - start) /
+                        (1000 * 60 * 60 * 24)
+                    );
+
+                earned = daysElapsed + 1;
+
+                if (today >= end) {
+                    earned = 140;
+                }
+            }
+
+            const opened =
+                openedPostits.size;
+
+            availableCredits =
+                Math.max(
+                    0,
+                    Math.min(
+                        140 - opened,
+                        earned + bonusCredits - opened
+                    )
+                );
+
+            return availableCredits;
+        }
+
+
+        function updateCredits() {
+
+            const credits =
+                calculateAvailableCredits();
+
+            if (creditsText) {
+                creditsText.textContent =
+                    `❤️ ${credits} crédit${credits > 1 ? "s" : ""} disponible${credits > 1 ? "s" : ""}`;
+            }
         }
 
 
@@ -1095,6 +1227,16 @@ document.addEventListener(
                         result.error
                     );
 
+
+                    if (
+                        result.error.message
+                            .includes("NO_OPENINGS_AVAILABLE")
+                    ) {
+                        showErrorMessage(
+                            "Tu n'as plus de crédit disponible ❤️"
+                        );
+                        return;
+                    }
 
                     /*
                      * Si le RPC indique que
