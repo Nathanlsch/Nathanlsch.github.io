@@ -1,8 +1,8 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -13,15 +13,14 @@
     <title>❤️</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 
 <body>
 
-    <!-- ========================================= -->
-    <!-- PAGE DE CONNEXION                         -->
-    <!-- ========================================= -->
+    <!-- =========================================
+         PAGE DE CONNEXION
+    ========================================== -->
 
     <section id="login">
 
@@ -60,15 +59,17 @@
     </section>
 
 
-    <!-- ========================================= -->
-    <!-- MUR                                      -->
-    <!-- ========================================= -->
+    <!-- =========================================
+         PAGE PRINCIPALE
+    ========================================== -->
 
-    <main id="wallPage" style="display: none;">
+    <main id="wallPage">
+
+        <!-- HEADER -->
 
         <header class="wall-header">
 
-            <div>
+            <div class="header-left">
 
                 <h1>❤️</h1>
 
@@ -78,9 +79,11 @@
 
             </div>
 
+
             <button
                 id="logoutButton"
                 class="logout-button"
+                aria-label="Déconnexion"
             >
                 ×
             </button>
@@ -88,12 +91,15 @@
         </header>
 
 
+        <!-- MUR -->
+
         <section
             id="wall"
             class="wall"
-        >
-        </section>
+        ></section>
 
+
+        <!-- MESSAGE TEMPORAIRE -->
 
         <p
             id="wallMessage"
@@ -103,9 +109,9 @@
     </main>
 
 
-    <!-- ========================================= -->
-    <!-- MODAL DU POST-IT                         -->
-    <!-- ========================================= -->
+    <!-- =========================================
+         MODAL
+    ========================================== -->
 
     <div
         id="postitModal"
@@ -113,8 +119,8 @@
     >
 
         <div
-            class="modal-background"
             id="modalBackground"
+            class="modal-background"
         ></div>
 
 
@@ -123,6 +129,7 @@
             <button
                 id="closeModal"
                 class="close-modal"
+                aria-label="Fermer"
             >
                 ×
             </button>
@@ -130,10 +137,8 @@
 
             <div
                 id="modalHeart"
-                class="modal-heart"
-            >
-                ♥
-            </div>
+                class="modal-heart pink"
+            ></div>
 
 
             <div
@@ -147,31 +152,30 @@
             <div
                 id="modalMessage"
                 class="modal-message"
-            >
-            </div>
+            ></div>
 
         </div>
 
     </div>
 
 
-    <!-- ========================================= -->
-    <!-- SUPABASE                                 -->
-    <!-- ========================================= -->
+    <!-- =========================================
+         SUPABASE
+    ========================================== -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script src="supabase.js"></script>
 
 
-    <!-- ========================================= -->
-    <!-- APPLICATION                              -->
-    <!-- ========================================= -->
+    <!-- =========================================
+         APPLICATION
+    ========================================== -->
 
     <script>
 
         // ========================================
-        // ELEMENTS
+        // ELEMENTS HTML
         // ========================================
 
         const loginPage =
@@ -224,18 +228,18 @@
 
 
         // ========================================
-        // DONNEES
+        // VARIABLES
         // ========================================
+
+        let user = null;
 
         let postits = [];
 
         let openedPostits = new Set();
 
-        let user = null;
-
 
         // ========================================
-        // COULEURS
+        // COULEURS DES COEURS
         // ========================================
 
         const heartColors = [
@@ -247,6 +251,32 @@
             "yellow",
             "orange"
         ];
+
+
+        // ========================================
+        // AFFICHER LA PAGE DE CONNEXION
+        // ========================================
+
+        function showLogin() {
+
+            loginPage.style.display = "flex";
+
+            wallPage.style.display = "none";
+
+        }
+
+
+        // ========================================
+        // AFFICHER LE MUR
+        // ========================================
+
+        function showWall() {
+
+            loginPage.style.display = "none";
+
+            wallPage.style.display = "block";
+
+        }
 
 
         // ========================================
@@ -274,21 +304,37 @@
             }
 
 
+            loginButton.disabled = true;
+
+            loginButton.textContent =
+                "Connexion...";
+
+
             const {
                 data,
                 error
-            } = await supabaseClient.auth.signInWithPassword({
+            } =
+                await supabaseClient.auth.signInWithPassword({
 
-                email: email,
+                    email: email,
 
-                password: password
+                    password: password
 
-            });
+                });
+
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Entrer ❤️";
 
 
             if (error) {
 
-                console.error(error);
+                console.error(
+                    "Erreur connexion :",
+                    error
+                );
 
                 errorText.textContent =
                     "Email ou mot de passe incorrect.";
@@ -299,7 +345,7 @@
 
             user = data.user;
 
-            await startWall();
+            await startApplication();
 
         }
 
@@ -312,6 +358,7 @@
 
             await supabaseClient.auth.signOut();
 
+
             user = null;
 
             postits = [];
@@ -320,37 +367,49 @@
 
             wall.innerHTML = "";
 
-            wallPage.style.display = "none";
 
-            loginPage.style.display = "flex";
+            showLogin();
 
         }
 
 
         // ========================================
-        // INITIALISATION
+        // VERIFIER LA SESSION
         // ========================================
 
         async function checkUser() {
 
             const {
-                data: {
-                    user: currentUser
-                }
-            } = await supabaseClient.auth.getUser();
+                data,
+                error
+            } =
+                await supabaseClient.auth.getUser();
 
 
-            if (currentUser) {
+            if (error) {
 
-                user = currentUser;
+                console.error(
+                    "Erreur récupération session :",
+                    error
+                );
 
-                await startWall();
+                showLogin();
 
-            } else {
+                return;
+            }
 
-                loginPage.style.display = "flex";
 
-                wallPage.style.display = "none";
+            if (data.user) {
+
+                user = data.user;
+
+                await startApplication();
+
+            }
+
+            else {
+
+                showLogin();
 
             }
 
@@ -358,19 +417,35 @@
 
 
         // ========================================
-        // CHARGER LES DONNEES
+        // INITIALISATION DE L'APPLICATION
         // ========================================
 
-        async function startWall() {
+        async function startApplication() {
 
-            loginPage.style.display = "none";
-
-            wallPage.style.display = "block";
+            showWall();
 
 
-            await loadPostits();
+            const postitsLoaded =
+                await loadPostits();
 
-            await loadOpenedPostits();
+
+            if (!postitsLoaded) {
+
+                return;
+
+            }
+
+
+            const openedLoaded =
+                await loadOpenedPostits();
+
+
+            if (!openedLoaded) {
+
+                return;
+
+            }
+
 
             renderWall();
 
@@ -378,7 +453,7 @@
 
 
         // ========================================
-        // RECUPERER LES 140 POST-IT
+        // CHARGER LES POST-IT
         // ========================================
 
         async function loadPostits() {
@@ -386,35 +461,41 @@
             const {
                 data,
                 error
-            } = await supabaseClient
-                .from("postits")
-                .select("id, message")
-                .order("id", {
-                    ascending: true
-                });
+            } =
+                await supabaseClient
+                    .from("postits")
+                    .select("id, message")
+                    .order("id", {
+                        ascending: true
+                    });
 
 
             if (error) {
 
                 console.error(
-                    "Erreur chargement post-its :",
+                    "Erreur chargement post-it :",
                     error
                 );
 
-                wallMessage.textContent =
-                    "Impossible de charger le mur.";
+                showWallMessage(
+                    "Impossible de charger les post-it."
+                );
 
-                return;
+                return false;
+
             }
 
 
             postits = data || [];
 
+
+            return true;
+
         }
 
 
         // ========================================
-        // RECUPERER LES POST-IT DEJA OUVERTS
+        // CHARGER LES POST-IT DEJA OUVERTS
         // ========================================
 
         async function loadOpenedPostits() {
@@ -422,10 +503,14 @@
             const {
                 data,
                 error
-            } = await supabaseClient
-                .from("opened_postits")
-                .select("postit_id")
-                .eq("user_id", user.id);
+            } =
+                await supabaseClient
+                    .from("opened_postits")
+                    .select("postit_id")
+                    .eq(
+                        "user_id",
+                        user.id
+                    );
 
 
             if (error) {
@@ -435,19 +520,30 @@
                     error
                 );
 
-                return;
+                showWallMessage(
+                    "Impossible de récupérer les ouvertures."
+                );
+
+                return false;
+
             }
 
 
-            openedPostits = new Set(
-                data.map(item => item.postit_id)
-            );
+            openedPostits =
+                new Set(
+                    (data || []).map(
+                        item => item.postit_id
+                    )
+                );
+
+
+            return true;
 
         }
 
 
         // ========================================
-        // CREER LE MUR
+        // GENERER LE MUR
         // ========================================
 
         function renderWall() {
@@ -462,12 +558,46 @@
                         document.createElement("button");
 
 
-                    heart.className =
-                        "postit";
+                    heart.type = "button";
+
+
+                    heart.classList.add(
+                        "postit"
+                    );
 
 
                     // --------------------------------
-                    // Etat
+                    // COULEUR
+                    // --------------------------------
+
+                    const color =
+                        heartColors[
+                            index %
+                            heartColors.length
+                        ];
+
+
+                    heart.classList.add(
+                        color
+                    );
+
+
+                    // --------------------------------
+                    // ROTATION
+                    // --------------------------------
+
+                    const rotation =
+                        Math.random() * 10 - 5;
+
+
+                    heart.style.setProperty(
+                        "--rotation",
+                        rotation + "deg"
+                    );
+
+
+                    // --------------------------------
+                    // POST-IT DEJA OUVERT
                     // --------------------------------
 
                     if (
@@ -484,68 +614,24 @@
 
 
                     // --------------------------------
-                    // Couleur
+                    // NUMERO
                     // --------------------------------
 
-                    const color =
-                        heartColors[
-                            index %
-                            heartColors.length
-                        ];
+                    const number =
+                        document.createElement("span");
 
 
-                    heart.classList.add(
-                        color
+                    number.textContent =
+                        postit.id;
+
+
+                    heart.appendChild(
+                        number
                     );
 
 
                     // --------------------------------
-                    // Rotation aléatoire
-                    // --------------------------------
-
-                    const rotation =
-                        Math.random() * 10 - 5;
-
-
-                    const translationX =
-                        Math.random() * 8 - 4;
-
-
-                    const translationY =
-                        Math.random() * 8 - 4;
-
-
-                    heart.style.setProperty(
-                        "--rotation",
-                        rotation + "deg"
-                    );
-
-
-                    heart.style.setProperty(
-                        "--translate-x",
-                        translationX + "px"
-                    );
-
-
-                    heart.style.setProperty(
-                        "--translate-y",
-                        translationY + "px"
-                    );
-
-
-                    // --------------------------------
-                    // Numéro
-                    // --------------------------------
-
-                    heart.innerHTML = `
-                        <span>
-                            ${postit.id}
-                        </span>
-                    `;
-
-
-                    // --------------------------------
-                    // Clic
+                    // CLIC
                     // --------------------------------
 
                     heart.addEventListener(
@@ -561,7 +647,9 @@
                     );
 
 
-                    wall.appendChild(heart);
+                    wall.appendChild(
+                        heart
+                    );
 
                 }
             );
@@ -582,7 +670,7 @@
         ) {
 
             // --------------------------------
-            // Déjà ouvert
+            // DEJA OUVERT
             // --------------------------------
 
             if (
@@ -597,11 +685,12 @@
                 );
 
                 return;
+
             }
 
 
             // --------------------------------
-            // Nouveau post-it
+            // CHARGEMENT
             // --------------------------------
 
             element.classList.add(
@@ -609,15 +698,20 @@
             );
 
 
+            element.disabled = true;
+
+
             const {
                 data,
                 error
-            } = await supabaseClient.rpc(
-                "open_postit",
-                {
-                    p_postit_id: postit.id
-                }
-            );
+            } =
+                await supabaseClient.rpc(
+                    "open_postit",
+                    {
+                        p_postit_id:
+                            postit.id
+                    }
+                );
 
 
             element.classList.remove(
@@ -625,13 +719,19 @@
             );
 
 
+            element.disabled = false;
+
+
             // --------------------------------
-            // Erreur
+            // ERREUR
             // --------------------------------
 
             if (error) {
 
-                console.error(error);
+                console.error(
+                    "Erreur ouverture :",
+                    error
+                );
 
 
                 if (
@@ -650,7 +750,7 @@
                     error.message.includes(
                         "POSTIT_ALREADY_OPENED"
                     )
-                ) {
+                {
 
                     openedPostits.add(
                         postit.id
@@ -660,6 +760,9 @@
                         "opened"
                     );
 
+                    updateProgress();
+
+
                     showPostit(
                         postit,
                         element
@@ -667,21 +770,32 @@
 
                 }
 
+                else if (
+                    error.message.includes(
+                        "NOT_AUTHENTICATED"
+                    )
+                ) {
+
+                    showLogin();
+
+                }
+
                 else {
 
                     showWallMessage(
-                        "Une petite erreur est survenue..."
+                        "Une erreur est survenue..."
                     );
 
                 }
 
 
                 return;
+
             }
 
 
             // --------------------------------
-            // Succès
+            // SUCCES
             // --------------------------------
 
             openedPostits.add(
@@ -722,20 +836,21 @@
                 postit.message;
 
 
-            // Récupérer la couleur
+            // --------------------------------
+            // COULEUR
+            // --------------------------------
 
-            const colorClass =
+            const color =
                 heartColors.find(
-                    color =>
+                    item =>
                         element.classList.contains(
-                            color
+                            item
                         )
-                );
+                ) || "pink";
 
 
             modalHeart.className =
-                "modal-heart " +
-                (colorClass || "pink");
+                "modal-heart " + color;
 
 
             modal.classList.remove(
@@ -751,7 +866,7 @@
 
 
         // ========================================
-        // FERMER LE MESSAGE
+        // FERMER LE MODAL
         // ========================================
 
         function closeModal() {
@@ -759,6 +874,7 @@
             modal.classList.add(
                 "hidden"
             );
+
 
             document.body.classList.remove(
                 "modal-open"
@@ -781,7 +897,7 @@
 
 
         // ========================================
-        // MESSAGE SUR LE MUR
+        // MESSAGE TEMPORAIRE
         // ========================================
 
         function showWallMessage(
@@ -872,7 +988,7 @@
 
 
         // ========================================
-        // START
+        // DEMARRAGE
         // ========================================
 
         checkUser();
@@ -882,3 +998,4 @@
 </body>
 
 </html>
+```
