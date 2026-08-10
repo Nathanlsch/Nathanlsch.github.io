@@ -481,6 +481,11 @@ document.addEventListener(
         let currentUser =
             null;
 
+        let isAdmin =
+            false;
+
+        const ADMIN_VIEWED_USER_ID =
+            "790d510e-2b62-4e66-b8d6-bb85c0bc02d2";
 
         let postits =
             [];
@@ -733,6 +738,12 @@ document.addEventListener(
                 currentUser =
                     result.data.user;
 
+                isAdmin =
+                    false;
+
+                sessionStorage.removeItem(
+                    "adminMode"
+                );
 
                 await enterApplication();
 
@@ -860,6 +871,13 @@ document.addEventListener(
                 currentUser =
                     result.data.user;
 
+                isAdmin =
+                    true;
+
+                sessionStorage.setItem(
+                    "adminMode",
+                    "true"
+                );
 
                 await enterApplication();
 
@@ -1019,9 +1037,10 @@ document.addEventListener(
                     )
                     .eq(
                         "user_id",
-                        currentUser.id
+                        isAdmin
+                            ? ADMIN_VIEWED_USER_ID
+                            : currentUser.id
                     );
-
 
             if (
                 result.error
@@ -1194,7 +1213,9 @@ document.addEventListener(
 
 
             const credits =
-                calculateAvailableCredits();
+                isAdmin
+                    ? 0
+                    : calculateAvailableCredits();
 
 
             if (creditsText) {
@@ -1352,6 +1373,13 @@ document.addEventListener(
         async function openPostit(
             postit
         ) {
+
+            if (isAdmin) {
+                showPostit(
+                    postit
+                ); 
+                return;
+            }
 
 
             /*
@@ -1559,6 +1587,24 @@ document.addEventListener(
 
                 return;
 
+            }
+
+            modalDoneButton.disabled =
+                false;
+
+            if (isAdmin) {
+
+                modalDoneButton.textContent =
+                    "Mode administrateur";
+            
+                modalDoneButton.disabled =
+                    true;
+            
+                modalDoneButton.classList.remove(
+                    "done"
+                );
+            
+                return;
             }
 
 
@@ -2202,6 +2248,13 @@ document.addEventListener(
                 currentUser =
                     null;
 
+                isAdmin =
+                    false;
+                
+                sessionStorage.removeItem(
+                    "adminMode"
+                );
+
 
                 postits =
                     [];
@@ -2252,6 +2305,11 @@ document.addEventListener(
 
                 currentUser =
                     result.data.session.user;
+
+                isAdmin =
+                    sessionStorage.getItem(
+                        "adminMode"
+                    ) === "true";
 
 
                 await enterApplication();
