@@ -35,33 +35,95 @@
             ♥
         </div>
 
+
         <h1>
-            Mon petit mur
+            Un petit quelque chose...
         </h1>
 
+
         <p class="login-subtitle">
-            Il y a quelque chose qui t'attend ici...
+            Entre le mot de passe pour découvrir
+            ce qui t'attend ❤️
         </p>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            autocomplete="email"
+
+        <!-- =============================================
+             CONNEXION NORMALE
+        ============================================== -->
+
+        <div id="normalLogin">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Mot de passe"
+                autocomplete="current-password"
+            >
+
+
+            <button
+                id="loginButton"
+                type="button"
+            >
+                Entrer ❤️
+            </button>
+
+        </div>
+
+
+        <!-- =============================================
+             CONNEXION ADMIN
+        ============================================== -->
+
+        <div
+            id="adminLogin"
+            style="display: none;"
         >
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Mot de passe"
-            autocomplete="current-password"
-        >
+            <input
+                type="email"
+                id="adminEmail"
+                placeholder="Email administrateur"
+                autocomplete="username"
+            >
 
-        <button id="loginButton">
-            Entrer ❤️
-        </button>
+
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Mot de passe"
+                autocomplete="current-password"
+            >
+
+
+            <button
+                id="adminLoginButton"
+                type="button"
+            >
+                Connexion administrateur
+            </button>
+
+        </div>
+
+
+        <!-- =============================================
+             MESSAGE ERREUR
+        ============================================== -->
 
         <p id="error"></p>
+
+
+        <!-- =============================================
+             ACCES ADMIN
+        ============================================== -->
+
+        <button
+            id="adminToggle"
+            class="admin-toggle"
+            type="button"
+        >
+            Accès administrateur
+        </button>
 
     </div>
 
@@ -103,13 +165,16 @@
             <button
                 id="wallButton"
                 class="nav-button active"
+                type="button"
             >
                 ❤️ Mur
             </button>
 
+
             <button
                 id="giftsButton"
                 class="nav-button"
+                type="button"
             >
                 📋 Mes cadeaux
             </button>
@@ -120,6 +185,7 @@
         <button
             id="logoutButton"
             class="logout-button"
+            type="button"
             aria-label="Déconnexion"
         >
             ×
@@ -144,10 +210,12 @@
                 Un petit cœur à découvrir...
             </h2>
 
+
             <p>
                 <span id="progressText">
                     0 / 140
                 </span>
+
                 cadeaux découverts
             </p>
 
@@ -184,6 +252,7 @@
                 Mes cadeaux ❤️
             </h2>
 
+
             <p>
                 Retrouve ici tous les cadeaux que tu as découverts.
             </p>
@@ -191,7 +260,9 @@
         </div>
 
 
-        <!-- STATISTIQUES -->
+        <!-- =============================================
+             STATISTIQUES
+        ============================================== -->
 
         <div class="gift-stats">
 
@@ -245,7 +316,9 @@
         </div>
 
 
-        <!-- LISTE DES CADEAUX -->
+        <!-- =============================================
+             LISTE DES CADEAUX
+        ============================================== -->
 
         <div
             id="giftsList"
@@ -253,7 +326,9 @@
         ></div>
 
 
-        <!-- AUCUN CADEAU -->
+        <!-- =============================================
+             AUCUN CADEAU
+        ============================================== -->
 
         <div
             id="emptyGifts"
@@ -264,9 +339,11 @@
                 ♡
             </div>
 
+
             <h3>
                 Aucun cadeau découvert
             </h3>
+
 
             <p>
                 Retourne sur le mur pour découvrir ton premier cœur.
@@ -276,13 +353,12 @@
 
     </section>
 
-
 </main>
 
 
 
 <!-- =====================================================
-     MODAL D'UN POST-IT
+     MODAL POST-IT
 ===================================================== -->
 
 <div
@@ -301,6 +377,7 @@
         <button
             id="closeModal"
             class="close-modal"
+            type="button"
             aria-label="Fermer"
         >
             ×
@@ -330,6 +407,7 @@
         <button
             id="modalDoneButton"
             class="modal-done-button"
+            type="button"
         >
             ✓ Marquer comme fait
         </button>
@@ -353,7 +431,22 @@
 <script>
 
 /* =====================================================
-   ELEMENTS HTML
+   CONFIGURATION
+===================================================== */
+
+/*
+ * Adresse du compte utilisé pour la connexion normale.
+ *
+ * L'utilisateur n'a donc jamais besoin de connaître
+ * cette adresse.
+ */
+
+const DEFAULT_USER_EMAIL =
+    "user.user@gmail.com";
+
+
+/* =====================================================
+   ELEMENTS - CONNEXION
 ===================================================== */
 
 const loginPage =
@@ -362,20 +455,44 @@ const loginPage =
 const wallPage =
     document.getElementById("wallPage");
 
-const emailInput =
-    document.getElementById("email");
+
+const normalLogin =
+    document.getElementById("normalLogin");
+
+const adminLogin =
+    document.getElementById("adminLogin");
+
 
 const passwordInput =
     document.getElementById("password");
 
+const adminEmailInput =
+    document.getElementById("adminEmail");
+
+const adminPasswordInput =
+    document.getElementById("adminPassword");
+
+
 const loginButton =
     document.getElementById("loginButton");
+
+const adminLoginButton =
+    document.getElementById("adminLoginButton");
+
+const adminToggle =
+    document.getElementById("adminToggle");
+
+
+const errorText =
+    document.getElementById("error");
 
 const logoutButton =
     document.getElementById("logoutButton");
 
-const errorText =
-    document.getElementById("error");
+
+/* =====================================================
+   ELEMENTS - APPLICATION
+===================================================== */
 
 const wall =
     document.getElementById("wall");
@@ -386,14 +503,17 @@ const wallView =
 const giftsView =
     document.getElementById("giftsView");
 
+
 const wallButton =
     document.getElementById("wallButton");
 
 const giftsButton =
     document.getElementById("giftsButton");
 
+
 const pageTitle =
     document.getElementById("pageTitle");
+
 
 const progressText =
     document.getElementById("progressText");
@@ -401,11 +521,17 @@ const progressText =
 const wallMessage =
     document.getElementById("wallMessage");
 
+
+/* =====================================================
+   ELEMENTS - CADEAUX
+===================================================== */
+
 const giftsList =
     document.getElementById("giftsList");
 
 const emptyGifts =
     document.getElementById("emptyGifts");
+
 
 const openedCount =
     document.getElementById("openedCount");
@@ -416,6 +542,11 @@ const doneCount =
 const todoCount =
     document.getElementById("todoCount");
 
+
+/* =====================================================
+   ELEMENTS - MODAL
+===================================================== */
+
 const modal =
     document.getElementById("postitModal");
 
@@ -424,6 +555,7 @@ const modalBackground =
 
 const closeModalButton =
     document.getElementById("closeModal");
+
 
 const modalHeart =
     document.getElementById("modalHeart");
@@ -446,13 +578,16 @@ let user = null;
 
 let postits = [];
 
-let openedPostits = new Set();
+let openedPostits =
+    new Set();
 
 let openedData = [];
 
 let currentPostit = null;
 
 let currentPostitElement = null;
+
+let adminMode = false;
 
 
 /* =====================================================
@@ -462,13 +597,21 @@ let currentPostitElement = null;
 const heartColors = [
 
     "light-pink",
+
     "pink",
+
     "soft-rose",
+
     "rose",
+
     "dark-pink",
+
     "red",
+
     "coral",
+
     "dark-red",
+
     "burgundy"
 
 ];
@@ -480,9 +623,17 @@ const heartColors = [
 
 function showLogin() {
 
-    loginPage.style.display = "flex";
+    console.log(
+        "➡️ Affichage connexion"
+    );
 
-    wallPage.style.display = "none";
+
+    loginPage.style.display =
+        "flex";
+
+
+    wallPage.style.display =
+        "none";
 
 }
 
@@ -493,40 +644,124 @@ function showLogin() {
 
 function showApplication() {
 
-    loginPage.style.display = "none";
+    console.log(
+        "➡️ Affichage application"
+    );
 
-    wallPage.style.display = "block";
+
+    loginPage.style.display =
+        "none";
+
+
+    wallPage.style.display =
+        "block";
 
 }
 
 
 /* =====================================================
-   CONNEXION
+   MODE ADMIN
+===================================================== */
+
+function toggleAdminMode() {
+
+    adminMode =
+        !adminMode;
+
+
+    errorText.textContent =
+        "";
+
+
+    if (adminMode) {
+
+        /*
+         * Mode admin
+         */
+
+        normalLogin.style.display =
+            "none";
+
+
+        adminLogin.style.display =
+            "flex";
+
+
+        adminToggle.textContent =
+            "← Retour";
+
+
+        adminEmailInput.focus();
+
+    }
+
+    else {
+
+        /*
+         * Mode utilisateur normal
+         */
+
+        normalLogin.style.display =
+            "flex";
+
+
+        adminLogin.style.display =
+            "none";
+
+
+        adminToggle.textContent =
+            "Accès administrateur";
+
+
+        passwordInput.focus();
+
+    }
+
+}
+
+
+/* =====================================================
+   CONNEXION UTILISATEUR NORMAL
 ===================================================== */
 
 async function login() {
 
-    const email =
-        emailInput.value.trim();
+    console.log(
+        "================================="
+    );
+
+
+    console.log(
+        "🔐 TENTATIVE DE CONNEXION"
+    );
+
+
+    console.log(
+        "================================="
+    );
+
 
     const password =
         passwordInput.value;
 
 
-    errorText.textContent = "";
+    errorText.textContent =
+        "";
 
 
-    if (!email || !password) {
+    if (!password) {
 
         errorText.textContent =
-            "Entre ton email et ton mot de passe.";
+            "Entre ton mot de passe.";
 
         return;
 
     }
 
 
-    loginButton.disabled = true;
+    loginButton.disabled =
+        true;
+
 
     loginButton.textContent =
         "Connexion...";
@@ -534,28 +769,59 @@ async function login() {
 
     try {
 
+        console.log(
+            "📡 Connexion avec :",
+            DEFAULT_USER_EMAIL
+        );
+
+
         const {
             data,
             error
         } =
-            await supabaseClient.auth.signInWithPassword({
+            await supabaseClient
+                .auth
+                .signInWithPassword({
 
-                email: email,
+                    email:
+                        DEFAULT_USER_EMAIL,
 
-                password: password
+                    password:
+                        password
 
-            });
+                });
+
+
+        console.log(
+            "📡 Réponse Supabase :",
+            data,
+            error
+        );
 
 
         if (error) {
 
             console.error(
-                "Erreur Supabase :",
+                "❌ Erreur Supabase :",
                 error
             );
 
+
             errorText.textContent =
-                "Email ou mot de passe incorrect.";
+                "Mot de passe incorrect.";
+
+            return;
+
+        }
+
+
+        if (
+            !data ||
+            !data.user
+        ) {
+
+            errorText.textContent =
+                "Impossible de récupérer le compte.";
 
             return;
 
@@ -566,15 +832,22 @@ async function login() {
             data.user;
 
 
-        if (!user) {
+        console.log(
+            "✅ Utilisateur connecté :",
+            user.email
+        );
 
-            errorText.textContent =
-                "Impossible de récupérer la session.";
 
-            return;
+        /*
+         * Affichage immédiat de l'application.
+         */
 
-        }
+        showApplication();
 
+
+        /*
+         * Puis chargement du contenu.
+         */
 
         await startApplication();
 
@@ -583,9 +856,10 @@ async function login() {
     catch (error) {
 
         console.error(
-            "Erreur inattendue :",
+            "💥 Erreur connexion :",
             error
         );
+
 
         errorText.textContent =
             "Une erreur est survenue.";
@@ -594,7 +868,9 @@ async function login() {
 
     finally {
 
-        loginButton.disabled = false;
+        loginButton.disabled =
+            false;
+
 
         loginButton.textContent =
             "Entrer ❤️";
@@ -605,51 +881,158 @@ async function login() {
 
 
 /* =====================================================
-   DECONNEXION
+   CONNEXION ADMIN
 ===================================================== */
 
-async function logout() {
+async function adminLogin() {
+
+    const email =
+        adminEmailInput.value.trim();
+
+
+    const password =
+        adminPasswordInput.value;
+
+
+    errorText.textContent =
+        "";
+
+
+    if (
+        !email ||
+        !password
+    ) {
+
+        errorText.textContent =
+            "Entre ton email et ton mot de passe.";
+
+        return;
+
+    }
+
+
+    adminLoginButton.disabled =
+        true;
+
+
+    adminLoginButton.textContent =
+        "Connexion...";
+
 
     try {
 
-        await supabaseClient.auth.signOut();
+        console.log(
+            "🔐 Connexion administrateur..."
+        );
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .auth
+                .signInWithPassword({
+
+                    email:
+                        email,
+
+                    password:
+                        password
+
+                });
+
+
+        console.log(
+            "📡 Réponse Supabase admin :",
+            data,
+            error
+        );
+
+
+        if (error) {
+
+            console.error(
+                "❌ Erreur Supabase :",
+                error
+            );
+
+
+            errorText.textContent =
+                "Email ou mot de passe incorrect.";
+
+            return;
+
+        }
+
+
+        if (
+            !data ||
+            !data.user
+        ) {
+
+            errorText.textContent =
+                "Impossible de récupérer le compte.";
+
+            return;
+
+        }
+
+
+        user =
+            data.user;
+
+
+        console.log(
+            "✅ Administrateur connecté :",
+            user.email
+        );
+
+
+        showApplication();
+
+
+        await startApplication();
 
     }
 
     catch (error) {
 
         console.error(
-            "Erreur déconnexion :",
+            "💥 Erreur connexion admin :",
             error
         );
 
+
+        errorText.textContent =
+            "Une erreur est survenue.";
+
     }
 
+    finally {
 
-    user = null;
-
-    postits = [];
-
-    openedPostits.clear();
-
-    openedData = [];
+        adminLoginButton.disabled =
+            false;
 
 
-    wall.innerHTML = "";
+        adminLoginButton.textContent =
+            "Connexion administrateur";
 
-    giftsList.innerHTML = "";
-
-
-    showLogin();
+    }
 
 }
 
 
 /* =====================================================
-   VERIFICATION DE LA SESSION
+   VERIFICATION SESSION
 ===================================================== */
 
-async function checkUser() {
+async function checkSession() {
+
+    console.log(
+        "🔎 Vérification de la session..."
+    );
+
 
     try {
 
@@ -657,15 +1040,18 @@ async function checkUser() {
             data,
             error
         } =
-            await supabaseClient.auth.getUser();
+            await supabaseClient
+                .auth
+                .getSession();
 
 
         if (error) {
 
             console.error(
-                "Erreur session :",
+                "❌ Erreur session :",
                 error
             );
+
 
             showLogin();
 
@@ -674,16 +1060,35 @@ async function checkUser() {
         }
 
 
-        if (data.user) {
+        if (
+            data &&
+            data.session &&
+            data.session.user
+        ) {
 
             user =
-                data.user;
+                data.session.user;
+
+
+            console.log(
+                "✅ Session existante :",
+                user.email
+            );
+
+
+            showApplication();
+
 
             await startApplication();
 
         }
 
         else {
+
+            console.log(
+                "ℹ️ Aucune session"
+            );
+
 
             showLogin();
 
@@ -694,9 +1099,10 @@ async function checkUser() {
     catch (error) {
 
         console.error(
-            "Erreur vérification utilisateur :",
+            "💥 Erreur vérification session :",
             error
         );
+
 
         showLogin();
 
@@ -706,18 +1112,14 @@ async function checkUser() {
 
 
 /* =====================================================
-   DEMARRAGE DE L'APPLICATION
+   DEMARRAGE APPLICATION
 ===================================================== */
 
 async function startApplication() {
 
-    /*
-     * IMPORTANT :
-     * On affiche maintenant explicitement
-     * l'application après la connexion.
-     */
-
-    showApplication();
+    console.log(
+        "🚀 Démarrage application..."
+    );
 
 
     /*
@@ -737,14 +1139,18 @@ async function startApplication() {
 
     if (!postitsLoaded) {
 
+        showWallMessage(
+            "Impossible de charger les post-it."
+        );
+
+
         return;
 
     }
 
 
     /*
-     * Chargement des post-it déjà ouverts
-     * par cet utilisateur.
+     * Chargement des ouvertures.
      */
 
     const openedLoaded =
@@ -752,6 +1158,11 @@ async function startApplication() {
 
 
     if (!openedLoaded) {
+
+        showWallMessage(
+            "Impossible de récupérer les cadeaux."
+        );
+
 
         return;
 
@@ -766,106 +1177,152 @@ async function startApplication() {
 
     renderGifts();
 
+
+    console.log(
+        "✅ Application chargée"
+    );
+
 }
 
 
 /* =====================================================
-   CHARGEMENT DES POST-IT
+   CHARGEMENT POST-IT
 ===================================================== */
 
 async function loadPostits() {
 
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .from("postits")
-            .select("id, message")
-            .order(
-                "id",
-                {
-                    ascending: true
-                }
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("postits")
+                .select(
+                    "id, message"
+                )
+                .order(
+                    "id",
+                    {
+                        ascending:
+                            true
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "❌ Erreur postits :",
+                error
             );
 
 
-    if (error) {
+            return false;
+
+        }
+
+
+        postits =
+            data || [];
+
+
+        console.log(
+            "📦 Post-it chargés :",
+            postits.length
+        );
+
+
+        return true;
+
+    }
+
+    catch (error) {
 
         console.error(
-            "Erreur chargement post-it :",
+            "💥 Exception postits :",
             error
         );
 
-        showWallMessage(
-            "Impossible de charger les post-it."
-        );
 
         return false;
 
     }
-
-
-    postits =
-        data || [];
-
-
-    return true;
 
 }
 
 
 /* =====================================================
-   CHARGEMENT DES POST-IT OUVERTS
+   CHARGEMENT POST-IT OUVERTS
 ===================================================== */
 
 async function loadOpenedPostits() {
 
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .from("opened_postits")
-            .select(
-                "postit_id, done"
-            )
-            .eq(
-                "user_id",
-                user.id
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("opened_postits")
+                .select(
+                    "postit_id, done"
+                )
+                .eq(
+                    "user_id",
+                    user.id
+                );
+
+
+        if (error) {
+
+            console.error(
+                "❌ Erreur opened_postits :",
+                error
             );
 
 
-    if (error) {
+            return false;
+
+        }
+
+
+        openedData =
+            data || [];
+
+
+        openedPostits =
+            new Set(
+                openedData.map(
+                    item =>
+                        item.postit_id
+                )
+            );
+
+
+        console.log(
+            "📦 Cadeaux ouverts :",
+            openedData.length
+        );
+
+
+        return true;
+
+    }
+
+    catch (error) {
 
         console.error(
-            "Erreur chargement ouvertures :",
+            "💥 Exception opened_postits :",
             error
         );
 
-        showWallMessage(
-            "Impossible de récupérer les cadeaux."
-        );
 
         return false;
 
     }
-
-
-    openedData =
-        data || [];
-
-
-    openedPostits =
-        new Set(
-            openedData.map(
-                item =>
-                    item.postit_id
-            )
-        );
-
-
-    return true;
 
 }
 
@@ -876,7 +1333,8 @@ async function loadOpenedPostits() {
 
 function renderWall() {
 
-    wall.innerHTML = "";
+    wall.innerHTML =
+        "";
 
 
     postits.forEach(
@@ -900,6 +1358,10 @@ function renderWall() {
             );
 
 
+            /*
+             * Couleur.
+             */
+
             const color =
                 heartColors[
                     index %
@@ -913,11 +1375,13 @@ function renderWall() {
 
 
             /*
-             * Petite rotation aléatoire.
+             * Rotation.
              */
 
             const rotation =
-                Math.random() * 10 - 5;
+                Math.random() *
+                10 -
+                5;
 
 
             heart.style.setProperty(
@@ -927,7 +1391,7 @@ function renderWall() {
 
 
             /*
-             * Post-it déjà ouvert.
+             * Déjà ouvert.
              */
 
             if (
@@ -993,7 +1457,7 @@ function renderWall() {
 
 
 /* =====================================================
-   OUVERTURE D'UN POST-IT
+   OUVERTURE POST-IT
 ===================================================== */
 
 async function handlePostitClick(
@@ -1001,10 +1465,9 @@ async function handlePostitClick(
     element
 ) {
 
-
     /*
-     * S'il a déjà été ouvert,
-     * on peut simplement le relire.
+     * Déjà ouvert :
+     * on peut le consulter.
      */
 
     if (
@@ -1018,18 +1481,19 @@ async function handlePostitClick(
             element
         );
 
+
         return;
 
     }
 
 
+    element.disabled =
+        true;
+
+
     element.classList.add(
         "loading"
     );
-
-
-    element.disabled =
-        true;
 
 
     try {
@@ -1038,13 +1502,14 @@ async function handlePostitClick(
             data,
             error
         } =
-            await supabaseClient.rpc(
-                "open_postit",
-                {
-                    p_postit_id:
-                        postit.id
-                }
-            );
+            await supabaseClient
+                .rpc(
+                    "open_postit",
+                    {
+                        p_postit_id:
+                            postit.id
+                    }
+                );
 
 
         element.classList.remove(
@@ -1056,31 +1521,19 @@ async function handlePostitClick(
             false;
 
 
-        /*
-         * ERREUR
-         */
-
         if (error) {
 
             console.error(
-                "Erreur ouverture :",
+                "❌ Erreur ouverture :",
                 error
             );
 
 
+            /*
+             * Un post-it déjà ouvert.
+             */
+
             if (
-                error.message.includes(
-                    "ALREADY_OPENED_TODAY"
-                )
-            ) {
-
-                showWallMessage(
-                    "Tu as déjà ouvert ton petit mot aujourd'hui ❤️"
-                );
-
-            }
-
-            else if (
                 error.message.includes(
                     "POSTIT_ALREADY_OPENED"
                 )
@@ -1102,9 +1555,37 @@ async function handlePostitClick(
                     element
                 );
 
+
+                return;
+
             }
 
-            else if (
+
+            /*
+             * Un seul post-it par jour.
+             */
+
+            if (
+                error.message.includes(
+                    "ALREADY_OPENED_TODAY"
+                )
+            ) {
+
+                showWallMessage(
+                    "Tu as déjà ouvert ton petit mot aujourd'hui ❤️"
+                );
+
+
+                return;
+
+            }
+
+
+            /*
+             * Utilisateur non connecté.
+             */
+
+            if (
                 error.message.includes(
                     "NOT_AUTHENTICATED"
                 )
@@ -1112,15 +1593,15 @@ async function handlePostitClick(
 
                 showLogin();
 
-            }
 
-            else {
-
-                showWallMessage(
-                    "Une erreur est survenue..."
-                );
+                return;
 
             }
+
+
+            showWallMessage(
+                error.message
+            );
 
 
             return;
@@ -1129,7 +1610,7 @@ async function handlePostitClick(
 
 
         /*
-         * SUCCES
+         * Succès.
          */
 
         openedPostits.add(
@@ -1168,7 +1649,7 @@ async function handlePostitClick(
     catch (error) {
 
         console.error(
-            "Erreur inattendue ouverture :",
+            "💥 Erreur ouverture :",
             error
         );
 
@@ -1183,7 +1664,7 @@ async function handlePostitClick(
 
 
         showWallMessage(
-            "Une erreur est survenue..."
+            error.message
         );
 
     }
@@ -1192,7 +1673,7 @@ async function handlePostitClick(
 
 
 /* =====================================================
-   AFFICHAGE DU MODAL
+   AFFICHER POST-IT
 ===================================================== */
 
 function showPostit(
@@ -1209,7 +1690,8 @@ function showPostit(
 
 
     modalNumber.textContent =
-        "#" + postit.id;
+        "#" +
+        postit.id;
 
 
     modalMessage.textContent =
@@ -1217,7 +1699,7 @@ function showPostit(
 
 
     /*
-     * On récupère la couleur du cœur.
+     * Récupération couleur.
      */
 
     let color =
@@ -1237,6 +1719,7 @@ function showPostit(
 
             color =
                 heartColor;
+
 
             break;
 
@@ -1268,7 +1751,33 @@ function showPostit(
 
 
 /* =====================================================
-   BOUTON FAIT DU MODAL
+   FERMER MODAL
+===================================================== */
+
+function closeModal() {
+
+    modal.classList.add(
+        "hidden"
+    );
+
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+
+    currentPostit =
+        null;
+
+
+    currentPostitElement =
+        null;
+
+}
+
+
+/* =====================================================
+   BOUTON FAIT
 ===================================================== */
 
 function updateModalDoneButton(
@@ -1314,7 +1823,7 @@ function updateModalDoneButton(
 
 
 /* =====================================================
-   MODIFICATION ETAT FAIT
+   MODIFIER ETAT FAIT
 ===================================================== */
 
 async function toggleDone(
@@ -1370,13 +1879,15 @@ async function toggleDone(
         if (error) {
 
             console.error(
-                "Erreur changement état :",
+                "❌ Erreur modification :",
                 error
             );
 
+
             showWallMessage(
-                "Impossible de modifier l'état."
+                error.message
             );
+
 
             return;
 
@@ -1396,6 +1907,15 @@ async function toggleDone(
 
     }
 
+    catch (error) {
+
+        console.error(
+            "💥 Erreur modification :",
+            error
+        );
+
+    }
+
     finally {
 
         modalDoneButton.disabled =
@@ -1407,12 +1927,13 @@ async function toggleDone(
 
 
 /* =====================================================
-   AFFICHAGE DES CADEAUX
+   AFFICHAGE CADEAUX
 ===================================================== */
 
 function renderGifts() {
 
-    giftsList.innerHTML = "";
+    giftsList.innerHTML =
+        "";
 
 
     /*
@@ -1436,32 +1957,32 @@ function renderGifts() {
      * Statistiques.
      */
 
-    const totalOpened =
+    const total =
         opened.length;
 
 
-    const totalDone =
+    const done =
         opened.filter(
             item =>
                 item.done
         ).length;
 
 
-    const totalTodo =
-        totalOpened -
-        totalDone;
+    const todo =
+        total -
+        done;
 
 
     openedCount.textContent =
-        totalOpened;
+        total;
 
 
     doneCount.textContent =
-        totalDone;
+        done;
 
 
     todoCount.textContent =
-        totalTodo;
+        todo;
 
 
     /*
@@ -1469,11 +1990,12 @@ function renderGifts() {
      */
 
     if (
-        opened.length === 0
+        total === 0
     ) {
 
         emptyGifts.style.display =
             "block";
+
 
         return;
 
@@ -1512,9 +2034,8 @@ function renderGifts() {
                 );
 
 
-            card.classList.add(
-                "gift-card"
-            );
+            card.className =
+                "gift-card";
 
 
             if (entry.done) {
@@ -1536,20 +2057,15 @@ function renderGifts() {
                 );
 
 
+            heart.className =
+                "gift-heart";
+
+
             heart.classList.add(
-                "gift-heart"
-            );
-
-
-            const color =
                 heartColors[
                     (postit.id - 1) %
                     heartColors.length
-                ];
-
-
-            heart.classList.add(
-                color
+                ]
             );
 
 
@@ -1563,13 +2079,13 @@ function renderGifts() {
                 );
 
 
-            number.classList.add(
-                "gift-number"
-            );
+            number.className =
+                "gift-number";
 
 
             number.textContent =
-                "#" + postit.id;
+                "#" +
+                postit.id;
 
 
             /*
@@ -1582,9 +2098,8 @@ function renderGifts() {
                 );
 
 
-            message.classList.add(
-                "gift-message"
-            );
+            message.className =
+                "gift-message";
 
 
             message.textContent =
@@ -1601,9 +2116,8 @@ function renderGifts() {
                 );
 
 
-            status.classList.add(
-                "gift-status"
-            );
+            status.className =
+                "gift-status";
 
 
             if (entry.done) {
@@ -1636,33 +2150,28 @@ function renderGifts() {
                 );
 
 
-            button.classList.add(
-                "gift-done-button"
-            );
+            button.type =
+                "button";
 
 
-            if (entry.done) {
+            button.className =
+                "gift-done-button";
 
-                button.textContent =
-                    "Marquer comme à faire";
 
-            }
-
-            else {
-
-                button.textContent =
-                    "Marquer comme fait";
-
-            }
+            button.textContent =
+                entry.done
+                    ? "Marquer comme à faire"
+                    : "Marquer comme fait";
 
 
             button.addEventListener(
                 "click",
-                async event => {
+                event => {
 
                     event.stopPropagation();
 
-                    await toggleDone(
+
+                    toggleDone(
                         entry.postit_id
                     );
 
@@ -1671,7 +2180,7 @@ function renderGifts() {
 
 
             /*
-             * Assemblage gauche.
+             * Partie gauche.
              */
 
             const left =
@@ -1680,9 +2189,8 @@ function renderGifts() {
                 );
 
 
-            left.classList.add(
-                "gift-left"
-            );
+            left.className =
+                "gift-left";
 
 
             left.appendChild(
@@ -1696,7 +2204,7 @@ function renderGifts() {
 
 
             /*
-             * Assemblage milieu.
+             * Partie centrale.
              */
 
             const middle =
@@ -1705,9 +2213,8 @@ function renderGifts() {
                 );
 
 
-            middle.classList.add(
-                "gift-middle"
-            );
+            middle.className =
+                "gift-middle";
 
 
             middle.appendChild(
@@ -1716,7 +2223,7 @@ function renderGifts() {
 
 
             /*
-             * Assemblage droite.
+             * Partie droite.
              */
 
             const right =
@@ -1725,9 +2232,8 @@ function renderGifts() {
                 );
 
 
-            right.classList.add(
-                "gift-right"
-            );
+            right.className =
+                "gift-right";
 
 
             right.appendChild(
@@ -1741,7 +2247,7 @@ function renderGifts() {
 
 
             /*
-             * Assemblage carte.
+             * Carte.
              */
 
             card.appendChild(
@@ -1837,32 +2343,6 @@ function showGifts() {
 
 
 /* =====================================================
-   FERMER LE MODAL
-===================================================== */
-
-function closeModal() {
-
-    modal.classList.add(
-        "hidden"
-    );
-
-
-    document.body.classList.remove(
-        "modal-open"
-    );
-
-
-    currentPostit =
-        null;
-
-
-    currentPostitElement =
-        null;
-
-}
-
-
-/* =====================================================
    PROGRESSION
 ===================================================== */
 
@@ -1900,14 +2380,89 @@ function showWallMessage(
             );
 
         },
-        3500
+        4000
     );
 
 }
 
 
 /* =====================================================
-   EVENEMENTS
+   DECONNEXION
+===================================================== */
+
+async function logout() {
+
+    try {
+
+        await supabaseClient
+            .auth
+            .signOut();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Erreur déconnexion :",
+            error
+        );
+
+    }
+
+
+    user =
+        null;
+
+
+    postits =
+        [];
+
+
+    openedPostits.clear();
+
+
+    openedData =
+        [];
+
+
+    wall.innerHTML =
+        "";
+
+
+    giftsList.innerHTML =
+        "";
+
+
+    passwordInput.value =
+        "";
+
+
+    adminEmailInput.value =
+        "";
+
+
+    adminPasswordInput.value =
+        "";
+
+
+    /*
+     * Retour en mode utilisateur normal.
+     */
+
+    if (adminMode) {
+
+        toggleAdminMode();
+
+    }
+
+
+    showLogin();
+
+}
+
+
+/* =====================================================
+   EVENEMENTS CONNEXION
 ===================================================== */
 
 loginButton.addEventListener(
@@ -1915,6 +2470,22 @@ loginButton.addEventListener(
     login
 );
 
+
+adminLoginButton.addEventListener(
+    "click",
+    adminLogin
+);
+
+
+adminToggle.addEventListener(
+    "click",
+    toggleAdminMode
+);
+
+
+/* =====================================================
+   EVENEMENTS APPLICATION
+===================================================== */
 
 logoutButton.addEventListener(
     "click",
@@ -1933,6 +2504,10 @@ giftsButton.addEventListener(
     showGifts
 );
 
+
+/* =====================================================
+   EVENEMENTS MODAL
+===================================================== */
 
 closeModalButton.addEventListener(
     "click",
@@ -1964,25 +2539,9 @@ modalDoneButton.addEventListener(
 );
 
 
-/*
- * Entrée avec la touche Entrée.
- */
-
-emailInput.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            login();
-
-        }
-
-    }
-);
-
+/* =====================================================
+   TOUCHE ENTREE
+===================================================== */
 
 passwordInput.addEventListener(
     "keydown",
@@ -2000,9 +2559,41 @@ passwordInput.addEventListener(
 );
 
 
-/*
- * Escape ferme le modal.
- */
+adminEmailInput.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            adminPasswordInput.focus();
+
+        }
+
+    }
+);
+
+
+adminPasswordInput.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            adminLogin();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   TOUCHE ESCAPE
+===================================================== */
 
 document.addEventListener(
     "keydown",
@@ -2021,18 +2612,34 @@ document.addEventListener(
 
 
 /* =====================================================
-   DEMARRAGE
+   INITIALISATION
 ===================================================== */
 
+console.log(
+    "❤️ Application chargée"
+);
+
+
+console.log(
+    "Supabase disponible :",
+    typeof supabaseClient !== "undefined"
+);
+
+
 /*
- * Au chargement :
- * - si connecté → application
- * - sinon → connexion
+ * Par défaut :
+ * afficher la connexion.
  */
 
 showLogin();
 
-checkUser();
+
+/*
+ * Vérifier ensuite s'il existe
+ * déjà une session.
+ */
+
+checkSession();
 
 </script>
 
