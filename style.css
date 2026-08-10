@@ -809,17 +809,17 @@ body {
 
 .postit.opened {
 
-    opacity: 0.55;
+    opacity: 0.28;
 
     filter:
-        grayscale(0.1)
+        grayscale(0.15)
         drop-shadow(
-            0 4px 5px
+            0 3px 4px
             rgba(
                 120,
                 40,
                 60,
-                0.10
+                0.05
             )
         );
 }
@@ -827,7 +827,7 @@ body {
 
 .postit.opened:hover {
 
-    opacity: 1;
+    opacity: 0.55;
 }
 
 
