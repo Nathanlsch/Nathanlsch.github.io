@@ -1403,6 +1403,18 @@ document.addEventListener(
 
             }
 
+            const credits =
+                    calculateAvailableCredits();
+            
+            if (
+                credits <= 0
+            ) {
+                showErrorMessage(
+                    "Tu n'as plus de crédit disponible ❤️"
+                );
+        
+                return;
+            }
 
             try {
 
