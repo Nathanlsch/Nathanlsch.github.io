@@ -1409,9 +1409,8 @@ document.addEventListener(
             if (
                 credits <= 0
             ) {
-                showErrorMessage(
-                    "Tu n'as plus de crédit disponible ❤️"
-                );
+                wallMessage.textContent =
+                "Tu n'as plus de crédit disponible ❤️";
         
                 return;
             }
