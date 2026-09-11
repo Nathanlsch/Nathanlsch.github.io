@@ -266,20 +266,32 @@
         <div class="gift-stats">
 
 
-            <div class="stat-card">
+            <div
+                id="filterAll"
+                class="stat-card filter-stat active"
+                role="button"
+                tabindex="0"
+                data-filter="all"
+            >
 
                 <strong id="openedCount">
                     0
                 </strong>
 
                 <span>
-                    Découvertes
+                    Total
                 </span>
 
             </div>
 
 
-            <div class="stat-card">
+            <div
+                id="filterDone"
+                class="stat-card filter-stat"
+                role="button"
+                tabindex="0"
+                data-filter="done"
+            >
 
                 <strong id="doneCount">
                     0
@@ -292,7 +304,13 @@
             </div>
 
 
-            <div class="stat-card">
+            <div
+                id="filterTodo"
+                class="stat-card filter-stat"
+                role="button"
+                tabindex="0"
+                data-filter="todo"
+            >
 
                 <strong id="todoCount">
                     0
@@ -417,6 +435,29 @@
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
+
+<style>
+    .filter-stat {
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .filter-stat:hover {
+        transform: translateY(-2px);
+    }
+
+    .filter-stat.active {
+        transform: translateY(-2px);
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+
+    .filter-stat:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 3px;
+    }
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -620,6 +661,22 @@ document.addEventListener(
 
         const todoCount =
             document.getElementById("todoCount");
+
+
+        const filterAll =
+            document.getElementById("filterAll");
+
+
+        const filterDone =
+            document.getElementById("filterDone");
+
+
+        const filterTodo =
+            document.getElementById("filterTodo");
+
+
+        let currentGiftFilter =
+            "all";
 
 
         const modal =
@@ -1792,6 +1849,10 @@ document.addEventListener(
                 "";
 
 
+            /*
+             * Compteurs globaux
+             */
+
             const opened =
                 openedData.length;
 
@@ -1820,13 +1881,131 @@ document.addEventListener(
                 todo;
 
 
-            if (
-                opened === 0
-            ) {
+            /*
+             * Mettre en évidence le filtre actif
+             */
 
+            [filterAll, filterDone, filterTodo].forEach(
+                filter => {
+
+                    if (filter) {
+                        filter.classList.remove("active");
+                    }
+
+                }
+            );
+
+
+            let activeFilter =
+                filterAll;
+
+
+            if (currentGiftFilter === "done") {
+                activeFilter =
+                    filterDone;
+            }
+
+            else if (currentGiftFilter === "todo") {
+                activeFilter =
+                    filterTodo;
+            }
+
+
+            if (activeFilter) {
+                activeFilter.classList.add("active");
+            }
+
+
+            /*
+             * Sélection des surprises à afficher
+             */
+
+            let filteredData =
+                [...openedData];
+
+
+            if (currentGiftFilter === "done") {
+
+                filteredData =
+                    openedData.filter(
+                        item =>
+                            item.done === true
+                    );
+
+            }
+
+            else if (currentGiftFilter === "todo") {
+
+                filteredData =
+                    openedData.filter(
+                        item =>
+                            item.done !== true
+                    );
+
+            }
+
+
+            /*
+             * Aucun post-it ouvert
+             */
+
+            if (opened === 0) {
 
                 emptyGifts.style.display =
                     "block";
+
+
+                emptyGifts.innerHTML = `
+                    <div>♡</div>
+                    <h3>Aucune surprise découverte</h3>
+                    <p>Retourne sur le mur pour découvrir ta première surprise.</p>
+                `;
+
+
+                return;
+
+            }
+
+
+            /*
+             * Aucun résultat pour le filtre actif
+             */
+
+            if (filteredData.length === 0) {
+
+                emptyGifts.style.display =
+                    "block";
+
+
+                if (currentGiftFilter === "done") {
+
+                    emptyGifts.innerHTML = `
+                        <div>❤️</div>
+                        <h3>Aucune surprise réalisée</h3>
+                        <p>Les surprises que tu auras faites apparaîtront ici.</p>
+                    `;
+
+                }
+
+                else if (currentGiftFilter === "todo") {
+
+                    emptyGifts.innerHTML = `
+                        <div>✨</div>
+                        <h3>Tout est fait !</h3>
+                        <p>Toutes tes surprises découvertes ont déjà été réalisées.</p>
+                    `;
+
+                }
+
+                else {
+
+                    emptyGifts.innerHTML = `
+                        <div>♡</div>
+                        <h3>Aucune surprise découverte</h3>
+                        <p>Retourne sur le mur pour découvrir ta première surprise.</p>
+                    `;
+
+                }
 
 
                 return;
@@ -1843,7 +2022,7 @@ document.addEventListener(
              */
 
             const sorted =
-                [...openedData].sort(
+                [...filteredData].sort(
                     (
                         a,
                         b
@@ -1983,7 +2162,6 @@ document.addEventListener(
                         "click",
                         async function () {
 
-
                             await toggleGiftDone(
                                 postit.id
                             );
@@ -2025,6 +2203,66 @@ document.addEventListener(
             );
 
         }
+
+
+        /* =================================================
+           FILTRES DES SURPRISES
+        ================================================= */
+
+        function setGiftFilter(filter) {
+
+            currentGiftFilter =
+                filter;
+
+
+            renderGifts();
+
+        }
+
+
+        [filterAll, filterDone, filterTodo].forEach(
+            filter => {
+
+                if (!filter) {
+                    return;
+                }
+
+
+                filter.addEventListener(
+                    "click",
+                    function () {
+
+                        setGiftFilter(
+                            filter.dataset.filter
+                        );
+
+                    }
+                );
+
+
+                filter.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Enter" ||
+                            event.key === " "
+                        ) {
+
+                            event.preventDefault();
+
+
+                            setGiftFilter(
+                                filter.dataset.filter
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
 
 
 
