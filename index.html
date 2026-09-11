@@ -279,7 +279,7 @@
                 </strong>
 
                 <span>
-                    Total
+                    Découvertes
                 </span>
 
             </div>
@@ -449,12 +449,18 @@
 
     .filter-stat.active {
         transform: translateY(-2px);
-        outline: 2px solid currentColor;
+        color: #e85d75;
+        outline: 2px solid #e85d75;
         outline-offset: 2px;
     }
 
+    .filter-stat.active strong,
+    .filter-stat.active span {
+        color: #e85d75;
+    }
+
     .filter-stat:focus-visible {
-        outline: 2px solid currentColor;
+        outline: 2px solid #e85d75;
         outline-offset: 3px;
     }
 </style>
