@@ -37,6 +37,8 @@
         </p>
 
 
+        <!-- CONNEXION UTILISATEUR -->
+
         <div
             id="normalLogin"
             class="login-form"
@@ -58,6 +60,8 @@
 
         </div>
 
+
+        <!-- CONNEXION ADMIN -->
 
         <div
             id="adminLogin"
@@ -417,43 +421,60 @@
     ================================================= */
 
     .filter-stat {
+
         cursor: pointer;
+
         user-select: none;
 
         transition:
             transform 0.2s ease,
             opacity 0.2s ease;
+
     }
 
 
     .filter-stat:hover {
-        transform: translateY(-2px);
+
+        transform:
+            translateY(-2px);
+
     }
 
 
     .filter-stat.active {
-        transform: translateY(-2px);
 
-        color: #e85d75;
+        transform:
+            translateY(-2px);
+
+        color:
+            #e85d75;
 
         outline:
             2px solid #e85d75;
 
-        outline-offset: 2px;
+        outline-offset:
+            2px;
+
     }
 
 
     .filter-stat.active strong,
     .filter-stat.active span {
-        color: #e85d75;
+
+        color:
+            #e85d75;
+
     }
 
 
     .filter-stat:focus-visible {
+
         outline:
             2px solid #e85d75;
 
-        outline-offset: 3px;
+        outline-offset:
+            3px;
+
     }
 
 
@@ -463,246 +484,25 @@
     ================================================= */
 
     /*
-     * On ne met plus de grosse bordure autour
-     * de toute la carte.
+     * Le dernier cœur ouvert est simplement
+     * entouré d'un contour violet-bordeaux.
      *
-     * Le petit halo permet simplement de repérer
-     * le dernier cœur sans casser le style.
+     * Pas de badge.
+     * Pas d'animation.
+     * Pas de modification du contenu de la carte.
      */
 
-    .gift-card.last-opened-all,
-    .gift-card.last-opened-done,
-    .gift-card.last-opened-todo {
-
-        position: relative;
-
-        border: none;
-
-        box-shadow: none;
-
-    }
-
-
-    .gift-card.last-opened-all::before,
-    .gift-card.last-opened-done::before,
-    .gift-card.last-opened-todo::before {
-
-        content: "";
-
-        position: absolute;
-
-        inset: -3px;
-
-        border-radius: inherit;
-
-        pointer-events: none;
-
-        opacity: 0.7;
-
-        animation:
-            lastOpenedGlow
-            2.5s
-            ease-in-out
-            infinite;
-
-    }
-
-
-    .gift-card.last-opened-all::before {
-
-        box-shadow:
-            0 0 0 1px
-            rgba(232, 93, 117, 0.28),
-            0 0 12px
-            rgba(232, 93, 117, 0.14);
-
-    }
-
-
-    .gift-card.last-opened-done::before {
-
-        box-shadow:
-            0 0 0 1px
-            rgba(76, 175, 122, 0.28),
-            0 0 12px
-            rgba(76, 175, 122, 0.13);
-
-    }
-
-
-    .gift-card.last-opened-todo::before {
-
-        box-shadow:
-            0 0 0 1px
-            rgba(240, 160, 75, 0.30),
-            0 0 12px
-            rgba(240, 160, 75, 0.15);
-
-    }
-
-
-
-    /* =================================================
-       BADGE
-    ================================================= */
-
-    .last-opened-badge {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 5px;
-
-        width: fit-content;
-
-        margin-top: 9px;
-
-        padding:
-            5px 10px;
-
-        border-radius:
-            999px;
-
-        font-size:
-            0.68rem;
-
-        font-weight:
-            700;
-
-        letter-spacing:
-            0.02em;
-
-        line-height:
-            1;
-
-        white-space:
-            nowrap;
-
-        backdrop-filter:
-            blur(6px);
-
-        -webkit-backdrop-filter:
-            blur(6px);
-
-        animation:
-            lastOpenedBadgeIn
-            0.35s
-            ease-out
-            both;
-
-    }
-
-
-    /*
-     * Petite étoile ajoutée automatiquement
-     * par le CSS.
-     */
-
-    .last-opened-badge::before {
-
-        content: "✦";
-
-        font-size:
-            0.82rem;
-
-        line-height:
-            1;
-
-    }
-
-
-    .last-opened-badge.all {
-
-        color:
-            #c9465f;
-
-        background:
-            rgba(255, 235, 240, 0.92);
+    .gift-card.last-opened {
 
         border:
-            1px solid
-            rgba(232, 93, 117, 0.18);
+            2px solid #722f4f;
 
-    }
+        box-shadow:
+            0 0 0 2px
+            rgba(114, 47, 79, 0.12),
 
-
-    .last-opened-badge.done {
-
-        color:
-            #318257;
-
-        background:
-            rgba(232, 247, 238, 0.92);
-
-        border:
-            1px solid
-            rgba(76, 175, 122, 0.18);
-
-    }
-
-
-    .last-opened-badge.todo {
-
-        color:
-            #c87b1f;
-
-        background:
-            rgba(255, 244, 226, 0.92);
-
-        border:
-            1px solid
-            rgba(240, 160, 75, 0.20);
-
-    }
-
-
-
-    /* =================================================
-       ANIMATIONS
-    ================================================= */
-
-    @keyframes lastOpenedBadgeIn {
-
-        from {
-
-            opacity: 0;
-
-            transform:
-                translateY(4px)
-                scale(0.96);
-
-        }
-
-        to {
-
-            opacity: 1;
-
-            transform:
-                translateY(0)
-                scale(1);
-
-        }
-
-    }
-
-
-    @keyframes lastOpenedGlow {
-
-        0%,
-        100% {
-
-            opacity: 0.45;
-
-        }
-
-        50% {
-
-            opacity: 0.85;
-
-        }
+            0 4px 14px
+            rgba(114, 47, 79, 0.18);
 
     }
 
@@ -724,7 +524,9 @@ document.addEventListener(
     function () {
 
 
-        console.log("❤️ DOM chargé");
+        console.log(
+            "❤️ DOM chargé"
+        );
 
 
         /* =================================================
@@ -811,8 +613,10 @@ document.addEventListener(
 
 
         /*
-         * Le dernier cœur ouvert est toujours
-         * déterminé à partir de opened_at dans Supabase.
+         * Identifiant du dernier cœur ouvert.
+         *
+         * Il est déterminé exclusivement grâce
+         * à opened_at dans la table Supabase.
          */
 
         let lastOpenedPostitId =
@@ -837,115 +641,171 @@ document.addEventListener(
         ================================================= */
 
         const login =
-            document.getElementById("login");
+            document.getElementById(
+                "login"
+            );
 
 
         const app =
-            document.getElementById("app");
+            document.getElementById(
+                "app"
+            );
 
 
         const normalLogin =
-            document.getElementById("normalLogin");
+            document.getElementById(
+                "normalLogin"
+            );
 
 
         const adminLogin =
-            document.getElementById("adminLogin");
+            document.getElementById(
+                "adminLogin"
+            );
 
 
         const password =
-            document.getElementById("password");
+            document.getElementById(
+                "password"
+            );
 
 
         const adminEmail =
-            document.getElementById("adminEmail");
+            document.getElementById(
+                "adminEmail"
+            );
 
 
         const adminPassword =
-            document.getElementById("adminPassword");
+            document.getElementById(
+                "adminPassword"
+            );
 
 
         const loginButton =
-            document.getElementById("loginButton");
+            document.getElementById(
+                "loginButton"
+            );
 
 
         const adminLoginButton =
-            document.getElementById("adminLoginButton");
+            document.getElementById(
+                "adminLoginButton"
+            );
 
 
         const adminToggle =
-            document.getElementById("adminToggle");
+            document.getElementById(
+                "adminToggle"
+            );
 
 
         const error =
-            document.getElementById("error");
+            document.getElementById(
+                "error"
+            );
 
 
         const wall =
-            document.getElementById("wall");
+            document.getElementById(
+                "wall"
+            );
 
 
         const wallMessage =
-            document.getElementById("wallMessage");
+            document.getElementById(
+                "wallMessage"
+            );
 
 
         const wallView =
-            document.getElementById("wallView");
+            document.getElementById(
+                "wallView"
+            );
 
 
         const giftsView =
-            document.getElementById("giftsView");
+            document.getElementById(
+                "giftsView"
+            );
 
 
         const wallButton =
-            document.getElementById("wallButton");
+            document.getElementById(
+                "wallButton"
+            );
 
 
         const giftsButton =
-            document.getElementById("giftsButton");
+            document.getElementById(
+                "giftsButton"
+            );
 
 
         const logoutButton =
-            document.getElementById("logoutButton");
+            document.getElementById(
+                "logoutButton"
+            );
 
 
         const progressText =
-            document.getElementById("progressText");
+            document.getElementById(
+                "progressText"
+            );
 
 
         const creditsText =
-            document.getElementById("creditsText");
+            document.getElementById(
+                "creditsText"
+            );
 
 
         const giftsList =
-            document.getElementById("giftsList");
+            document.getElementById(
+                "giftsList"
+            );
 
 
         const emptyGifts =
-            document.getElementById("emptyGifts");
+            document.getElementById(
+                "emptyGifts"
+            );
 
 
         const openedCount =
-            document.getElementById("openedCount");
+            document.getElementById(
+                "openedCount"
+            );
 
 
         const doneCount =
-            document.getElementById("doneCount");
+            document.getElementById(
+                "doneCount"
+            );
 
 
         const todoCount =
-            document.getElementById("todoCount");
+            document.getElementById(
+                "todoCount"
+            );
 
 
         const filterAll =
-            document.getElementById("filterAll");
+            document.getElementById(
+                "filterAll"
+            );
 
 
         const filterDone =
-            document.getElementById("filterDone");
+            document.getElementById(
+                "filterDone"
+            );
 
 
         const filterTodo =
-            document.getElementById("filterTodo");
+            document.getElementById(
+                "filterTodo"
+            );
 
 
         let currentGiftFilter =
@@ -953,27 +813,39 @@ document.addEventListener(
 
 
         const modal =
-            document.getElementById("modal");
+            document.getElementById(
+                "modal"
+            );
 
 
         const modalBackground =
-            document.getElementById("modalBackground");
+            document.getElementById(
+                "modalBackground"
+            );
 
 
         const closeModal =
-            document.getElementById("closeModal");
+            document.getElementById(
+                "closeModal"
+            );
 
 
         const modalNumber =
-            document.getElementById("modalNumber");
+            document.getElementById(
+                "modalNumber"
+            );
 
 
         const modalMessage =
-            document.getElementById("modalMessage");
+            document.getElementById(
+                "modalMessage"
+            );
 
 
         const modalDoneButton =
-            document.getElementById("modalDoneButton");
+            document.getElementById(
+                "modalDoneButton"
+            );
 
 
 
@@ -981,7 +853,9 @@ document.addEventListener(
            ERREUR
         ================================================= */
 
-        function showError(message) {
+        function showError(
+            message
+        ) {
 
             error.textContent =
                 message;
@@ -994,9 +868,13 @@ document.addEventListener(
            NOTIFICATION
         ================================================= */
 
-        function showErrorMessage(message) {
+        function showErrorMessage(
+            message
+        ) {
 
-            alert(message);
+            alert(
+                message
+            );
 
         }
 
@@ -1037,7 +915,9 @@ document.addEventListener(
                 "Connexion...";
 
 
-            showError("");
+            showError(
+                ""
+            );
 
 
             try {
@@ -1093,7 +973,9 @@ document.addEventListener(
             }
 
 
-            catch (exception) {
+            catch (
+                exception
+            ) {
 
                 console.error(
                     exception
@@ -1164,7 +1046,9 @@ document.addEventListener(
                 "Connexion...";
 
 
-            showError("");
+            showError(
+                ""
+            );
 
 
             try {
@@ -1221,7 +1105,9 @@ document.addEventListener(
             }
 
 
-            catch (exception) {
+            catch (
+                exception
+            ) {
 
                 console.error(
                     exception
@@ -1256,6 +1142,7 @@ document.addEventListener(
 
         async function enterApplication() {
 
+
             login.style.display =
                 "none";
 
@@ -1275,6 +1162,7 @@ document.addEventListener(
         ================================================= */
 
         async function initialize() {
+
 
             console.log(
                 "🚀 Initialisation"
@@ -1308,9 +1196,12 @@ document.addEventListener(
 
         async function loadPostits() {
 
+
             const result =
                 await supabaseClient
-                    .from("postits")
+                    .from(
+                        "postits"
+                    )
                     .select(
                         "id, message"
                     )
@@ -1332,13 +1223,15 @@ document.addEventListener(
                     result.error
                 );
 
+
                 return;
 
             }
 
 
             postits =
-                result.data || [];
+                result.data ||
+                [];
 
 
             console.log(
@@ -1356,9 +1249,12 @@ document.addEventListener(
 
         async function loadOpenedPostits() {
 
+
             const result =
                 await supabaseClient
-                    .from("opened_postits")
+                    .from(
+                        "opened_postits"
+                    )
                     .select(
                         "postit_id, done, opened_at"
                     )
@@ -1379,13 +1275,15 @@ document.addEventListener(
                     result.error
                 );
 
+
                 return;
 
             }
 
 
             openedData =
-                result.data || [];
+                result.data ||
+                [];
 
 
             openedPostits =
@@ -1407,8 +1305,13 @@ document.addEventListener(
             ) {
 
                 const sortedByOpenedAt =
-                    [...openedData].sort(
-                        (a, b) =>
+                    [
+                        ...openedData
+                    ].sort(
+                        (
+                            a,
+                            b
+                        ) =>
                             new Date(
                                 b.opened_at
                             ) -
@@ -1453,7 +1356,10 @@ document.addEventListener(
 
         async function loadBonusCredits() {
 
-            if (isAdmin) {
+
+            if (
+                isAdmin
+            ) {
 
                 bonusCredits =
                     0;
@@ -1465,7 +1371,9 @@ document.addEventListener(
 
             const result =
                 await supabaseClient
-                    .from("user_bonus_credits")
+                    .from(
+                        "user_bonus_credits"
+                    )
                     .select(
                         "credits"
                     )
@@ -1476,7 +1384,9 @@ document.addEventListener(
                     .maybeSingle();
 
 
-            if (result.error) {
+            if (
+                result.error
+            ) {
 
                 console.error(
                     "Erreur crédits bonus :",
@@ -1487,13 +1397,15 @@ document.addEventListener(
                 bonusCredits =
                     0;
 
+
                 return;
 
             }
 
 
             bonusCredits =
-                result.data?.credits || 0;
+                result.data?.credits ||
+                0;
 
         }
 
@@ -1504,6 +1416,7 @@ document.addEventListener(
         ================================================= */
 
         function calculateAvailableCredits() {
+
 
             const now =
                 new Date();
@@ -1541,6 +1454,7 @@ document.addEventListener(
                 today >= start
             ) {
 
+
                 const daysElapsed =
                     Math.floor(
                         (
@@ -1557,7 +1471,8 @@ document.addEventListener(
 
 
                 earned =
-                    daysElapsed + 1;
+                    daysElapsed +
+                    1;
 
 
                 if (
@@ -1600,13 +1515,16 @@ document.addEventListener(
 
         function updateCredits() {
 
+
             const credits =
                 isAdmin
                     ? 0
                     : calculateAvailableCredits();
 
 
-            if (creditsText) {
+            if (
+                creditsText
+            ) {
 
                 creditsText.textContent =
                     `${credits} crédit${credits > 1 ? "s" : ""} disponible${credits > 1 ? "s" : ""}`;
@@ -1622,6 +1540,7 @@ document.addEventListener(
         ================================================= */
 
         function renderWall() {
+
 
             wall.innerHTML =
                 "";
@@ -1662,6 +1581,7 @@ document.addEventListener(
                     postit,
                     index
                 ) => {
+
 
                     const button =
                         document.createElement(
@@ -1758,7 +1678,10 @@ document.addEventListener(
             postit
         ) {
 
-            if (isAdmin) {
+
+            if (
+                isAdmin
+            ) {
 
                 showPostit(
                     postit
@@ -1834,6 +1757,7 @@ document.addEventListener(
                             "Tu n'as plus de crédit disponible ❤️"
                         );
 
+
                         return;
 
                     }
@@ -1846,13 +1770,18 @@ document.addEventListener(
                             )
                     ) {
 
+
                         await loadOpenedPostits();
+
 
                         renderWall();
 
+
                         renderGifts();
 
+
                         updateCredits();
+
 
                         showPostit(
                             postit
@@ -1867,8 +1796,8 @@ document.addEventListener(
 
 
                 /*
-                 * On recharge les données depuis Supabase
-                 * pour récupérer le vrai opened_at.
+                 * On recharge depuis Supabase
+                 * pour récupérer le véritable opened_at.
                  */
 
                 await loadOpenedPostits();
@@ -1890,7 +1819,9 @@ document.addEventListener(
             }
 
 
-            catch (exception) {
+            catch (
+                exception
+            ) {
 
                 console.error(
                     exception
@@ -1909,6 +1840,7 @@ document.addEventListener(
         function showPostit(
             postit
         ) {
+
 
             currentPostit =
                 postit;
@@ -1940,6 +1872,7 @@ document.addEventListener(
 
         function closePostit() {
 
+
             modal.classList.add(
                 "hidden"
             );
@@ -1954,6 +1887,7 @@ document.addEventListener(
 
         function updateDoneButton() {
 
+
             if (
                 !currentPostit
             ) {
@@ -1967,7 +1901,10 @@ document.addEventListener(
                 false;
 
 
-            if (isAdmin) {
+            if (
+                isAdmin
+            ) {
+
 
                 modalDoneButton.textContent =
                     "Mode administrateur";
@@ -2000,6 +1937,7 @@ document.addEventListener(
                 entry.done
             ) {
 
+
                 modalDoneButton.textContent =
                     "✓ Surprise réalisée";
 
@@ -2008,9 +1946,11 @@ document.addEventListener(
                     "done"
                 );
 
+
             }
 
             else {
+
 
                 modalDoneButton.textContent =
                     "✓ Marquer comme fait";
@@ -2031,6 +1971,7 @@ document.addEventListener(
         ================================================= */
 
         async function toggleDone() {
+
 
             if (
                 !currentPostit
@@ -2060,7 +2001,10 @@ document.addEventListener(
             postitId
         ) {
 
-            if (isAdmin) {
+
+            if (
+                isAdmin
+            ) {
 
                 return;
 
@@ -2095,7 +2039,9 @@ document.addEventListener(
 
             const result =
                 await supabaseClient
-                    .from("opened_postits")
+                    .from(
+                        "opened_postits"
+                    )
                     .update({
                         done:
                             newValue
@@ -2118,6 +2064,7 @@ document.addEventListener(
                     "Erreur modification surprise :",
                     result.error
                 );
+
 
                 return;
 
@@ -2142,6 +2089,7 @@ document.addEventListener(
         ================================================= */
 
         function renderGifts() {
+
 
             giftsList.innerHTML =
                 "";
@@ -2176,6 +2124,10 @@ document.addEventListener(
 
 
 
+            /*
+             * FILTRE ACTIF
+             */
+
             [
                 filterAll,
                 filterDone,
@@ -2183,7 +2135,9 @@ document.addEventListener(
             ].forEach(
                 filter => {
 
-                    if (filter) {
+                    if (
+                        filter
+                    ) {
 
                         filter.classList.remove(
                             "active"
@@ -2220,7 +2174,9 @@ document.addEventListener(
             }
 
 
-            if (activeFilter) {
+            if (
+                activeFilter
+            ) {
 
                 activeFilter.classList.add(
                     "active"
@@ -2230,8 +2186,14 @@ document.addEventListener(
 
 
 
+            /*
+             * DONNEES FILTREES
+             */
+
             let filteredData =
-                [...openedData];
+                [
+                    ...openedData
+                ];
 
 
             if (
@@ -2262,9 +2224,14 @@ document.addEventListener(
 
 
 
+            /*
+             * AUCUNE SURPRISE
+             */
+
             if (
                 opened === 0
             ) {
+
 
                 emptyGifts.style.display =
                     "block";
@@ -2272,7 +2239,9 @@ document.addEventListener(
 
                 emptyGifts.innerHTML = `
 
-                    <div>♡</div>
+                    <div>
+                        ♡
+                    </div>
 
                     <h3>
                         Aucune surprise découverte
@@ -2292,9 +2261,15 @@ document.addEventListener(
 
 
 
+            /*
+             * AUCUN RESULTAT POUR LE FILTRE
+             */
+
             if (
-                filteredData.length === 0
+                filteredData.length ===
+                0
             ) {
+
 
                 emptyGifts.style.display =
                     "block";
@@ -2305,9 +2280,12 @@ document.addEventListener(
                     "done"
                 ) {
 
+
                     emptyGifts.innerHTML = `
 
-                        <div>❤️</div>
+                        <div>
+                            ❤️
+                        </div>
 
                         <h3>
                             Aucune surprise réalisée
@@ -2327,9 +2305,12 @@ document.addEventListener(
                     "todo"
                 ) {
 
+
                     emptyGifts.innerHTML = `
 
-                        <div>✨</div>
+                        <div>
+                            ✨
+                        </div>
 
                         <h3>
                             Tout est fait !
@@ -2346,9 +2327,12 @@ document.addEventListener(
 
                 else {
 
+
                     emptyGifts.innerHTML = `
 
-                        <div>♡</div>
+                        <div>
+                            ♡
+                        </div>
 
                         <h3>
                             Aucune surprise découverte
@@ -2375,8 +2359,14 @@ document.addEventListener(
 
 
 
+            /*
+             * TRI PAR NUMERO
+             */
+
             const sorted =
-                [...filteredData].sort(
+                [
+                    ...filteredData
+                ].sort(
                     (
                         a,
                         b
@@ -2406,6 +2396,11 @@ document.addEventListener(
                     }
 
 
+
+                    /*
+                     * CARTE
+                     */
+
                     const card =
                         document.createElement(
                             "div"
@@ -2415,6 +2410,11 @@ document.addEventListener(
                     card.className =
                         "gift-card";
 
+
+
+                    /*
+                     * SURPRISE FAITE
+                     */
 
                     if (
                         entry.done
@@ -2429,55 +2429,37 @@ document.addEventListener(
 
 
                     /*
-                     * Le dernier cœur est identifié
-                     * grâce au opened_at récupéré
-                     * depuis Supabase.
+                     * DERNIER CŒUR OUVERT
+                     *
+                     * On compare l'identifiant
+                     * avec celui déterminé grâce
+                     * au opened_at le plus récent.
                      */
 
                     const isLastOpened =
-                        Number(entry.postit_id) ===
-                        Number(lastOpenedPostitId);
+                        Number(
+                            entry.postit_id
+                        ) ===
+                        Number(
+                            lastOpenedPostitId
+                        );
 
 
                     if (
                         isLastOpened
                     ) {
 
-                        if (
-                            currentGiftFilter ===
-                            "done"
-                        ) {
-
-                            card.classList.add(
-                                "last-opened-done"
-                            );
-
-                        }
-
-                        else if (
-                            currentGiftFilter ===
-                            "todo"
-                        ) {
-
-                            card.classList.add(
-                                "last-opened-todo"
-                            );
-
-                        }
-
-                        else {
-
-                            card.classList.add(
-                                "last-opened-all"
-                            );
-
-                        }
+                        card.classList.add(
+                            "last-opened"
+                        );
 
                     }
 
 
 
-                    /* NUMERO */
+                    /*
+                     * NUMERO
+                     */
 
                     const number =
                         document.createElement(
@@ -2495,7 +2477,9 @@ document.addEventListener(
 
 
 
-                    /* MESSAGE */
+                    /*
+                     * MESSAGE
+                     */
 
                     const message =
                         document.createElement(
@@ -2513,75 +2497,8 @@ document.addEventListener(
 
 
                     /*
-                     * BADGE
+                     * ETAT
                      */
-
-                    if (
-                        isLastOpened
-                    ) {
-
-                        const badge =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        badge.className =
-                            "last-opened-badge " +
-                            (
-                                currentGiftFilter ===
-                                "done"
-                                    ? "done"
-                                    : currentGiftFilter ===
-                                      "todo"
-                                        ? "todo"
-                                        : "all"
-                            );
-
-
-                        /*
-                         * L'étoile est ajoutée
-                         * par le CSS.
-                         */
-
-                        badge.textContent =
-                            "Dernier cœur ouvert";
-
-
-                        /*
-                         * Le badge est ajouté juste
-                         * sous le message.
-                         */
-
-                        card.appendChild(
-                            number
-                        );
-
-                        card.appendChild(
-                            message
-                        );
-
-                        card.appendChild(
-                            badge
-                        );
-
-                    }
-
-                    else {
-
-                        card.appendChild(
-                            number
-                        );
-
-                        card.appendChild(
-                            message
-                        );
-
-                    }
-
-
-
-                    /* ETAT */
 
                     const status =
                         document.createElement(
@@ -2600,7 +2517,9 @@ document.addEventListener(
 
 
 
-                    /* BOUTON */
+                    /*
+                     * BOUTON
+                     */
 
                     const actionButton =
                         document.createElement(
@@ -2635,6 +2554,20 @@ document.addEventListener(
 
 
 
+                    /*
+                     * ASSEMBLAGE
+                     */
+
+                    card.appendChild(
+                        number
+                    );
+
+
+                    card.appendChild(
+                        message
+                    );
+
+
                     card.appendChild(
                         status
                     );
@@ -2657,12 +2590,13 @@ document.addEventListener(
 
 
         /* =================================================
-           FILTRES
+           FILTRES DES SURPRISES
         ================================================= */
 
         function setGiftFilter(
             filter
         ) {
+
 
             currentGiftFilter =
                 filter;
@@ -2680,6 +2614,7 @@ document.addEventListener(
             filterTodo
         ].forEach(
             filter => {
+
 
                 if (!filter) {
 
@@ -2702,7 +2637,10 @@ document.addEventListener(
 
                 filter.addEventListener(
                     "keydown",
-                    function (event) {
+                    function (
+                        event
+                    ) {
+
 
                         if (
                             event.key ===
@@ -2736,6 +2674,7 @@ document.addEventListener(
             "click",
             function () {
 
+
                 wallView.classList.remove(
                     "hidden"
                 );
@@ -2767,6 +2706,7 @@ document.addEventListener(
         giftsButton.addEventListener(
             "click",
             function () {
+
 
                 wallView.classList.add(
                     "hidden"
@@ -2803,7 +2743,10 @@ document.addEventListener(
             "click",
             function () {
 
-                showError("");
+
+                showError(
+                    ""
+                );
 
 
                 const adminVisible =
@@ -2814,6 +2757,7 @@ document.addEventListener(
                 if (
                     adminVisible
                 ) {
+
 
                     adminLogin.style.display =
                         "none";
@@ -2829,6 +2773,7 @@ document.addEventListener(
                 }
 
                 else {
+
 
                     normalLogin.style.display =
                         "none";
@@ -2874,12 +2819,16 @@ document.addEventListener(
 
         password.addEventListener(
             "keydown",
-            function (event) {
+            function (
+                event
+            ) {
+
 
                 if (
                     event.key ===
                     "Enter"
                 ) {
+
 
                     doLogin();
 
@@ -2891,12 +2840,16 @@ document.addEventListener(
 
         adminPassword.addEventListener(
             "keydown",
-            function (event) {
+            function (
+                event
+            ) {
+
 
                 if (
                     event.key ===
                     "Enter"
                 ) {
+
 
                     doAdminLogin();
 
@@ -2937,6 +2890,7 @@ document.addEventListener(
         logoutButton.addEventListener(
             "click",
             async function () {
+
 
                 await supabaseClient
                     .auth
@@ -2994,6 +2948,7 @@ document.addEventListener(
 
         async function checkSession() {
 
+
             const result =
                 await supabaseClient
                     .auth
@@ -3005,6 +2960,7 @@ document.addEventListener(
                 result.data.session
             ) {
 
+
                 currentUser =
                     result.data.session.user;
 
@@ -3012,7 +2968,8 @@ document.addEventListener(
                 isAdmin =
                     sessionStorage.getItem(
                         "adminMode"
-                    ) === "true";
+                    ) ===
+                    "true";
 
 
                 await enterApplication();
