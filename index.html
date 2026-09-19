@@ -463,6 +463,49 @@
         outline: 2px solid #e85d75;
         outline-offset: 3px;
     }
+
+    /* Mise en évidence du dernier cœur ouvert */
+    .gift-card.last-opened-all {
+        border: 2px solid #e85d75;
+        box-shadow: 0 0 0 3px rgba(232, 93, 117, 0.18);
+    }
+
+    .gift-card.last-opened-done {
+        border: 2px solid #4caf7a;
+        box-shadow: 0 0 0 3px rgba(76, 175, 122, 0.18);
+    }
+
+    .gift-card.last-opened-todo {
+        border: 2px solid #f0a04b;
+        box-shadow: 0 0 0 3px rgba(240, 160, 75, 0.18);
+    }
+
+    .last-opened-badge {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        margin-top: 8px;
+        padding: 4px 9px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+    }
+
+    .last-opened-badge.all {
+        color: #c9465f;
+        background: rgba(232, 93, 117, 0.12);
+    }
+
+    .last-opened-badge.done {
+        color: #318257;
+        background: rgba(76, 175, 122, 0.12);
+    }
+
+    .last-opened-badge.todo {
+        color: #c87b1f;
+        background: rgba(240, 160, 75, 0.14);
+    }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -683,6 +726,14 @@ document.addEventListener(
 
         let currentGiftFilter =
             "all";
+
+
+        /*
+         * Identifiant du dernier cœur nouvellement ouvert.
+         * Conservé localement pour survivre à un rechargement.
+         */
+        let lastOpenedPostitId =
+            Number(localStorage.getItem("lastOpenedPostitId")) || null;
 
 
         const modal =
@@ -1553,6 +1604,16 @@ document.addEventListener(
                 }
 
 
+                lastOpenedPostitId =
+                    postit.id;
+
+
+                localStorage.setItem(
+                    "lastOpenedPostitId",
+                    String(postit.id)
+                );
+
+
                 openedPostits.add(
                     postit.id
                 );
@@ -2079,6 +2140,40 @@ document.addEventListener(
                     }
 
 
+                    const isLastOpened =
+                        Number(entry.postit_id) ===
+                        Number(lastOpenedPostitId);
+
+
+                    if (isLastOpened) {
+
+                        if (currentGiftFilter === "done") {
+
+                            card.classList.add(
+                                "last-opened-done"
+                            );
+
+                        }
+
+                        else if (currentGiftFilter === "todo") {
+
+                            card.classList.add(
+                                "last-opened-todo"
+                            );
+
+                        }
+
+                        else {
+
+                            card.classList.add(
+                                "last-opened-all"
+                            );
+
+                        }
+
+                    }
+
+
 
                     /*
                      * NUMERO
@@ -2116,6 +2211,36 @@ document.addEventListener(
 
                     message.textContent =
                         postit.message;
+
+
+                    if (isLastOpened) {
+
+                        const badge =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        badge.className =
+                            "last-opened-badge " +
+                            (
+                                currentGiftFilter === "done"
+                                    ? "done"
+                                    : currentGiftFilter === "todo"
+                                        ? "todo"
+                                        : "all"
+                            );
+
+
+                        badge.textContent =
+                            "✨ Dernier cœur ouvert";
+
+
+                        card.appendChild(
+                            badge
+                        );
+
+                    }
 
 
 
@@ -2507,6 +2632,15 @@ document.addEventListener(
                 
                 sessionStorage.removeItem(
                     "adminMode"
+                );
+
+
+                lastOpenedPostitId =
+                    null;
+
+
+                localStorage.removeItem(
+                    "lastOpenedPostitId"
                 );
 
 
