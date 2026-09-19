@@ -31,7 +31,6 @@
 
     <div class="login-card">
 
-
         <p class="login-subtitle">
             Entre le mot de passe pour découvrir
             ce qui t'attend ❤️
@@ -51,7 +50,6 @@
                 placeholder="Mot de passe"
                 autocomplete="current-password"
             >
-
 
             <button
                 id="loginButton"
@@ -78,14 +76,12 @@
                 autocomplete="username"
             >
 
-
             <input
                 id="adminPassword"
                 type="password"
                 placeholder="Mot de passe"
                 autocomplete="current-password"
             >
-
 
             <button
                 id="adminLoginButton"
@@ -131,7 +127,6 @@
 
     <header class="app-header">
 
-
         <div class="header-title">
 
             <span>
@@ -142,7 +137,6 @@
 
 
         <nav class="navigation">
-
 
             <button
                 id="wallButton"
@@ -161,7 +155,6 @@
                 Surprises
             </button>
 
-
         </nav>
 
 
@@ -173,23 +166,20 @@
             Déconnexion
         </button>
 
-
     </header>
 
 
 
     <!-- =================================================
          MUR
-    ================================================== -->
+    ================================================= -->
 
     <section
         id="wallView"
         class="view"
     >
 
-
         <div class="wall-introduction">
-
 
             <h2>
                 140 surprises
@@ -216,7 +206,6 @@
                 0 crédit disponible
             </div>
 
-
         </div>
 
 
@@ -231,23 +220,20 @@
             class="wall-message"
         ></div>
 
-
     </section>
 
 
 
     <!-- =================================================
          SURPRISES
-    ================================================== -->
+    ================================================= -->
 
     <section
         id="giftsView"
         class="view hidden"
     >
 
-
         <div class="gifts-header">
-
 
             <h2>
                 Surprises
@@ -257,7 +243,6 @@
             <p>
                 Toutes les surprises que tu as découvertes.
             </p>
-
 
         </div>
 
@@ -339,22 +324,18 @@
             class="empty-gifts"
         >
 
-
             <div>
                 ♡
             </div>
-
 
             <h3>
                 Aucune surprise découverte
             </h3>
 
-
             <p>
                 Retourne sur le mur pour découvrir
                 ta première surprise.
             </p>
-
 
         </div>
 
@@ -374,7 +355,6 @@
     id="modal"
     class="modal hidden"
 >
-
 
     <div
         id="modalBackground"
@@ -424,28 +404,31 @@
             ✓ Marquer comme fait
         </button>
 
-
     </div>
-
 
 </div>
 
 
 
 <!-- =====================================================
-     SUPABASE
+     STYLE DES FILTRES ET DU DERNIER CŒUR
 ===================================================== -->
 
 <style>
+
     .filter-stat {
         cursor: pointer;
         user-select: none;
-        transition: transform 0.2s ease, opacity 0.2s ease;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
     }
+
 
     .filter-stat:hover {
         transform: translateY(-2px);
     }
+
 
     .filter-stat.active {
         transform: translateY(-2px);
@@ -454,59 +437,115 @@
         outline-offset: 2px;
     }
 
+
     .filter-stat.active strong,
     .filter-stat.active span {
         color: #e85d75;
     }
+
 
     .filter-stat:focus-visible {
         outline: 2px solid #e85d75;
         outline-offset: 3px;
     }
 
-    /* Mise en évidence du dernier cœur ouvert */
+
+    /* =================================================
+       DERNIER CŒUR OUVERT
+    ================================================= */
+
     .gift-card.last-opened-all {
+
         border: 2px solid #e85d75;
-        box-shadow: 0 0 0 3px rgba(232, 93, 117, 0.18);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(232, 93, 117, 0.18);
+
     }
+
 
     .gift-card.last-opened-done {
+
         border: 2px solid #4caf7a;
-        box-shadow: 0 0 0 3px rgba(76, 175, 122, 0.18);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(76, 175, 122, 0.18);
+
     }
+
 
     .gift-card.last-opened-todo {
+
         border: 2px solid #f0a04b;
-        box-shadow: 0 0 0 3px rgba(240, 160, 75, 0.18);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(240, 160, 75, 0.18);
+
     }
+
 
     .last-opened-badge {
+
         display: inline-flex;
+
         align-items: center;
+
         width: fit-content;
+
         margin-top: 8px;
+
         padding: 4px 9px;
+
         border-radius: 999px;
+
         font-size: 0.72rem;
+
         font-weight: 700;
+
         letter-spacing: 0.03em;
+
     }
+
 
     .last-opened-badge.all {
+
         color: #c9465f;
-        background: rgba(232, 93, 117, 0.12);
+
+        background:
+            rgba(232, 93, 117, 0.12);
+
     }
+
 
     .last-opened-badge.done {
+
         color: #318257;
-        background: rgba(76, 175, 122, 0.12);
+
+        background:
+            rgba(76, 175, 122, 0.12);
+
     }
 
+
     .last-opened-badge.todo {
+
         color: #c87b1f;
-        background: rgba(240, 160, 75, 0.14);
+
+        background:
+            rgba(240, 160, 75, 0.14);
+
     }
+
 </style>
+
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -571,11 +610,14 @@ document.addEventListener(
         let currentUser =
             null;
 
+
         let isAdmin =
             false;
 
+
         const ADMIN_VIEWED_USER_ID =
             "790d510e-2b62-4e66-b8d6-bb85c0bc02d2";
+
 
         let postits =
             [];
@@ -593,18 +635,35 @@ document.addEventListener(
             null;
 
 
-        let bonusCredits = 0;
+        let bonusCredits =
+            0;
 
 
-        let availableCredits = 0;
+        let availableCredits =
+            0;
+
+
+        /*
+         * Identifiant du dernier cœur ouvert.
+         *
+         * IMPORTANT :
+         * cette valeur est maintenant déterminée
+         * à partir de opened_at dans Supabase.
+         */
+        let lastOpenedPostitId =
+            null;
 
 
         const START_DATE =
-            new Date("2026-08-14T00:00:00+02:00");
+            new Date(
+                "2026-08-14T00:00:00+02:00"
+            );
 
 
         const END_DATE =
-            new Date("2026-12-31T00:00:00+01:00");
+            new Date(
+                "2026-12-31T00:00:00+01:00"
+            );
 
 
 
@@ -728,14 +787,6 @@ document.addEventListener(
             "all";
 
 
-        /*
-         * Identifiant du dernier cœur nouvellement ouvert.
-         * Conservé localement pour survivre à un rechargement.
-         */
-        let lastOpenedPostitId =
-            Number(localStorage.getItem("lastOpenedPostitId")) || null;
-
-
         const modal =
             document.getElementById("modal");
 
@@ -769,6 +820,18 @@ document.addEventListener(
 
             error.textContent =
                 message;
+
+        }
+
+
+
+        /* =================================================
+           NOTIFICATION
+        ================================================= */
+
+        function showErrorMessage(message) {
+
+            alert(message);
 
         }
 
@@ -814,7 +877,6 @@ document.addEventListener(
 
             try {
 
-
                 const result =
                     await supabaseClient
                         .auth
@@ -832,7 +894,6 @@ document.addEventListener(
                 if (
                     result.error
                 ) {
-
 
                     console.error(
                         result.error
@@ -852,21 +913,22 @@ document.addEventListener(
                 currentUser =
                     result.data.user;
 
+
                 isAdmin =
                     false;
+
 
                 sessionStorage.removeItem(
                     "adminMode"
                 );
 
-                await enterApplication();
 
+                await enterApplication();
 
             }
 
 
             catch (exception) {
-
 
                 console.error(
                     exception
@@ -877,12 +939,10 @@ document.addEventListener(
                     "Erreur de connexion."
                 );
 
-
             }
 
 
             finally {
-
 
                 loginButton.disabled =
                     false;
@@ -890,7 +950,6 @@ document.addEventListener(
 
                 loginButton.textContent =
                     "Entrer";
-
 
             }
 
@@ -923,11 +982,9 @@ document.addEventListener(
                 !passwordValue
             ) {
 
-
                 showError(
                     "Remplis les deux champs."
                 );
-
 
                 return;
 
@@ -947,7 +1004,6 @@ document.addEventListener(
 
             try {
 
-
                 const result =
                     await supabaseClient
                         .auth
@@ -965,7 +1021,6 @@ document.addEventListener(
                 if (
                     result.error
                 ) {
-
 
                     console.error(
                         result.error
@@ -985,22 +1040,23 @@ document.addEventListener(
                 currentUser =
                     result.data.user;
 
+
                 isAdmin =
                     true;
+
 
                 sessionStorage.setItem(
                     "adminMode",
                     "true"
                 );
 
-                await enterApplication();
 
+                await enterApplication();
 
             }
 
 
             catch (exception) {
-
 
                 console.error(
                     exception
@@ -1011,12 +1067,10 @@ document.addEventListener(
                     "Erreur de connexion."
                 );
 
-
             }
 
 
             finally {
-
 
                 adminLoginButton.disabled =
                     false;
@@ -1024,7 +1078,6 @@ document.addEventListener(
 
                 adminLoginButton.textContent =
                     "Se connecter";
-
 
             }
 
@@ -1102,7 +1155,8 @@ document.addEventListener(
                     .order(
                         "id",
                         {
-                            ascending: true
+                            ascending:
+                                true
                         }
                     );
 
@@ -1110,7 +1164,6 @@ document.addEventListener(
             if (
                 result.error
             ) {
-
 
                 console.error(
                     "Erreur postits :",
@@ -1138,6 +1191,9 @@ document.addEventListener(
 
         /* =================================================
            CHARGER LES POST-ITS OUVERTS
+           
+           IMPORTANT :
+           opened_at est maintenant récupéré.
         ================================================= */
 
         async function loadOpenedPostits() {
@@ -1147,7 +1203,7 @@ document.addEventListener(
                 await supabaseClient
                     .from("opened_postits")
                     .select(
-                        "postit_id, done"
+                        "postit_id, done, opened_at"
                     )
                     .eq(
                         "user_id",
@@ -1156,10 +1212,10 @@ document.addEventListener(
                             : currentUser.id
                     );
 
+
             if (
                 result.error
             ) {
-
 
                 console.error(
                     "Erreur ouvertures :",
@@ -1185,10 +1241,79 @@ document.addEventListener(
                 );
 
 
+            /*
+             * =================================================
+             * RECHERCHE DU DERNIER CŒUR OUVERT
+             * =================================================
+             *
+             * On prend simplement l'entrée dont
+             * opened_at est la plus récente.
+             *
+             * C'est donc la BDD qui décide quel est
+             * le dernier cœur ouvert.
+             */
+
+            if (
+                openedData.length > 0
+            ) {
+
+
+                const sortedByOpenedAt =
+                    [...openedData].sort(
+                        (a, b) =>
+                            new Date(
+                                b.opened_at
+                            ) -
+                            new Date(
+                                a.opened_at
+                            )
+                    );
+
+
+                const lastOpened =
+                    sortedByOpenedAt[0];
+
+
+                lastOpenedPostitId =
+                    lastOpened.postit_id;
+
+
+            }
+
+            else {
+
+                lastOpenedPostitId =
+                    null;
+
+            }
+
+
             console.log(
                 "❤️ Ouverts :",
                 openedPostits.size
             );
+
+
+            console.log(
+                "✨ Dernier cœur ouvert :",
+                lastOpenedPostitId
+            );
+
+
+            if (
+                openedData.length > 0
+            ) {
+
+                console.log(
+                    "🕐 Ouvert le :",
+                    openedData.find(
+                        item =>
+                            item.postit_id ===
+                            lastOpenedPostitId
+                    )?.opened_at
+                );
+
+            }
 
         }
 
@@ -1201,10 +1326,27 @@ document.addEventListener(
         async function loadBonusCredits() {
 
 
+            /*
+             * En mode admin, les crédits ne sont pas
+             * nécessaires pour l'utilisateur visualisé.
+             */
+
+            if (isAdmin) {
+
+                bonusCredits =
+                    0;
+
+                return;
+
+            }
+
+
             const result =
                 await supabaseClient
                     .from("user_bonus_credits")
-                    .select("credits")
+                    .select(
+                        "credits"
+                    )
                     .eq(
                         "user_id",
                         currentUser.id
@@ -1221,7 +1363,8 @@ document.addEventListener(
                 );
 
 
-                bonusCredits = 0;
+                bonusCredits =
+                    0;
 
 
                 return;
@@ -1238,53 +1381,60 @@ document.addEventListener(
 
         /* =================================================
            CALCUL DES CREDITS
-
-           15 août = 1 crédit
-           +1 crédit chaque jour
-           Les crédits non utilisés s'accumulent.
-
-           Du 15 août au 30 décembre il y a 138 jours.
-           Le 31 décembre, on ajoute le crédit final afin
-           que les 140 ouvertures soient possibles.
         ================================================= */
 
         function calculateAvailableCredits() {
 
 
-            const now = new Date();
+            const now =
+                new Date();
 
 
-            const today = new Date(
-                now.getFullYear(),
-                now.getMonth(),
-                now.getDate()
-            );
+            const today =
+                new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate()
+                );
 
 
-            const start = new Date(
-                START_DATE.getFullYear(),
-                START_DATE.getMonth(),
-                START_DATE.getDate()
-            );
+            const start =
+                new Date(
+                    START_DATE.getFullYear(),
+                    START_DATE.getMonth(),
+                    START_DATE.getDate()
+                );
 
 
-            const end = new Date(
-                END_DATE.getFullYear(),
-                END_DATE.getMonth(),
-                END_DATE.getDate()
-            );
+            const end =
+                new Date(
+                    END_DATE.getFullYear(),
+                    END_DATE.getMonth(),
+                    END_DATE.getDate()
+                );
 
 
-            let earned = 0;
+            let earned =
+                0;
 
 
-            if (today >= start) {
+            if (
+                today >= start
+            ) {
 
 
                 const daysElapsed =
                     Math.floor(
-                        (today - start) /
-                        (1000 * 60 * 60 * 24)
+                        (
+                            today -
+                            start
+                        ) /
+                        (
+                            1000 *
+                            60 *
+                            60 *
+                            24
+                        )
                     );
 
 
@@ -1292,9 +1442,12 @@ document.addEventListener(
                     daysElapsed + 1;
 
 
-                if (today >= end) {
+                if (
+                    today >= end
+                ) {
 
-                    earned = 140;
+                    earned =
+                        140;
 
                 }
 
@@ -1322,6 +1475,10 @@ document.addEventListener(
         }
 
 
+
+        /* =================================================
+           AFFICHER LES CREDITS
+        ================================================= */
 
         function updateCredits() {
 
@@ -1415,7 +1572,8 @@ document.addEventListener(
                         rotations[
                             index %
                             rotations.length
-                        ] + "deg"
+                        ] +
+                        "deg"
                     );
 
 
@@ -1424,7 +1582,6 @@ document.addEventListener(
                             postit.id
                         )
                     ) {
-
 
                         button.classList.add(
                             "opened"
@@ -1451,7 +1608,6 @@ document.addEventListener(
                     button.addEventListener(
                         "click",
                         function () {
-
 
                             openPostit(
                                 postit
@@ -1488,11 +1644,19 @@ document.addEventListener(
             postit
         ) {
 
+
+            /*
+             * ADMIN
+             */
+
             if (isAdmin) {
+
                 showPostit(
                     postit
-                ); 
+                );
+
                 return;
+
             }
 
 
@@ -1507,26 +1671,31 @@ document.addEventListener(
                 )
             ) {
 
-
                 showPostit(
                     postit
                 );
 
-
                 return;
 
             }
 
+
             const credits =
-                    calculateAvailableCredits();
-            
+                calculateAvailableCredits();
+
+
             if (
                 credits <= 0
             ) {
-                alert("Tu n'as plus de crédit disponible ❤️");
-        
+
+                showErrorMessage(
+                    "Tu n'as plus de crédit disponible ❤️"
+                );
+
                 return;
+
             }
+
 
             try {
 
@@ -1570,11 +1739,6 @@ document.addEventListener(
                     }
 
 
-                    /*
-                     * Si le RPC indique que
-                     * le post-it est déjà ouvert.
-                     */
-
                     if (
                         result.error.message
                             .includes(
@@ -1592,9 +1756,13 @@ document.addEventListener(
                         renderGifts();
 
 
+                        updateCredits();
+
+
                         showPostit(
                             postit
                         );
+
 
                     }
 
@@ -1604,30 +1772,25 @@ document.addEventListener(
                 }
 
 
-                lastOpenedPostitId =
-                    postit.id;
+                /*
+                 * =================================================
+                 * IMPORTANT
+                 * =================================================
+                 *
+                 * On recharge les données depuis Supabase
+                 * au lieu de modifier manuellement openedData.
+                 *
+                 * Cela permet de récupérer le véritable
+                 * opened_at créé par le RPC.
+                 */
+
+                await loadOpenedPostits();
 
 
-                localStorage.setItem(
-                    "lastOpenedPostitId",
-                    String(postit.id)
-                );
-
-
-                openedPostits.add(
-                    postit.id
-                );
-
-
-                openedData.push({
-
-                    postit_id:
-                        postit.id,
-
-                    done:
-                        false
-
-                });
+                /*
+                 * Le dernier cœur est maintenant déterminé
+                 * automatiquement grâce à opened_at.
+                 */
 
 
                 renderWall();
@@ -1643,12 +1806,10 @@ document.addEventListener(
                     postit
                 );
 
-
             }
 
 
             catch (exception) {
-
 
                 console.error(
                     exception
@@ -1723,22 +1884,29 @@ document.addEventListener(
 
             }
 
+
             modalDoneButton.disabled =
                 false;
 
+
             if (isAdmin) {
+
 
                 modalDoneButton.textContent =
                     "Mode administrateur";
-            
+
+
                 modalDoneButton.disabled =
                     true;
-            
+
+
                 modalDoneButton.classList.remove(
                     "done"
                 );
-            
+
+
                 return;
+
             }
 
 
@@ -1766,7 +1934,6 @@ document.addEventListener(
 
 
             }
-
 
             else {
 
@@ -1819,6 +1986,13 @@ document.addEventListener(
         async function toggleGiftDone(
             postitId
         ) {
+
+
+            if (isAdmin) {
+
+                return;
+
+            }
 
 
             const entry =
@@ -1948,15 +2122,25 @@ document.addEventListener(
                 todo;
 
 
+
             /*
-             * Mettre en évidence le filtre actif
+             * Mettre en évidence
+             * le filtre actif
              */
 
-            [filterAll, filterDone, filterTodo].forEach(
+            [
+                filterAll,
+                filterDone,
+                filterTodo
+            ].forEach(
                 filter => {
 
                     if (filter) {
-                        filter.classList.remove("active");
+
+                        filter.classList.remove(
+                            "active"
+                        );
+
                     }
 
                 }
@@ -1967,31 +2151,49 @@ document.addEventListener(
                 filterAll;
 
 
-            if (currentGiftFilter === "done") {
+            if (
+                currentGiftFilter ===
+                "done"
+            ) {
+
                 activeFilter =
                     filterDone;
+
             }
 
-            else if (currentGiftFilter === "todo") {
+            else if (
+                currentGiftFilter ===
+                "todo"
+            ) {
+
                 activeFilter =
                     filterTodo;
+
             }
 
 
             if (activeFilter) {
-                activeFilter.classList.add("active");
+
+                activeFilter.classList.add(
+                    "active"
+                );
+
             }
 
 
+
             /*
-             * Sélection des surprises à afficher
+             * Sélection des surprises
              */
 
             let filteredData =
                 [...openedData];
 
 
-            if (currentGiftFilter === "done") {
+            if (
+                currentGiftFilter ===
+                "done"
+            ) {
 
                 filteredData =
                     openedData.filter(
@@ -2001,7 +2203,10 @@ document.addEventListener(
 
             }
 
-            else if (currentGiftFilter === "todo") {
+            else if (
+                currentGiftFilter ===
+                "todo"
+            ) {
 
                 filteredData =
                     openedData.filter(
@@ -2012,20 +2217,33 @@ document.addEventListener(
             }
 
 
+
             /*
              * Aucun post-it ouvert
              */
 
-            if (opened === 0) {
+            if (
+                opened === 0
+            ) {
+
 
                 emptyGifts.style.display =
                     "block";
 
 
                 emptyGifts.innerHTML = `
+
                     <div>♡</div>
-                    <h3>Aucune surprise découverte</h3>
-                    <p>Retourne sur le mur pour découvrir ta première surprise.</p>
+
+                    <h3>
+                        Aucune surprise découverte
+                    </h3>
+
+                    <p>
+                        Retourne sur le mur pour découvrir
+                        ta première surprise.
+                    </p>
+
                 `;
 
 
@@ -2034,42 +2252,82 @@ document.addEventListener(
             }
 
 
+
             /*
-             * Aucun résultat pour le filtre actif
+             * Aucun résultat pour le filtre
              */
 
-            if (filteredData.length === 0) {
+            if (
+                filteredData.length === 0
+            ) {
+
 
                 emptyGifts.style.display =
                     "block";
 
 
-                if (currentGiftFilter === "done") {
+                if (
+                    currentGiftFilter ===
+                    "done"
+                ) {
+
 
                     emptyGifts.innerHTML = `
+
                         <div>❤️</div>
-                        <h3>Aucune surprise réalisée</h3>
-                        <p>Les surprises que tu auras faites apparaîtront ici.</p>
+
+                        <h3>
+                            Aucune surprise réalisée
+                        </h3>
+
+                        <p>
+                            Les surprises que tu auras faites
+                            apparaîtront ici.
+                        </p>
+
                     `;
 
                 }
 
-                else if (currentGiftFilter === "todo") {
+                else if (
+                    currentGiftFilter ===
+                    "todo"
+                ) {
+
 
                     emptyGifts.innerHTML = `
+
                         <div>✨</div>
-                        <h3>Tout est fait !</h3>
-                        <p>Toutes tes surprises découvertes ont déjà été réalisées.</p>
+
+                        <h3>
+                            Tout est fait !
+                        </h3>
+
+                        <p>
+                            Toutes tes surprises découvertes
+                            ont déjà été réalisées.
+                        </p>
+
                     `;
 
                 }
 
                 else {
 
+
                     emptyGifts.innerHTML = `
+
                         <div>♡</div>
-                        <h3>Aucune surprise découverte</h3>
-                        <p>Retourne sur le mur pour découvrir ta première surprise.</p>
+
+                        <h3>
+                            Aucune surprise découverte
+                        </h3>
+
+                        <p>
+                            Retourne sur le mur pour découvrir
+                            ta première surprise.
+                        </p>
+
                     `;
 
                 }
@@ -2080,8 +2338,10 @@ document.addEventListener(
             }
 
 
+
             emptyGifts.style.display =
                 "none";
+
 
 
             /*
@@ -2097,6 +2357,7 @@ document.addEventListener(
                         a.postit_id -
                         b.postit_id
                 );
+
 
 
             sorted.forEach(
@@ -2118,6 +2379,7 @@ document.addEventListener(
                     }
 
 
+
                     const card =
                         document.createElement(
                             "div"
@@ -2128,10 +2390,10 @@ document.addEventListener(
                         "gift-card";
 
 
+
                     if (
                         entry.done
                     ) {
-
 
                         card.classList.add(
                             "is-done"
@@ -2140,14 +2402,31 @@ document.addEventListener(
                     }
 
 
+
+                    /*
+                     * =================================================
+                     * DERNIER CŒUR OUVERT
+                     * =================================================
+                     *
+                     * lastOpenedPostitId vient maintenant
+                     * directement de opened_at.
+                     */
+
                     const isLastOpened =
                         Number(entry.postit_id) ===
                         Number(lastOpenedPostitId);
 
 
-                    if (isLastOpened) {
+                    if (
+                        isLastOpened
+                    ) {
 
-                        if (currentGiftFilter === "done") {
+
+                        if (
+                            currentGiftFilter ===
+                            "done"
+                        ) {
+
 
                             card.classList.add(
                                 "last-opened-done"
@@ -2155,7 +2434,11 @@ document.addEventListener(
 
                         }
 
-                        else if (currentGiftFilter === "todo") {
+                        else if (
+                            currentGiftFilter ===
+                            "todo"
+                        ) {
+
 
                             card.classList.add(
                                 "last-opened-todo"
@@ -2164,6 +2447,7 @@ document.addEventListener(
                         }
 
                         else {
+
 
                             card.classList.add(
                                 "last-opened-all"
@@ -2213,7 +2497,15 @@ document.addEventListener(
                         postit.message;
 
 
-                    if (isLastOpened) {
+
+                    /*
+                     * BADGE DERNIER CŒUR
+                     */
+
+                    if (
+                        isLastOpened
+                    ) {
+
 
                         const badge =
                             document.createElement(
@@ -2224,9 +2516,11 @@ document.addEventListener(
                         badge.className =
                             "last-opened-badge " +
                             (
-                                currentGiftFilter === "done"
+                                currentGiftFilter ===
+                                "done"
                                     ? "done"
-                                    : currentGiftFilter === "todo"
+                                    : currentGiftFilter ===
+                                      "todo"
                                         ? "todo"
                                         : "all"
                             );
@@ -2336,11 +2630,15 @@ document.addEventListener(
         }
 
 
+
         /* =================================================
            FILTRES DES SURPRISES
         ================================================= */
 
-        function setGiftFilter(filter) {
+        function setGiftFilter(
+            filter
+        ) {
+
 
             currentGiftFilter =
                 filter;
@@ -2351,11 +2649,19 @@ document.addEventListener(
         }
 
 
-        [filterAll, filterDone, filterTodo].forEach(
+
+        [
+            filterAll,
+            filterDone,
+            filterTodo
+        ].forEach(
             filter => {
 
+
                 if (!filter) {
+
                     return;
+
                 }
 
 
@@ -2375,10 +2681,14 @@ document.addEventListener(
                     "keydown",
                     function (event) {
 
+
                         if (
-                            event.key === "Enter" ||
-                            event.key === " "
+                            event.key ===
+                                "Enter" ||
+                            event.key ===
+                                " "
                         ) {
+
 
                             event.preventDefault();
 
@@ -2499,9 +2809,7 @@ document.addEventListener(
                     adminToggle.textContent =
                         "Accès administrateur";
 
-
                 }
-
 
                 else {
 
@@ -2627,21 +2935,24 @@ document.addEventListener(
                 currentUser =
                     null;
 
+
                 isAdmin =
                     false;
-                
+
+
                 sessionStorage.removeItem(
                     "adminMode"
                 );
 
 
+                /*
+                 * Pas de localStorage à supprimer :
+                 * le dernier cœur est maintenant déterminé
+                 * directement depuis Supabase.
+                 */
+
                 lastOpenedPostitId =
                     null;
-
-
-                localStorage.removeItem(
-                    "lastOpenedPostitId"
-                );
 
 
                 postits =
@@ -2693,6 +3004,7 @@ document.addEventListener(
 
                 currentUser =
                     result.data.session.user;
+
 
                 isAdmin =
                     sessionStorage.getItem(
